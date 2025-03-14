@@ -64,6 +64,5 @@ type FantasyTeam {
 }
 
 type FantasyManager {
-    id: ID!
     name: String!
 }

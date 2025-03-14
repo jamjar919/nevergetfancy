@@ -3,10 +3,10 @@
 import React from "react";
 
 import {useFantasyTeamQueryQuery} from "../../../graphql/generated/Client";
-import {FantasyTeamId} from "../../types/Reference";
+import {FantasyManagerId} from "../../../graphql/Reference";
 
 type FantasyTeamProps = {
-    teamId: FantasyTeamId
+    teamId: FantasyManagerId
 }
 
 const FantasyTeam: React.FC<FantasyTeamProps> = ({ teamId }) => {
