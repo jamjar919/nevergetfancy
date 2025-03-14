@@ -1,0 +1,10 @@
+fragment FantasyTeamAttributes on FantasyTeam {
+    id
+    name
+}
+
+query FantasyTeamQuery($id: ID!) {
+    fantasyTeam(id: $id) {
+        ...FantasyTeamAttributes
+    }
+}

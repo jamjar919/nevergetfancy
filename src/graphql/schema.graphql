@@ -1,0 +1,69 @@
+type Query {
+    fancy(fantasyTeamId: ID!): FancyResult!
+    fantasyTeam(id: ID!): FantasyTeam!
+}
+
+type FancyResult {
+    """
+    The total point difference the user lost out on by not captaining Salah
+    """
+    totalPointDifference: Int!
+    """
+    Line items used to calculate the total point difference
+    """
+    items: [FancyResultLine]!
+}
+
+type FancyResultLine {
+    """
+    The point difference between the user's captain and Salah
+    """
+    pointDifference: Int!
+    """
+    The user's captain
+    """
+    whoCaptained: PremierLeaguePlayer!
+    """
+    The points the user's captain scored
+    """
+    captainPoints: Int!
+    """
+    The points Salah scored
+    """
+    salahPoints: Int!
+    """
+    Whether the user had Salah in their team
+    """
+    didHaveSalah: Boolean!
+}
+
+type PremierLeaguePlayer {
+    id: ID!
+    """
+    The player's full name
+    """
+    name: String!
+    """
+    The player's team
+    """
+    team: PremierLeagueTeam!
+}
+
+type PremierLeagueTeam {
+    id: ID!
+    """
+    The team's full name
+    """
+    name: String!
+}
+
+type FantasyTeam {
+    id: ID!
+    name: String!
+    manager: FantasyManager!
+}
+
+type FantasyManager {
+    id: ID!
+    name: String!
+}
