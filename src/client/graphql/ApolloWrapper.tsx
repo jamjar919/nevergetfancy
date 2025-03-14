@@ -10,7 +10,7 @@ import React from "react";
 
 function makeClient() {
     const httpLink = new HttpLink({
-        uri: "https://localhost:16000/graphql",
+        uri: "http://localhost:16000/graphql",
         fetchOptions: { cache: "no-store" },
     });
 
