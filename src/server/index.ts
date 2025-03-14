@@ -1,7 +1,7 @@
 import express from "express";
 import * as dotenv from "dotenv";
 import {ApolloServer} from "@apollo/server";
-import {expressMiddleware} from '@apollo/server/express4';
+import { expressMiddleware } from '@apollo/server/express4';
 import {ApolloServerPluginDrainHttpServer} from "@apollo/server/plugin/drainHttpServer";
 import bodyParser from "body-parser";
 import cors, { CorsRequest } from 'cors';
