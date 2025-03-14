@@ -1,4 +1,4 @@
-import {FantasyManagerId, OffsetDateTime, PremierLeagueTeamId} from "../../../../graphql/Reference";
+import {EventId, FantasyManagerId, OffsetDateTime, PremierLeagueTeamId} from "../../../../graphql/Reference";
 
 type FantasyTeamManagerDto = {
     id: FantasyManagerId;
@@ -15,10 +15,10 @@ type FantasyTeamManagerDto = {
     playerRegion: FantasyTeamManagerRegionDto;
 
     // What week they started at
-    startedEvent: number;
+    startedEvent: EventId;
 
     // The current week they are playing
-    currentEvent: number;
+    currentEvent: EventId;
 
     // Total number of points
     summaryOverallPoints: number;

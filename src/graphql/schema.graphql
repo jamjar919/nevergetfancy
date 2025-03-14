@@ -1,6 +1,10 @@
 type Query {
     fancy(fantasyTeamId: ID!): FancyResult!
     fantasyTeam(id: ID!): FantasyTeam!
+
+    premierLeagueTeams: [PremierLeagueTeam!]!
+    premierLeagueTeam(id: ID!): PremierLeagueTeam!
+    premierLeaguePlayer(id: ID!): PremierLeaguePlayer!
 }
 
 type FancyResult {
@@ -37,26 +41,6 @@ type FancyResultLine {
     didHaveSalah: Boolean!
 }
 
-type PremierLeaguePlayer {
-    id: ID!
-    """
-    The player's full name
-    """
-    name: String!
-    """
-    The player's team
-    """
-    team: PremierLeagueTeam!
-}
-
-type PremierLeagueTeam {
-    id: ID!
-    """
-    The team's full name
-    """
-    name: String!
-}
-
 type FantasyTeam {
     id: ID!
     name: String!
@@ -65,4 +49,63 @@ type FantasyTeam {
 
 type FantasyManager {
     name: String!
+}
+
+type PremierLeagueTeam {
+    id: ID!
+    """
+    The team's full name
+    """
+    name: String!
+    """
+    The team's short name
+    """
+    shortName: String!
+    """
+    The team's position in the league
+    """
+    position: Int!
+
+    """
+    The team's players
+    """
+    players: [PremierLeaguePlayer]
+}
+
+type PremierLeaguePlayer {
+    id: ID!
+    """
+    The player's first name
+    """
+    firstName: String!
+
+    """
+    The player's last name
+    """
+    lastName: String!
+
+    """
+    The players display name
+    """
+    displayName: String!
+
+    """
+    The total points the player has scored
+    """
+    totalPoints: Int!
+
+    """
+    The number of goals the player has scored
+    """
+    goals: Int!
+
+    """
+    The id of the players team
+    """
+    teamId: ID!
+
+    """
+    The player's team
+    """
+    team: PremierLeagueTeam
 }

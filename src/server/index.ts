@@ -12,6 +12,8 @@ import {setupLogs} from "./util/setupLogs";
 import {Context} from "../graphql/Context";
 import {resolvers} from "./resolver/resolvers";
 import {Endpoints} from "./constant/endpoints";
+import {fetchPlayersAndTeams, getPlayers, getTeams} from "./fpl/api/bootstrap/bootstrap";
+import {randomIntegerInRange} from "./util/randomIntegerInRange";
 
 dotenv.config();
 setupLogs();
@@ -54,5 +56,30 @@ app.get(Endpoints.PING, async (_, res) => {
 });
 
 // Startup
-await new Promise<void>((resolve) => httpServer.listen(port, () => resolve()));
-console.log(`🚀 Active on port ${port}!`);
+await new Promise<void>(
+    async (resolve) => {
+        console.log("Fetching players and teams...");
+
+        await fetchPlayersAndTeams();
+
+        const players = getPlayers();
+        const numPlayers = Object.keys(players).length;
+        const numTeams = Object.keys(getTeams()).length;
+
+        const randomPlayer = Object.values(players)[randomIntegerInRange(0, numPlayers - 1)];
+        const randomPlayerTeam = getTeams()[randomPlayer.team];
+
+        if (numPlayers === 0 || numTeams === 0) {
+            console.error("❌ Failed to fetch players and teams");
+            process.exit(1);
+        }
+
+        console.log("====================================");
+        console.log(`🏃🏽 ${numPlayers} players`);
+        console.log(`🏟️ ${numTeams} teams`);
+        console.log(`🎲 Player of the day: ${randomPlayer.webName}, ${randomPlayerTeam.name}`);
+        console.log("====================================");
+
+        return httpServer.listen(port, () => resolve())
+    });
+console.log(`🚀⚽  Active on port ${port}! Game on!`);
