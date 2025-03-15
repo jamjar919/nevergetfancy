@@ -3,7 +3,7 @@ type Reference<T, TReference extends string> = T & { [reference]: TReference };
 
 export type FantasyManagerId = Reference<string, 'FantasyManagerId'>;
 
-export type PremierLeaguePlayerId = Reference<number, 'PlayerId'>;
+export type PremierLeaguePlayerId = Reference<string, 'PlayerId'>;
 export type PremierLeagueTeamId = Reference<string, 'PremierLeagueTeamId'>;
 export type EventId = Reference<number, 'EventId'>;
 

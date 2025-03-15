@@ -1,11 +1,11 @@
-import {PremierLeagueTeam, Resolvers} from "../../graphql/generated/Resolver";
+import {PremierLeaguePlayer, PremierLeagueTeam, Resolvers, FancyResultLine, FantasyPlayerGameSummary} from "../../graphql/generated/Resolver";
 import {FantasyTeamManagerDto} from "../fpl/api/type/FantasyTeamManagerDto";
 import {getManager} from "../fpl/api/manager/getManager";
 import {FantasyManagerId, PremierLeaguePlayerId, PremierLeagueTeamId} from "../../graphql/Reference";
 import {getPlayerById, getPlayers, getTeamById, getTeams} from "../fpl/api/bootstrap/bootstrap";
 import {convertPremierLeagueTeam} from "./converter/convertPremierLeagueTeam";
 import {convertPremierLeaguePlayer} from "./converter/convertPremierLeaguePlayer";
-import {PremierLeaguePlayer} from "../../graphql/generated/Client";
+import {fancyCalculator} from "../fpl/fancy/fancyCalculator";
 
 export const resolvers: Resolvers = {
     Query: {
@@ -28,6 +28,9 @@ export const resolvers: Resolvers = {
         },
         premierLeaguePlayer: async (_: {}, args: { id: string }) => {
             return convertPremierLeaguePlayer(getPlayerById(args.id as PremierLeaguePlayerId));
+        },
+        fancy: async (_: {}, args: { fantasyTeamId: string }) => {
+            return fancyCalculator(args.fantasyTeamId as FantasyManagerId);
         }
     },
     PremierLeagueTeam: {
@@ -40,6 +43,16 @@ export const resolvers: Resolvers = {
     PremierLeaguePlayer: {
         team: async (parent: PremierLeaguePlayer) => {
             return convertPremierLeagueTeam(getTeamById(parent.teamId as PremierLeagueTeamId));
+        }
+    },
+    FancyResultLine: {
+        captain: async (parent: FancyResultLine) => {
+            return convertPremierLeaguePlayer(getPlayerById(parent.captainId as PremierLeaguePlayerId));
+        }
+    },
+    FantasyPlayerGameSummary: {
+        opposingTeam: async (parent: FantasyPlayerGameSummary): Promise<PremierLeagueTeam> => {
+            return convertPremierLeagueTeam(getTeamById(parent.opposingTeamId as PremierLeagueTeamId));
         }
     }
 }

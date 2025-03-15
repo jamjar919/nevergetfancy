@@ -14,6 +14,7 @@ import {resolvers} from "./resolver/resolvers";
 import {Endpoints} from "./constant/endpoints";
 import {fetchPlayersAndTeams, getPlayers, getTeams} from "./fpl/api/bootstrap/bootstrap";
 import {randomIntegerInRange} from "./util/randomIntegerInRange";
+import {fancyCalculator} from "./fpl/fancy/fancyCalculator";
 
 dotenv.config();
 setupLogs();
@@ -83,3 +84,5 @@ await new Promise<void>(
         return httpServer.listen(port, () => resolve())
     });
 console.log(`🚀⚽  Active on port ${port}! Game on!`);
+
+fancyCalculator("2458154" as any);

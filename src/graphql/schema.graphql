@@ -1,5 +1,6 @@
 type Query {
     fancy(fantasyTeamId: ID!): FancyResult!
+
     fantasyTeam(id: ID!): FantasyTeam!
 
     premierLeagueTeams: [PremierLeagueTeam!]!
@@ -12,33 +13,80 @@ type FancyResult {
     The total point difference the user lost out on by not captaining Salah
     """
     totalPointDifference: Int!
+
+    """
+    The number of gameweeks the user got fancy
+    """
+    timesGotFancy: Int!
+
     """
     Line items used to calculate the total point difference
     """
-    items: [FancyResultLine]!
+    lines: [FancyResultLine]!
 }
 
 type FancyResultLine {
     """
+    The gameweek the user played
+    """
+    gameweek: Int!
+
+    """
+    Whether the user got fancy
+    """
+    gotFancy: Boolean!
+
+    """
     The point difference between the user's captain and Salah
     """
     pointDifference: Int!
-    """
-    The user's captain
-    """
-    whoCaptained: PremierLeaguePlayer!
-    """
-    The points the user's captain scored
-    """
-    captainPoints: Int!
-    """
-    The points Salah scored
-    """
-    salahPoints: Int!
+
     """
     Whether the user had Salah in their team
     """
-    didHaveSalah: Boolean!
+    hadSalah: Boolean!
+
+    """
+    The user's captain ID
+    """
+    captainId: ID!
+
+    """
+    The user's captain
+    """
+    captain: PremierLeaguePlayer
+
+    """
+    The points the user's captain scored
+    """
+    captainGameSummary: FantasyPlayerGameSummary
+
+    """
+    The points Salah scored
+    """
+    salahGameSummary: FantasyPlayerGameSummary
+}
+
+type FantasyPlayerGameSummary {
+    gameweek: Int!
+    points: Int!
+    opposingTeamId: ID!
+    opposingTeam: PremierLeagueTeam
+    wasHome: Boolean!
+    homeTeamScore: Int!
+    awayTeamScore: Int!
+    minutes: Int!
+    goals: Int!
+    assists: Int!
+    cleanSheets: Int!
+    conceded: Int!
+    ownGoals: Int!
+    penaltiesSaved: Int!
+    penaltiesMissed: Int!
+    yellowCards: Int!
+    redCards: Int!
+    saves: Int!
+    bonus: Int!
 }
 
 type FantasyTeam {
