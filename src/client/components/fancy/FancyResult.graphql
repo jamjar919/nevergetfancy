@@ -1,0 +1,24 @@
+query Fancy($fantasyTeamId: ID!) {
+    fancy(fantasyTeamId: $fantasyTeamId) {
+        totalPointDifference
+        timesGotFancy
+        lines {
+            gameweek
+            gotFancy
+            pointDifference
+            hadSalah
+            captain {
+                displayName
+                team {
+                    name
+                }
+            }
+            captainGameSummary {
+                points
+            }
+            salahGameSummary {
+                points
+            }
+        }
+    }
+}

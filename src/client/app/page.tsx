@@ -1,8 +1,8 @@
 import {FantasyManagerId} from "../../graphql/Reference";
-import {FantasyTeam} from "../components/fantasy-team/FantasyTeam";
+import {FancyResult} from "../components/fancy/FancyResult";
 
 export default function Page() {
     return (
-        <FantasyTeam teamId={"2458154" as FantasyManagerId} />
+        <FancyResult teamId={"2458154" as FantasyManagerId} />
     )
 }
