@@ -118,6 +118,11 @@ type PremierLeagueTeam {
     The team's players
     """
     players: [PremierLeaguePlayer]
+
+    """
+    The team's shirts
+    """
+    shirts: PremierLeagueTeamShirts!
 }
 
 type PremierLeaguePlayer {
@@ -156,4 +161,21 @@ type PremierLeaguePlayer {
     The player's team
     """
     team: PremierLeagueTeam
+
+    """
+    The player's position
+    """
+    position: PremierLeaguePlayerPosition
+}
+
+type PremierLeagueTeamShirts {
+    homeImageSrc: String!
+}
+
+enum PremierLeaguePlayerPosition {
+    GOALKEEPER,
+    DEFENDER,
+    MIDFIELDER,
+    FORWARD,
+    MANAGER
 }

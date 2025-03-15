@@ -4,9 +4,10 @@ import React from "react";
 
 import {useFancyQuery} from "../../../graphql/generated/Client";
 import {FantasyManagerId} from "../../../graphql/Reference";
-import classNames from "classnames";
+import {FancyTable} from "./table/FancyTable";
 
 import styles from './FancyResult.module.scss';
+import {TotalPointDifference} from "./total-point-difference/TotalPointDifference";
 
 type FancyResultProps = {
     teamId: FantasyManagerId
@@ -22,7 +23,7 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
     });
 
     if (!data) {
-        return <div className={styles.loading}>Loading...</div>
+        return <div>Loading...</div>
     }
 
     const {
@@ -32,26 +33,17 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
         }
     } = data;
 
-    const pointDifferenceClassnames = classNames({
-        [styles.result]: true,
-        [styles.positive]: totalPointDifference > 0,
-        [styles.negative]: totalPointDifference < 0
-    });
-
     return (
         <div>
-            <div className={pointDifferenceClassnames}>{totalPointDifference}</div>
-            <>
-                {lines.map((line) => (
-                    <div key={line.gameweek}>
-                        <div>GW {line.gameweek}</div>
-                        <div>{line.gotFancy ? 'Got fancy' : 'No fancy'}</div>
-                        <div>Captain: {line.captain.displayName}</div>
-                        <div>Point difference: {line.pointDifference}</div>
-                        <hr/>
-                    </div>
-                ))}
-            </>
+            <div className={styles.totalPointDifferenceContainer}>
+                <TotalPointDifference points={totalPointDifference} />
+            </div>
+            <div>
+                You got fancy
+            </div>
+            <div className={styles.tableContainer}>
+                <FancyTable lines={lines} />
+            </div>
         </div>
     )
 };

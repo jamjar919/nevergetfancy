@@ -1,5 +1,6 @@
 import {PremierLeaguePlayerDto} from "../../fpl/api/type/PremierLeaguePlayerDto";
 import {PremierLeaguePlayer} from "../../../graphql/generated/Resolver";
+import {convertPremierLeaguePlayerPosition} from "./convertPremierLeaguePlayerPosition";
 
 const convertPremierLeaguePlayer = (dto: PremierLeaguePlayerDto): PremierLeaguePlayer => {
     return {
@@ -9,7 +10,8 @@ const convertPremierLeaguePlayer = (dto: PremierLeaguePlayerDto): PremierLeagueP
         displayName: dto.webName,
         totalPoints: dto.totalPoints,
         goals: dto.goalsScored,
-        teamId: dto.team
+        teamId: dto.team,
+        position: convertPremierLeaguePlayerPosition(dto.type),
     };
 }
 

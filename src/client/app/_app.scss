@@ -1,11 +1,21 @@
 :root {
-  --positive: rgb(5, 250, 135);;
-  --negative: rgb(252, 44, 128);;
+  --positive: rgb(5, 250, 135);
+  --negative: rgb(252, 44, 128);
+  --neutral: rgb(122, 122, 122);
+
+  // text
+  ---light-text: rgb(255, 255, 255);
+  --dark-text: rgb(55, 0, 60);
+
+  // font sizes
+  --font-size-small: 1.2rem;
+  --font-size-medium: 1.4rem;
+  --font-size-large: 1.6rem;
 }
 
 body {
   margin: 0;
-  color: rgb(55, 0, 60);
+  color: var(--dark-text);
   font-size: 1.4rem;
   background: #fff;
   font-family: "PremierSans-Regular", Arial, "Helvetica Neue", Helvetica, sans-serif;

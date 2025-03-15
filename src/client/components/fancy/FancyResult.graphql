@@ -3,22 +3,7 @@ query Fancy($fantasyTeamId: ID!) {
         totalPointDifference
         timesGotFancy
         lines {
-            gameweek
-            gotFancy
-            pointDifference
-            hadSalah
-            captain {
-                displayName
-                team {
-                    name
-                }
-            }
-            captainGameSummary {
-                points
-            }
-            salahGameSummary {
-                points
-            }
+            ...FancyResultLineAttributes
         }
     }
 }

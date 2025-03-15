@@ -1,0 +1,29 @@
+.table {
+    margin: auto;
+    max-width: 1280px;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    td {
+        padding: 0.25em 0.5em;
+        border-bottom: 1px solid grey;
+    }
+
+    thead {
+        border-bottom: 2px solid var(--dark-text);
+
+        th {
+            padding: 0.25em;
+        }
+    }
+
+    tbody {
+        tr:hover {
+            background-color: rgb(237, 241, 249);;
+        }
+    }
+}
+
+.points {
+    text-align: center;
+}

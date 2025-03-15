@@ -1,0 +1,20 @@
+fragment PlayerCard on PremierLeaguePlayer {
+    id
+    firstName
+    lastName
+    displayName
+    position
+    team {
+        shortName
+        position
+        shirts {
+            homeImageSrc
+        }
+    }
+}
+
+query PlayerCard($playerId: ID!) {
+    premierLeaguePlayer(id: $playerId) {
+        ...PlayerCard
+    }
+}

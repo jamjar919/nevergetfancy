@@ -1,5 +1,5 @@
 import {PremierLeaguePlayerId, PremierLeagueTeamId} from "../../../../graphql/Reference";
-import {PremierLeaguePlayerType} from "./PremierLeaguePlayerType";
+import {PremierLeaguePlayerTypeDto} from "./PremierLeaguePlayerTypeDto";
 
 type PremierLeaguePlayerDto = {
     id: PremierLeaguePlayerId;
@@ -10,7 +10,7 @@ type PremierLeaguePlayerDto = {
     nowCost: number;
     totalPoints: number;
     goalsScored: number;
-    type: PremierLeaguePlayerType;
+    type: PremierLeaguePlayerTypeDto;
 }
 
 export { PremierLeaguePlayerDto }

@@ -2,7 +2,7 @@ import {PremierLeaguePlayerId, PremierLeagueTeamId} from "../../../../graphql/Re
 import {PremierLeaguePlayerDto} from "../type/PremierLeaguePlayerDto";
 import {PremierLeagueTeamDto} from "../type/PremierLeagueTeamDto";
 import {FantasyPremierLeagueApi} from "../apiConfig";
-import {convertToPlayerType} from "../type/PremierLeaguePlayerType";
+import {convertToPlayerType} from "../type/PremierLeaguePlayerTypeDto";
 
 let players: { [key: PremierLeaguePlayerId]: PremierLeaguePlayerDto } = {};
 let teams: { [key: PremierLeagueTeamId]: PremierLeagueTeamDto } = {};

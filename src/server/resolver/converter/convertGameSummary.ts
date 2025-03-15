@@ -1,7 +1,7 @@
 import {PlayerPreviousGameDto} from "../../fpl/api/type/PlayerPreviousGameDto";
-import {FantasyPlayerGameSummary, Maybe} from "../../../graphql/generated/Resolver";
+import {FantasyPlayerGameSummary} from "../../../graphql/generated/Resolver";
 
-const convertGameSummary = (dto: PlayerPreviousGameDto | undefined): Maybe<FantasyPlayerGameSummary> => {
+const convertGameSummary = (dto: PlayerPreviousGameDto | undefined): FantasyPlayerGameSummary | null => {
     if (!dto) {
         return null;
     }
