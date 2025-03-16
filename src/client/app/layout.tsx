@@ -1,5 +1,6 @@
 import React from "react";
 import {ApolloWrapper} from "../graphql/ApolloWrapper";
+import {HeaderFooterLayout} from "../components/framework/HeaderFooterLayout";
 
 import "./_app.scss";
 
@@ -10,7 +11,9 @@ export default function RootLayout({ children }: {
         <html lang="en">
             <body>
                 <ApolloWrapper>
-                    {children}
+                    <HeaderFooterLayout>
+                        {children}
+                    </HeaderFooterLayout>
                 </ApolloWrapper>
             </body>
         </html>

@@ -1,0 +1,13 @@
+.link {
+  box-shadow: inset 0 0 0 0 var(--light-text);
+  color: var(--light-text);
+  margin: 0 -.25rem;
+  padding: 0 .25rem;
+  transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+
+  &:hover {
+    box-shadow: inset 100px 0 0 0 var(--light-text);
+    color: var(--dark-text);
+    text-decoration: none;
+  }
+}

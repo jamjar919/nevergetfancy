@@ -8,6 +8,7 @@ import {FancyTable} from "./table/FancyTable";
 
 import styles from './FancyResult.module.scss';
 import {TotalPointDifference} from "./total-point-difference/TotalPointDifference";
+import {FancySummary} from "./summary/FancySummary";
 
 type FancyResultProps = {
     teamId: FantasyManagerId
@@ -39,7 +40,7 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
                 <TotalPointDifference points={totalPointDifference} />
             </div>
             <div>
-                You got fancy
+                <FancySummary points={totalPointDifference} />
             </div>
             <div className={styles.tableContainer}>
                 <FancyTable lines={lines} />
