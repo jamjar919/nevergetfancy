@@ -1,0 +1,23 @@
+.badge {
+    background-color: rgb(103, 0, 119);
+    color: var(--light-text);
+    fill: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    font-size: 1em;
+
+    // Remove default button styling
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+
+    transform: scale(1);
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+    transition-property: transform;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}

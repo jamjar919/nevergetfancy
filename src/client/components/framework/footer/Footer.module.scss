@@ -2,4 +2,8 @@
   background: var(--dark-text);
   color: var(--light-text);
   padding: 1em;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  line-height: 2em;
 }

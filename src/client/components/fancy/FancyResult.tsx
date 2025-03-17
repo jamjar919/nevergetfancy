@@ -5,10 +5,10 @@ import React from "react";
 import {useFancyQuery} from "../../../graphql/generated/Client";
 import {FantasyManagerId} from "../../../graphql/Reference";
 import {FancyTable} from "./table/FancyTable";
-
-import styles from './FancyResult.module.scss';
 import {TotalPointDifference} from "./total-point-difference/TotalPointDifference";
 import {FancySummary} from "./summary/FancySummary";
+
+import styles from './FancyResult.module.scss';
 
 type FancyResultProps = {
     teamId: FantasyManagerId
@@ -39,7 +39,7 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
             <div className={styles.totalPointDifferenceContainer}>
                 <TotalPointDifference points={totalPointDifference} />
             </div>
-            <div>
+            <div className={styles.summaryContainer}>
                 <FancySummary points={totalPointDifference} />
             </div>
             <div className={styles.tableContainer}>

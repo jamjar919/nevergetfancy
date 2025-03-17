@@ -1,12 +1,14 @@
 import React from "react";
-import {Link} from "../link/Link";
+import {FooterLink} from "../link/FooterLink";
 
 import styles from "./Footer.module.scss";
 
 const Footer: React.FC = () => {
     return (
         <div className={styles.footer}>
-            Made with ❤️ by <Link href="https://thejamespaterson.com">James Paterson</Link>
+            <span>Made with ❤️ by <FooterLink href="https://thejamespaterson.com">James Paterson</FooterLink></span>
+            <span>•</span>
+            <span><FooterLink href="https://github.com/jamjar919/nevergetfancy">Github</FooterLink></span>
         </div>
     )
 }
