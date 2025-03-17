@@ -7,6 +7,7 @@ import {FantasyManagerId} from "../../../graphql/Reference";
 import {FancyTable} from "./table/FancyTable";
 import {TotalPointDifference} from "./total-point-difference/TotalPointDifference";
 import {FancySummary} from "./summary/FancySummary";
+import {Header} from "../framework/header/Header";
 
 import styles from './FancyResult.module.scss';
 
@@ -31,11 +32,20 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
         fancy: {
             totalPointDifference,
             lines
+        },
+        fantasyTeam: {
+            name,
+            manager: {
+                name: managerName
+            }
         }
     } = data;
 
     return (
         <div>
+            <header>
+                <Header title={name} subtitle={managerName && `Managed by ${managerName}`} />
+            </header>
             <div className={styles.totalPointDifferenceContainer}>
                 <TotalPointDifference points={totalPointDifference} />
             </div>

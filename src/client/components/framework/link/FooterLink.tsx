@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
+import classNames from "classnames";
 
 import styles from "./FooterLink.module.scss";
-import classNames from "classnames";
 
 type LinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {}
 

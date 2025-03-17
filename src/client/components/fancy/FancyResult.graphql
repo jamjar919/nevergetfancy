@@ -6,4 +6,11 @@ query Fancy($fantasyTeamId: ID!) {
             ...FancyResultLineAttributes
         }
     }
+    fantasyTeam(id: $fantasyTeamId) {
+        id
+        name
+        manager {
+            name
+        }
+    }
 }
