@@ -5,6 +5,8 @@ type FantasyTeamLeagueStandingDto = {
     rank: number;
     lastRank: number;
     total: number;
+    teamName: string;
+    playerName: string;
 };
 
 export { FantasyTeamLeagueStandingDto }

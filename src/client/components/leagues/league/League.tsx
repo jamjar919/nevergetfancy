@@ -20,7 +20,7 @@ const League: React.FC<LeagueProps> = (props) => {
         <div>
             <h1>{name}</h1>
             <ul className={styles.standings}>
-                {standings.map((standing) => (<LeagueParticipant key={standing.team.id} standing={standing} />))}
+                {standings.map((standing) => (<LeagueParticipant key={standing.teamId} standing={standing} />))}
             </ul>
         </div>
     )

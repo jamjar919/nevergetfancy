@@ -35,8 +35,8 @@ async function getManager(managerId: FantasyManagerId): Promise<FantasyTeamManag
         lastDeadlineValue: data.last_deadline_value,
         lastDeadlineTotalTransfers: data.last_deadline_total_transfers,
         leagues: (data?.leagues?.classic ?? [])
-            .filter((league) => league.league_type === "x") // only personal leagues
-            .map((league) => {
+            .filter((league: any) => league.league_type === "x") // only personal leagues
+            .map((league: any) => {
             return {
                 id: league.id,
                 name: league.name

@@ -119,6 +119,8 @@ type FantasyLeague {
 type FantasyLeagueStanding {
     teamId: ID!
     team: FantasyTeam
+    playerName: String!
+    teamName: String!
     rank: Int!
 }
 

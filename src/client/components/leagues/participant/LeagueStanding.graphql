@@ -1,10 +1,6 @@
 fragment LeagueStandingAttributes on FantasyLeagueStanding {
+    teamId,
     rank
-    team {
-        id
-        name
-        manager {
-            name
-        }
-    }
+    playerName,
+    teamName
 }

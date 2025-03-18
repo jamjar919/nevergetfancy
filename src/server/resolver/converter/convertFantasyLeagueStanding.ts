@@ -5,6 +5,8 @@ const convertFantasyLeagueStanding = (dto: FantasyTeamLeagueStandingDto): Fantas
     return {
         teamId: dto.teamId,
         rank: dto.rank,
+        teamName: dto.teamName,
+        playerName: dto.playerName,
     }
 }
 

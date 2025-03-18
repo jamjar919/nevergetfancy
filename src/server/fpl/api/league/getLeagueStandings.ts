@@ -4,12 +4,14 @@ import {FantasyPremierLeagueApi} from "../apiConfig";
 import {fetchFromApi} from "../../../util/fetchFromApi";
 
 const convertStandings = (standings: any): FantasyTeamLeagueStandingDto[] => {
-    return standings.results.map((standing) => {
+    return standings.results.map((standing: any) => {
         return {
             teamId: standing.entry,
             rank: standing.rank,
             lastRank: standing.last_rank,
-            total: standing.total
+            total: standing.total,
+            teamName: standing.entry_name,
+            playerName: standing.player_name,
         }
     });
 }

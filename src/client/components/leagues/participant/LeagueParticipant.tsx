@@ -10,24 +10,20 @@ type LeagueParticipantProps = {
 const LeagueParticipant: React.FC<LeagueParticipantProps> = (props) => {
     const {
         standing: {
+            teamId,
             rank,
-            team: {
-                id,
-                name,
-                manager: {
-                    name: managerName
-                }
-            }
+            playerName,
+            teamName
         }
     } = props;
 
     return (
-        <a href={`/team/${id}`} className={styles.link}>
+        <a href={`/team/${teamId}`} className={styles.link}>
             <div className={styles.participant}>
                 <div className={styles.rank}>#{rank}</div>
                 <div className={styles.nameContainer}>
-                    <div className={styles.name}>{name}</div>
-                    <div className={styles.managerName}>{managerName}</div>
+                    <div className={styles.name}>{playerName}</div>
+                    <div className={styles.managerName}>{teamName}</div>
                 </div>
             </div>
         </a>
