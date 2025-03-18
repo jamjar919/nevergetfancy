@@ -1,9 +1,10 @@
 import {FantasyPremierLeagueApi} from "../apiConfig";
 import {PlayerPreviousGameDto} from "../type/PlayerPreviousGameDto";
 import {EventId, PremierLeaguePlayerId} from "../../../../graphql/Reference";
+import {fetchFromApi} from "../../../util/fetchFromApi";
 
 const getPlayerPreviousGames = async (playerId: PremierLeaguePlayerId): Promise<PlayerPreviousGameDto[]> => {
-    const response = await fetch(FantasyPremierLeagueApi.PlayerSummary(playerId));
+    const response = await fetchFromApi(FantasyPremierLeagueApi.PlayerSummary(playerId));
 
     if (!response.ok) {
         throw new Error(`Error fetching player summary for player ${playerId}: ${response.statusText}`);

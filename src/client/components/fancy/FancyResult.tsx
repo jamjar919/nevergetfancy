@@ -31,6 +31,9 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
     const {
         fancy: {
             totalPointDifference,
+            worstGameweekScore,
+            worstGameweek,
+            timesGotFancy,
             lines
         },
         fantasyTeam: {
@@ -50,7 +53,14 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
                 <TotalPointDifference points={totalPointDifference} />
             </div>
             <div className={styles.summaryContainer}>
-                <FancySummary points={totalPointDifference} />
+                <FancySummary
+                    teamId={teamId}
+                    points={totalPointDifference}
+                    timesGotFancy={timesGotFancy}
+                    timesCouldHaveGotFancy={lines.length}
+                    worstGameweekScore={worstGameweekScore}
+                    worstGameweek={worstGameweek}
+                />
             </div>
             <div className={styles.tableContainer}>
                 <FancyTable lines={lines} />

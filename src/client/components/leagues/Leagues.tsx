@@ -1,0 +1,44 @@
+"use client";
+
+import React from "react";
+import {Header} from "../framework/header/Header";
+import {useLeaguesForTeamQuery} from "../../../graphql/generated/Client";
+import {FantasyManagerId} from "../../../graphql/Reference";
+import {League} from "./league/League";
+
+type LeaguesProps = {
+    teamId: FantasyManagerId
+}
+
+const Leagues: React.FC<LeaguesProps> = ({
+    teamId
+}) => {
+    const {
+        data
+    } = useLeaguesForTeamQuery({
+        variables: {
+            fantasyTeamId: teamId
+        }
+    })
+
+    if (!data) {
+        return <div>Loading...</div>
+    }
+
+    const {
+        fantasyTeam: {
+            leagues
+        }
+    } = data;
+
+    return (
+        <div>
+            <header>
+                <Header title={"Leagues"} />
+            </header>
+            {leagues.map((league) => (<League key={league.id} league={league} />))}
+        </div>
+    )
+}
+
+export { Leagues }

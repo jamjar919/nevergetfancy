@@ -1,0 +1,7 @@
+fragment LeagueAttributes on FantasyLeague {
+    id
+    name
+    standings {
+        ...LeagueStandingAttributes
+    }
+}

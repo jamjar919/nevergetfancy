@@ -1,9 +1,10 @@
 import {FantasyTeamManagerDto} from "../type/FantasyTeamManagerDto";
 import {FantasyManagerId} from "../../../../graphql/Reference";
 import {FantasyPremierLeagueApi} from "../apiConfig";
+import {fetchFromApi} from "../../../util/fetchFromApi";
 
 async function getManager(managerId: FantasyManagerId): Promise<FantasyTeamManagerDto> {
-    const response = await fetch(FantasyPremierLeagueApi.Manager(managerId));
+    const response = await fetchFromApi(FantasyPremierLeagueApi.Manager(managerId));
 
     if (!response.ok) {
         throw new Error(`Error fetching manager: ${response.statusText}`);
@@ -32,7 +33,15 @@ async function getManager(managerId: FantasyManagerId): Promise<FantasyTeamManag
         summaryEventRank: data.summary_event_rank,
         lastDeadlineBank: data.last_deadline_bank,
         lastDeadlineValue: data.last_deadline_value,
-        lastDeadlineTotalTransfers: data.last_deadline_total_transfers
+        lastDeadlineTotalTransfers: data.last_deadline_total_transfers,
+        leagues: (data?.leagues?.classic ?? [])
+            .filter((league) => league.league_type === "x") // only personal leagues
+            .map((league) => {
+            return {
+                id: league.id,
+                name: league.name
+            }
+        })
     };
 }
 

@@ -47,7 +47,7 @@ const getSummaryOfPerformance = (points: number): string => {
     }
 
     if (points < 0) {
-        return "☕ You lost under 10 points!" +
+        return "☕ You lost under 10 points! " +
             "You don't like to get fancy. We respect that here.";
     }
 

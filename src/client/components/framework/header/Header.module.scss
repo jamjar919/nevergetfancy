@@ -15,7 +15,8 @@
   transition: color 0.3s ease;
   color: var(--dark-text);
   z-index: 2;
-  min-width: 10em;
+  min-width: 400px;
+  display: inline-block;
 }
 
 .titleLink::after {
@@ -34,7 +35,7 @@
 
 .titleLink:hover::after {
   height: 100%;
-  content: "NeverGetFancy"
+  content: " NeverGetFancy ";
 }
 
 .titleLink:hover {

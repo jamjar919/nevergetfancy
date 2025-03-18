@@ -35,9 +35,10 @@ const fancyCalculator = async (managerId: FantasyManagerId): Promise<FancyResult
             pointDifference,
             hadSalah,
             captainId: String(captainId),
-            captainGameSummary: convertGameSummary(captainGameSummary),
-            salahGameSummary: convertGameSummary(salahGameSummary),
         }
+
+        result.captainGameSummary = convertGameSummary(captainGameSummary);
+        result.salahGameSummary = convertGameSummary(salahGameSummary);
 
         return result;
     }));
@@ -48,9 +49,19 @@ const fancyCalculator = async (managerId: FantasyManagerId): Promise<FancyResult
     const totalPointDifference = fancyResults.reduce((acc, result) => acc + result.pointDifference, 0);
     const timesGotFancy = fancyResults.filter(result => result.gotFancy).length;
 
+    const worstGameweek = fancyResults.reduce((acc, result) => {
+        if (result.pointDifference < acc.pointDifference) {
+            return result;
+        }
+
+        return acc;
+    })
+
     return {
         totalPointDifference,
         timesGotFancy,
+        worstGameweek: worstGameweek.gameweek,
+        worstGameweekScore: worstGameweek.pointDifference,
         lines: fancyResults
     }
 }

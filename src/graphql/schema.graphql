@@ -15,9 +15,19 @@ type FancyResult {
     totalPointDifference: Int!
 
     """
-    The number of gameweeks the user got fancy
+    The number of gameweeks the user got fancy (didn't pick Salah as captain)
     """
     timesGotFancy: Int!
+
+    """
+    Worst gameweek
+    """
+    worstGameweek: Int!
+
+    """
+    Score difference in the worst gameweek
+    """
+    worstGameweekScore: Int!
 
     """
     Line items used to calculate the total point difference
@@ -93,10 +103,23 @@ type FantasyTeam {
     id: ID!
     name: String!
     manager: FantasyManager!
+    leagues: [FantasyLeague]!
 }
 
 type FantasyManager {
     name: String!
+}
+
+type FantasyLeague {
+    id: ID!
+    name: String!
+    standings: [FantasyLeagueStanding]
+}
+
+type FantasyLeagueStanding {
+    teamId: ID!
+    team: FantasyTeam
+    rank: Int!
 }
 
 type PremierLeagueTeam {

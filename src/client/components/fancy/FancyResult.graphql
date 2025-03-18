@@ -2,6 +2,8 @@ query Fancy($fantasyTeamId: ID!) {
     fancy(fantasyTeamId: $fantasyTeamId) {
         totalPointDifference
         timesGotFancy
+        worstGameweek
+        worstGameweekScore
         lines {
             ...FancyResultLineAttributes
         }

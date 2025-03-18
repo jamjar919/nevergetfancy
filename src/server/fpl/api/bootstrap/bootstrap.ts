@@ -3,12 +3,13 @@ import {PremierLeaguePlayerDto} from "../type/PremierLeaguePlayerDto";
 import {PremierLeagueTeamDto} from "../type/PremierLeagueTeamDto";
 import {FantasyPremierLeagueApi} from "../apiConfig";
 import {convertToPlayerType} from "../type/PremierLeaguePlayerTypeDto";
+import {fetchFromApi} from "../../../util/fetchFromApi";
 
 let players: { [key: PremierLeaguePlayerId]: PremierLeaguePlayerDto } = {};
 let teams: { [key: PremierLeagueTeamId]: PremierLeagueTeamDto } = {};
 
 const fetchPlayersAndTeams = async (): Promise<void> => {
-    const response = await fetch(FantasyPremierLeagueApi.Bootstrap());
+    const response = await fetchFromApi(FantasyPremierLeagueApi.Bootstrap());
     const data = await response.json();
 
     data.elements.map((player: any) => {

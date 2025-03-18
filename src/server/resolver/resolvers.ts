@@ -1,24 +1,39 @@
-import {PremierLeaguePlayer, PremierLeagueTeam, Resolvers, FancyResultLine, FantasyPlayerGameSummary} from "../../graphql/generated/Resolver";
+import {
+    PremierLeaguePlayer,
+    PremierLeagueTeam,
+    Resolvers,
+    FancyResultLine,
+    FantasyPlayerGameSummary,
+    FantasyLeagueStanding, FantasyLeague, FantasyTeam
+} from "../../graphql/generated/Resolver";
 import {FantasyTeamManagerDto} from "../fpl/api/type/FantasyTeamManagerDto";
 import {getManager} from "../fpl/api/manager/getManager";
-import {FantasyManagerId, PremierLeaguePlayerId, PremierLeagueTeamId} from "../../graphql/Reference";
+import {FantasyLeagueId, FantasyManagerId, PremierLeaguePlayerId, PremierLeagueTeamId} from "../../graphql/Reference";
 import {getPlayerById, getPlayers, getTeamById, getTeams} from "../fpl/api/bootstrap/bootstrap";
 import {convertPremierLeagueTeam} from "./converter/convertPremierLeagueTeam";
 import {convertPremierLeaguePlayer} from "./converter/convertPremierLeaguePlayer";
 import {fancyCalculator} from "../fpl/fancy/fancyCalculator";
+import {convertFantasyLeague} from "./converter/convertFantasyLeague";
+import {getLeagueStandings} from "../fpl/api/league/getLeagueStandings";
+import {convertFantasyLeagueStanding} from "./converter/convertFantasyLeagueStanding";
+
+const getFantasyTeam = async (id: FantasyManagerId) => {
+    const managerResponse: FantasyTeamManagerDto = await getManager(id);
+
+    return {
+        id: managerResponse.id,
+        name: managerResponse.teamName,
+        manager: {
+            name: managerResponse.playerFirstName + " " + managerResponse.playerLastName
+        },
+        leagues: managerResponse.leagues.map(convertFantasyLeague)
+    }
+}
 
 export const resolvers: Resolvers = {
     Query: {
         fantasyTeam: async (_: {}, args: { id: string }) => {
-            const managerResponse: FantasyTeamManagerDto = await getManager(args.id as FantasyManagerId);
-
-            return {
-                id: managerResponse.id,
-                name: managerResponse.teamName,
-                manager: {
-                    name: managerResponse.playerFirstName + " " + managerResponse.playerLastName
-                }
-            }
+            return getFantasyTeam(args.id as FantasyManagerId);
         },
         premierLeagueTeams: async () => {
             return Object.values(getTeams()).map(convertPremierLeagueTeam);
@@ -53,6 +68,17 @@ export const resolvers: Resolvers = {
     FantasyPlayerGameSummary: {
         opposingTeam: async (parent: FantasyPlayerGameSummary): Promise<PremierLeagueTeam> => {
             return convertPremierLeagueTeam(getTeamById(parent.opposingTeamId as PremierLeagueTeamId));
+        }
+    },
+    FantasyLeague: {
+        standings: async (parent: FantasyLeague): Promise<FantasyLeagueStanding[]> => {
+            return (await getLeagueStandings(parent.id as FantasyLeagueId))
+                .map(convertFantasyLeagueStanding);
+        }
+    },
+    FantasyLeagueStanding: {
+        team: async (parent: FantasyLeagueStanding): Promise<FantasyTeam> => {
+            return getFantasyTeam(parent.teamId as FantasyManagerId);
         }
     }
 }

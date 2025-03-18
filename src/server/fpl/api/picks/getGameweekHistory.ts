@@ -1,12 +1,13 @@
 import {EventId, FantasyManagerId} from "../../../../graphql/Reference";
 import {FantasyPremierLeagueApi} from "../apiConfig";
 import {GameweekHistoryDto} from "../type/GameweekHistoryDto";
+import {fetchFromApi} from "../../../util/fetchFromApi";
 
 const getGameweekHistory = async (
     managerId: FantasyManagerId,
     gameweek: EventId
 ): Promise<GameweekHistoryDto> => {
-    const response = await fetch(FantasyPremierLeagueApi.Picks(managerId, gameweek));
+    const response = await fetchFromApi(FantasyPremierLeagueApi.Picks(managerId, gameweek));
 
     if (!response.ok) {
         throw new Error(`Error fetching gameweek pick for manager ${managerId} on week ${gameweek}: ${response.statusText}`);
