@@ -104,6 +104,8 @@ type FantasyTeam {
     name: String!
     manager: FantasyManager!
     leagues: [FantasyLeague]!
+    startedEvent: Int!
+    currentEvent: Int!
 }
 
 type FantasyManager {

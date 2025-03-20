@@ -1,6 +1,9 @@
 query LeaguesForTeam($fantasyTeamId: ID!) {
     fantasyTeam(id: $fantasyTeamId) {
         name,
+        manager {
+            name
+        }
         leagues {
             ...LeagueAttributes
         }

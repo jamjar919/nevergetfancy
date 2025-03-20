@@ -40,7 +40,7 @@ const FancyShare: React.FC<FancyShareProps> = (props) => {
         }
     }
 
-    const content = isCopied ? "Copied to clipboard!" : <>Share your score <ShareIcon height={"1em"}/></>;
+    const content = isCopied ? "Copied to clipboard!" : "Share your score 🔗";
 
     return (
         <Badge onClick={handleClick}>{content}</Badge>

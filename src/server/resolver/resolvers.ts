@@ -16,24 +16,13 @@ import {fancyCalculator} from "../fpl/fancy/fancyCalculator";
 import {convertFantasyLeague} from "./converter/convertFantasyLeague";
 import {getLeagueStandings} from "../fpl/api/league/getLeagueStandings";
 import {convertFantasyLeagueStanding} from "./converter/convertFantasyLeagueStanding";
-
-const getFantasyTeam = async (id: FantasyManagerId) => {
-    const managerResponse: FantasyTeamManagerDto = await getManager(id);
-
-    return {
-        id: managerResponse.id,
-        name: managerResponse.teamName,
-        manager: {
-            name: managerResponse.playerFirstName + " " + managerResponse.playerLastName
-        },
-        leagues: managerResponse.leagues.map(convertFantasyLeague)
-    }
-}
+import {convertFantasyManager} from "./converter/convertFantasyManager";
 
 export const resolvers: Resolvers = {
     Query: {
         fantasyTeam: async (_: {}, args: { id: string }) => {
-            return getFantasyTeam(args.id as FantasyManagerId);
+            const managerResponse: FantasyTeamManagerDto = await getManager(args.id as FantasyManagerId);
+            return convertFantasyManager(managerResponse);
         },
         premierLeagueTeams: async () => {
             return Object.values(getTeams()).map(convertPremierLeagueTeam);
@@ -78,7 +67,8 @@ export const resolvers: Resolvers = {
     },
     FantasyLeagueStanding: {
         team: async (parent: FantasyLeagueStanding): Promise<FantasyTeam> => {
-            return getFantasyTeam(parent.teamId as FantasyManagerId);
+            const managerResponse: FantasyTeamManagerDto = await getManager(parent.teamId as FantasyManagerId);
+            return convertFantasyManager(managerResponse);
         }
     }
 }

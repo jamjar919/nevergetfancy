@@ -14,5 +14,6 @@ query Fancy($fantasyTeamId: ID!) {
         manager {
             name
         }
+        currentEvent
     }
 }

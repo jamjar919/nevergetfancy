@@ -27,14 +27,17 @@ const Leagues: React.FC<LeaguesProps> = ({
 
     const {
         fantasyTeam: {
-            leagues
-        }
+            leagues,
+            manager: {
+                name
+            }
+        },
     } = data;
 
     return (
         <div>
             <header>
-                <Header title={"Leagues"} />
+                <Header title={"Leagues"} subtitle={`For ${name}`} />
             </header>
             {leagues.map((league) => (<League key={league.id} league={league} />))}
         </div>

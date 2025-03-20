@@ -1,4 +1,5 @@
 .badge {
+    display: inline-flex;
     background-color: rgb(103, 0, 119);
     color: var(--light-text);
     fill: white;
@@ -20,4 +21,9 @@
     &:hover {
         transform: scale(1.05);
     }
+}
+
+.icon {
+    height: 1em;
+    margin: auto 0 auto 0.25em;
 }

@@ -2,15 +2,41 @@ import React from "react";
 
 import styles from "./Badge.module.scss";
 
-type BadgeProps = {
-    onClick?: () => void;
+type BadgeWithOnClickProps = {
+    onClick: () => void;
+    href?: never;
 }
 
+type BadgeWithHrefProps = {
+    href: string;
+    onClick?: never;
+}
+
+type BadgeProps = (BadgeWithHrefProps | BadgeWithOnClickProps) & {
+    Icon?: React.FC<React.SVGProps<SVGElement>>;
+};
+
 const Badge: React.FC<BadgeProps> = (props) => {
-    const { children, onClick } = props;
+    const { children, Icon, href, onClick } = props;
+
+    let badgeContent = children;
+    if (Icon) {
+        badgeContent = (
+            <>
+                {children}
+                <Icon className={styles.icon} />
+            </>
+        );
+    }
+
+    if (href) {
+        return (
+            <a href={href} className={styles.badge}>{badgeContent}</a>
+        )
+    }
 
     return (
-        <button className={styles.badge} onClick={onClick}>{children}</button>
+        <button className={styles.badge} onClick={onClick}>{badgeContent}</button>
     )
 }
 

@@ -10,6 +10,7 @@ import {FancySummary} from "./summary/FancySummary";
 import {Header} from "../framework/header/Header";
 
 import styles from './FancyResult.module.scss';
+import {FancyLinks} from "./links/FancyLinks";
 
 type FancyResultProps = {
     teamId: FantasyManagerId
@@ -40,7 +41,8 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
             name,
             manager: {
                 name: managerName
-            }
+            },
+            currentEvent
         }
     } = data;
 
@@ -64,6 +66,9 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
             </div>
             <div className={styles.tableContainer}>
                 <FancyTable lines={lines} />
+            </div>
+            <div className={styles.linksContainer}>
+                <FancyLinks teamId={teamId} currentEvent={currentEvent} />
             </div>
         </div>
     )
