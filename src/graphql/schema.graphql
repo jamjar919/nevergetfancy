@@ -2,10 +2,12 @@ type Query {
     fancy(fantasyTeamId: ID!): FancyResult!
 
     fantasyTeam(id: ID!): FantasyTeam!
+    doesFantasyTeamExist(id: ID!): Boolean!
 
     premierLeagueTeams: [PremierLeagueTeam!]!
     premierLeagueTeam(id: ID!): PremierLeagueTeam!
     premierLeaguePlayer(id: ID!): PremierLeaguePlayer!
+
 }
 
 type FancyResult {

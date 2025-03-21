@@ -9,6 +9,7 @@ type BadgeWithOnClickProps = {
 
 type BadgeWithHrefProps = {
     href: string;
+    target?: string;
     onClick?: never;
 }
 
@@ -17,7 +18,7 @@ type BadgeProps = (BadgeWithHrefProps | BadgeWithOnClickProps) & {
 };
 
 const Badge: React.FC<BadgeProps> = (props) => {
-    const { children, Icon, href, onClick } = props;
+    const { children, Icon, href, onClick, target } = props;
 
     let badgeContent = children;
     if (Icon) {
@@ -31,7 +32,7 @@ const Badge: React.FC<BadgeProps> = (props) => {
 
     if (href) {
         return (
-            <a href={href} className={styles.badge}>{badgeContent}</a>
+            <a href={href} target={target} className={styles.badge}>{badgeContent}</a>
         )
     }
 

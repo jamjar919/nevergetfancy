@@ -1,7 +1,6 @@
 "use client";
 
 import React, {useState} from "react";
-import {ShareIcon} from "../../icon/ShareIcon";
 import {Badge} from "../../framework/badge/Badge";
 
 type FancyShareProps = {
