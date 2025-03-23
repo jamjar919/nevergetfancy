@@ -1,6 +1,7 @@
 import {database} from "./connection";
 
 const TABLE_NAME = 'fpl_teams';
+const NOT_FOUND_TABLE_NAME = 'not_found_fpl_teams';
 enum Columns {
     id = 'id',
     teamName = 'teamName',
@@ -30,7 +31,13 @@ class FplTeamsDao {
                 ${Columns.teamName} TEXT,
                 ${Columns.managerName} TEXT
             );
-        `)
+        `);
+
+        database.exec(`
+            CREATE TABLE IF NOT EXISTS ${NOT_FOUND_TABLE_NAME}(
+                ${Columns.id} INT PRIMARY KEY
+            );
+       `)
     }
 
     public addTeam = (id: number, teamName: string, managerName: string) => {
@@ -39,6 +46,14 @@ class FplTeamsDao {
           VALUES (?, ?, ?);
         `);
         statement.run(Number(id), teamName, managerName);
+    }
+
+    public addNotFoundTeam = (id: number) => {
+        const statement = database.prepare(`
+            INSERT INTO ${NOT_FOUND_TABLE_NAME} (${Columns.id})
+            VALUES (?);
+        `);
+        statement.run(Number(id));
     }
 
     public getMaxTeamId = (): number => {

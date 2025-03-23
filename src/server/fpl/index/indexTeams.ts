@@ -14,7 +14,7 @@ import {FantasyManagerId} from "../../../graphql/Reference";
 const indexTeams = async () => {
     const dao = FplTeamsDao.getInstance();
 
-    const batchSize = 100_000;
+    const batchSize = 1_000_000;
     const start = dao.getMaxTeamId() + 1;
     const end = start + batchSize;
 
@@ -22,16 +22,24 @@ const indexTeams = async () => {
     console.log("This will take a while");
     console.log(`Scanning from ${start} to ${end}`);
 
+    let numNotFound = 0;
+
     for (let i = start; i < end; i += 1) {
         if (i % 100 === 0) {
             console.log(`${i}/${end}`);
+            if (numNotFound > 0) {
+                console.log(`[warn] Could not find ${numNotFound} teams in this batch`);
+            }
+            numNotFound = 0;
         }
 
         const team = await fetchFromApi(FantasyPremierLeagueApi.Manager(String(i) as FantasyManagerId))
-            .then((res) => res.json());
+            .then((res) => res.json())
+            .catch(() => ({}));
 
-        if (!team.id && !team.name) {
-            console.log(`No team found for id ${i}`);
+        if (!team?.id && !team?.name) {
+            numNotFound++;
+            dao.addNotFoundTeam(i);
             continue;
         }
 
