@@ -13,8 +13,7 @@ const SalahStats: React.FC = () => {
     if (!data?.premierLeaguePlayer) {
         return (
             <div className={styles.salah}>
-
-                <div className={styles.stats}>
+                <div className={styles.statsBg}>
                     <FootballSpinnerLoader />
                 </div>
             </div>
@@ -33,20 +32,21 @@ const SalahStats: React.FC = () => {
 
     return (
         <div className={styles.salah}>
-            <div className={styles.stats}>
-                <img src={"/images/salah-head.png"} alt={"Mo Salah with a crown on his head"} className={styles.miniSalah}/>
-                <div className={styles.points}>
-                    <Ticker from={0} to={totalPoints} time={2000} />
-                </div>
-                <div className={styles.generalStats}>
-                    <div>
-                        ⚽ <Ticker from={0} to={goals} time={2000} />
-                    </div>
-                    <div>
-                        🤝🏻 <Ticker from={0} to={assists} time={2000} />
-                    </div>
-                    <div>
-                        🥅 <Ticker from={0} to={cleanSheets} time={2000} />
+            <div className={styles.salahStats}>
+                <img src={"/images/salah-head.png"} alt={"Mo Salah with a crown on his head"} className={styles.image}/>
+                <div className={styles.statsBg}>
+                    <div className={styles.stats}>
+                        <div className={styles.totalPoints}>
+                            <Ticker from={0} to={totalPoints} time={2000} />
+                        </div>
+                        <div className={styles.generalStats}>
+                            <div>
+                                <span className={styles.emoji}>⚽</span> <Ticker from={0} to={goals} time={2000} />
+                            </div>
+                            <div>
+                                <span className={styles.emoji}>🤝🏻</span> <Ticker from={0} to={assists} time={2000} />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

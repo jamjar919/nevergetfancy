@@ -7,35 +7,47 @@
     margin-bottom: 20px;
 }
 
-.image {
-    height: 200px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-    &:hover {
-        transform: translateY(-5px) rotate(2deg) scale(1.05);
-    }
+.salahStats {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
 }
 
-.miniSalah {
-    height: 200px;
+.statsBg {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--dark-text);
+    display: flex;
+    margin: 40px 0;
+    min-width: 225px;
 }
 
 .stats {
-    margin-top: 1em;
-    text-align: center;
+    background-image: linear-gradient(to right, rgb(5, 240, 255), rgb(0, 255, 135));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+    flex-direction: column;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+
+    margin: auto;
 }
 
-.points {
-    font-size: 1.5em;
-    font-weight: bold;
-    min-width: 3em;
+.totalPoints {
+    font-size: 3em;
 }
 
 .generalStats {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
     font-size: 1.5em;
+    gap: 20px;
+}
+
+.emoji {
+    -webkit-text-fill-color: white;
 }
