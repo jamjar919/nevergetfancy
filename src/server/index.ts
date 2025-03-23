@@ -1,5 +1,4 @@
 import express from "express";
-import * as dotenv from "dotenv";
 import {ApolloServer} from "@apollo/server";
 import { expressMiddleware } from '@apollo/server/express4';
 import {ApolloServerPluginDrainHttpServer} from "@apollo/server/plugin/drainHttpServer";
@@ -14,9 +13,10 @@ import {resolvers} from "./resolver/resolvers";
 import {Endpoints} from "./constant/endpoints";
 import {fetchPlayersAndTeams, getPlayers, getTeams} from "./fpl/api/bootstrap/bootstrap";
 import {randomIntegerInRange} from "./util/randomIntegerInRange";
-import {fancyCalculator} from "./fpl/fancy/fancyCalculator";
 
-dotenv.config();
+import 'dotenv/config'
+import {indexTeams} from "./fpl/index/indexTeams";
+
 setupLogs();
 
 const app = express();
@@ -56,6 +56,10 @@ app.get(Endpoints.PING, async (_, res) => {
     res.send("pong");
 });
 
+app.get(Endpoints.INDEX, async () => {
+    await indexTeams();
+});
+
 // Startup
 await new Promise<void>(
     async (resolve) => {
@@ -84,5 +88,3 @@ await new Promise<void>(
         return httpServer.listen(port, () => resolve())
     });
 console.log(`🚀⚽  Active on port ${port}! Game on!`);
-
-fancyCalculator("2458154" as any);

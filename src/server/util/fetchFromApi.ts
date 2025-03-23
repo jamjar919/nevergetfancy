@@ -1,7 +1,7 @@
 import promiseRetry from "promise-retry";
 
 const fetchFromApi = (url: string): Promise<Response> => {
-    console.log(`[fetch] ${url}`);
+    // console.log(`[fetch] ${url}`);
 
     const get = (retry: (error: any) => never, attempt: number): Promise<Response> => {
         return fetch(url)
