@@ -10,6 +10,9 @@ const convertPremierLeaguePlayer = (dto: PremierLeaguePlayerDto): PremierLeagueP
         displayName: dto.webName,
         totalPoints: dto.totalPoints,
         goals: dto.goalsScored,
+        assists: dto.assists,
+        cleanSheets: dto.cleanSheets,
+        bonus: dto.bonus,
         teamId: dto.team,
         position: convertPremierLeaguePlayerPosition(dto.type),
     };

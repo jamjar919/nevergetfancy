@@ -1,0 +1,16 @@
+.result {
+  display: flex;
+  margin: auto;
+  font-size: 7rem;
+  color: #ffffff;
+  border-radius: .25em;
+  padding: .25em;
+}
+
+.positive {
+  background-color: var(--positive);
+}
+
+.negative {
+  background-color: var(--negative);
+}

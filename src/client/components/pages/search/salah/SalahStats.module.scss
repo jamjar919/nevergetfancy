@@ -1,0 +1,41 @@
+.salah {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.image {
+    height: 200px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+        transform: translateY(-5px) rotate(2deg) scale(1.05);
+    }
+}
+
+.miniSalah {
+    height: 200px;
+}
+
+.stats {
+    margin-top: 1em;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.points {
+    font-size: 1.5em;
+    font-weight: bold;
+    min-width: 3em;
+}
+
+.generalStats {
+    font-size: 1.5em;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import {Leagues} from "../../../../components/leagues/Leagues";
+import {Leagues} from "../../../../components/pages/leagues/Leagues";
 import {FantasyManagerId} from "../../../../../graphql/Reference";
 
 export default async function Page({

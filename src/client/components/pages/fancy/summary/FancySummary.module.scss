@@ -1,0 +1,32 @@
+.container {
+  max-width: 960px;
+  text-align: center;
+  margin: auto;
+}
+
+.quote {
+  font-style: italic;
+  margin-bottom: 1.5em;
+  font-size: 1.25rem;
+}
+
+.fancyFacts {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-size-small);
+  text-align: center;
+  gap: 10px;
+
+  a {
+    color: var(--dark-text);
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+
+.share {
+  margin-top: 1em;
+}

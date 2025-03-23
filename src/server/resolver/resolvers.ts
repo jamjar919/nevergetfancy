@@ -16,7 +16,6 @@ import {fancyCalculator} from "../fpl/fancy/fancyCalculator";
 import {getLeagueStandings} from "../fpl/api/league/getLeagueStandings";
 import {convertFantasyLeagueStanding} from "./converter/convertFantasyLeagueStanding";
 import {convertFantasyManager} from "./converter/convertFantasyManager";
-import {doesManagerExist} from "../fpl/api/manager/doesManagerExist";
 
 export const resolvers: Resolvers = {
     Query: {
@@ -35,9 +34,6 @@ export const resolvers: Resolvers = {
         },
         fancy: async (_: {}, args: { fantasyTeamId: string }) => {
             return fancyCalculator(args.fantasyTeamId as FantasyManagerId);
-        },
-        doesFantasyTeamExist: async (_: {}, args: { id: string }): Promise<boolean> => {
-            return await doesManagerExist(args.id as FantasyManagerId);
         }
     },
     PremierLeagueTeam: {

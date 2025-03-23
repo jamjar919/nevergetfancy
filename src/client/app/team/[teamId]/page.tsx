@@ -1,4 +1,4 @@
-import {FancyResult} from "../../../components/fancy/FancyResult";
+import {FancyResult} from "../../../components/pages/fancy/FancyResult";
 import {FantasyManagerId} from "../../../../graphql/Reference";
 
 export default async function Page({

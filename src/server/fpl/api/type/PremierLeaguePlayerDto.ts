@@ -10,6 +10,9 @@ type PremierLeaguePlayerDto = {
     nowCost: number;
     totalPoints: number;
     goalsScored: number;
+    assists: number;
+    cleanSheets: number;
+    bonus: number;
     type: PremierLeaguePlayerTypeDto;
 }
 

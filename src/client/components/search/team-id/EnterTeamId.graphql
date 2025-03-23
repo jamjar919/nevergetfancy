@@ -1,3 +1,0 @@
-query DoesTeamExist($teamId: ID!) {
-    doesFantasyTeamExist(id: $teamId)
-}

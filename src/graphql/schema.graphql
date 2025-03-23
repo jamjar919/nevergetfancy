@@ -2,7 +2,6 @@ type Query {
     fancy(fantasyTeamId: ID!): FancyResult!
 
     fantasyTeam(id: ID!): FantasyTeam!
-    doesFantasyTeamExist(id: ID!): Boolean!
 
     premierLeagueTeams: [PremierLeagueTeam!]!
     premierLeagueTeam(id: ID!): PremierLeagueTeam!
@@ -180,6 +179,21 @@ type PremierLeaguePlayer {
     The number of goals the player has scored
     """
     goals: Int!
+
+    """
+    The number of assists the player has scored
+    """
+    assists: Int!
+
+    """
+    The number of clean sheets the player has kept
+    """
+    cleanSheets: Int!
+
+    """
+    The amount of bonus points the player has
+    """
+    bonus: Int!
 
     """
     The id of the players team

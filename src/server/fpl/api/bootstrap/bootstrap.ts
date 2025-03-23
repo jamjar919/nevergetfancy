@@ -22,6 +22,9 @@ const fetchPlayersAndTeams = async (): Promise<void> => {
             nowCost: player.now_cost,
             totalPoints: player.total_points,
             goalsScored: player.goals_scored,
+            assists: player.assists,
+            cleanSheets: player.clean_sheets,
+            bonus: player.bonus,
             type: convertToPlayerType(player.element_type),
         };
     });

@@ -29,7 +29,8 @@
     "node-fetch": "^3.3.2",
     "promise-retry": "^2.0.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-modal": "^3.16.3"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.5",
@@ -42,6 +43,7 @@
     "@types/node": "22.13.10",
     "@types/promise-retry": "^1.1.6",
     "@types/react": "19.0.10",
+    "@types/react-modal": "^3.16.3",
     "eslint": "^9",
     "nodemon-webpack-plugin": "^4.8.2",
     "sass": "^1.85.1",
