@@ -62,6 +62,6 @@ await yargs(hideBin(process.argv))
 
         console.log("Calling combine databases:");
         console.log(databases);
-        combineFplDatabases(databases);
+        combineFplDatabases(databases as string[]);
     })
     .parse();

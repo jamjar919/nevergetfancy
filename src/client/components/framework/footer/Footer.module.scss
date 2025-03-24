@@ -1,3 +1,5 @@
+@use "@media" as media;
+
 .footer {
   background: var(--dark-text);
   color: var(--light-text);
@@ -6,5 +8,13 @@
   justify-content: center;
   gap: 1em;
   line-height: 2em;
-  width: 100%;
+
+  @include media.mobile {
+    flex-direction: column;
+    gap: 0.5em;
+
+    .divider {
+        display: none;
+    }
+  }
 }

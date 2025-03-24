@@ -1,0 +1,9 @@
+$breakpoints: (
+    "mobile": 960px,
+);
+
+@mixin mobile {
+  @media (max-width: map-get($breakpoints, "mobile")) {
+    @content;
+  }
+}

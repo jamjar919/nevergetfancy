@@ -1,3 +1,5 @@
+@use "@media" as media;
+
 .salah {
     display: flex;
     flex-direction: column;
@@ -8,9 +10,21 @@
 }
 
 .salahStats {
+    position: relative;
     display: flex;
     flex-direction: row;
     gap: 30px;
+
+    @include media.mobile {
+        flex-direction: column;
+
+        .image {
+            top: -30px;
+            right: -85px;
+            position: absolute;
+            height: 200px;
+        }
+    }
 }
 
 .statsBg {
@@ -20,6 +34,10 @@
     display: flex;
     margin: 40px 0;
     min-width: 225px;
+
+    @include media.mobile {
+        min-width: 0;
+    }
 }
 
 .stats {

@@ -21,7 +21,10 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "paths": {
+      "@media": ["/components/framework/sass/Media.module.scss"]
+    }
   },
   "include": [
     "next-env.d.ts",

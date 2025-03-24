@@ -1,3 +1,5 @@
+@use "@media" as media;
+
 .layout {
   margin: 0;
 }
@@ -7,11 +9,15 @@
 }
 
 .content {
-  width: 100%;
   padding: 0 1em;
   min-height: 100vh;
+  max-width: 100vw;
 }
 
 .footer {
   margin-top: 1em;
+
+  @include media.mobile {
+      margin-top: 3em;
+  }
 }
