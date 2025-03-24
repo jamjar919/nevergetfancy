@@ -19,7 +19,7 @@ await yargs(hideBin(process.argv))
             })
             .positional('batchSize', {
                 describe: 'Number of requests to make at once',
-                default: 10,
+                default: 8,
             })
     }, async (argv) => {
         const {
