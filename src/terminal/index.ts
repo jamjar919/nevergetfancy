@@ -1,30 +1,27 @@
-#!/usr/bin/env node
 import yargs from "yargs";
 import {hideBin} from "yargs/helpers";
-import {indexTeams} from "../fpl/index/core/indexTeams";
+import {indexTeams} from "../server/fpl/index/core/indexTeams";
+import {FplTeamsDao} from "../server/db/fplTeamsDao";
 
-type Args = {
-    start: number;
-    end: number;
-    batchSize: number;
-}
+const dao = FplTeamsDao.getInstance();
+const defaultStart = dao.getMaxTeamId() + 1;
 
-yargs<Args>(hideBin(process.argv))
-    .command('index [start] [end] [batchSize]', 'Start indexing FPL teams from the', (yargs) => {
+await yargs(hideBin(process.argv))
+    .command('index [start] [end] [batchSize]', 'Start indexing FPL teams', (yargs) => {
         return yargs
             .positional('start', {
                 describe: 'Index to start with',
-                default: 0
+                default: defaultStart
             })
             .positional('end', {
                 describe: 'Index to end with',
-                default: 1_000_000
+                default: defaultStart + 1_000_000
             })
             .positional('batchSize', {
                 describe: 'Number of requests to make at once',
                 default: 10,
             })
-    }, (argv) => {
+    }, async (argv) => {
         const {
             start,
             end,
@@ -36,5 +33,8 @@ yargs<Args>(hideBin(process.argv))
             throw new Error("Start must be less than end")
         }
 
-        indexTeams(start, end, batchSize)
+        console.log("Calling main indexer:");
+
+        await indexTeams(start, end, batchSize)
     })
+    .parse();

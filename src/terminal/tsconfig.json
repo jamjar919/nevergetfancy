@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "ES2022",
+        "moduleResolution": "node",
+        "outDir": "../../dist",
+        "esModuleInterop": true,
+
+        "sourceMap": true,
+        "jsx": "react",
+        "allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export
+        "strict": true, // Enable all strict type checking options
+        "noUnusedLocals": true, // Report errors on unused locals
+        "noUnusedParameters": true,
+        "lib": [
+            "ES2022",
+            "dom"
+        ]
+    },
+    "include": [
+        "./**/*",
+    ],
+}

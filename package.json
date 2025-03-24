@@ -15,7 +15,8 @@
     "build:server": "npx webpack --config webpack.server.config.js",
     "build:server:dev": "npx webpack -w --config webpack.server.config.js --mode=development",
     "graphql": "npx graphql-codegen --config ./src/graphql/graphql-codegen.yml",
-    "index": "npx ts-node ./src/server/terminal/indexFromTerminal.ts"
+    "build:indexer": "npx webpack --config 'webpack.terminal.config.js'",
+    "run:indexer": "node './dist/indexer/indexer.js'"
   },
   "dependencies": {
     "@apollo/client": "^3.13.4",
@@ -32,6 +33,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-modal": "^3.16.3",
+    "ts-node": "^10.9.2",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
