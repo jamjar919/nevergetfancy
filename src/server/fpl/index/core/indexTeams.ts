@@ -1,7 +1,7 @@
-import {FplTeamsDao} from "../../db/fplTeamsDao";
-import {fetchFromApi} from "../../util/fetchFromApi";
-import {FantasyPremierLeagueApi} from "../api/apiConfig";
-import {FantasyManagerId} from "../../../graphql/Reference";
+import {FplTeamsDao} from "../../../db/fplTeamsDao";
+import {fetchFromApi} from "../../../util/fetchFromApi";
+import {FantasyPremierLeagueApi} from "../../api/apiConfig";
+import {FantasyManagerId} from "../../../../graphql/Reference";
 
 const dao = FplTeamsDao.getInstance();
 
@@ -13,23 +13,19 @@ const dao = FplTeamsDao.getInstance();
  * If you work for the PL and are reading this, please add a search endpoint to the API so I don't have to do this
  * and can save you some bandwidth.
  */
-const indexTeams = async () => {
-
-    // Total number of teams to scan
-    const seekNumber = 1_000_000;
-
-    // Number of synchronous requests to make at once
-    const batchSize = 10;
-
+const indexTeams = async (
+    start: number,
+    end: number,
+    batchSize: number
+) => {
     // How often to report progress
-    const reportingInterval = batchSize * 10;
-
-    const start = dao.getMaxTeamId() + 1;
-    const end = start + seekNumber;
+    const reportingInterval = batchSize * 50;
 
     console.log("Indexing teams...");
     console.log("This will take a while");
     console.log(`Scanning from ${start} to ${end}`);
+    console.log(`Batch size: ${batchSize}`);
+    console.log(`Reporting interval: ${reportingInterval}`);
 
     let numNotFound = 0;
 

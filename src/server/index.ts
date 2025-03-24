@@ -15,7 +15,6 @@ import {fetchPlayersAndTeams, getPlayers, getTeams} from "./fpl/api/bootstrap/bo
 import {randomIntegerInRange} from "./util/randomIntegerInRange";
 
 import 'dotenv/config'
-import {indexTeams} from "./fpl/index/indexTeams";
 
 setupLogs();
 
@@ -56,10 +55,6 @@ app.get(Endpoints.PING, async (_, res) => {
     res.send("pong");
 });
 
-app.get(Endpoints.INDEX, async () => {
-    await indexTeams();
-});
-
 // Startup
 await new Promise<void>(
     async (resolve) => {
@@ -87,4 +82,5 @@ await new Promise<void>(
 
         return httpServer.listen(port, () => resolve())
     });
+
 console.log(`🚀⚽  Active on port ${port}! Game on!`);

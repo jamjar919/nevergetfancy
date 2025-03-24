@@ -14,7 +14,8 @@
     "build:client:dev": "next dev ./src/client",
     "build:server": "npx webpack --config webpack.server.config.js",
     "build:server:dev": "npx webpack -w --config webpack.server.config.js --mode=development",
-    "graphql": "npx graphql-codegen --config ./src/graphql/graphql-codegen.yml"
+    "graphql": "npx graphql-codegen --config ./src/graphql/graphql-codegen.yml",
+    "index": "npx ts-node ./src/server/terminal/indexFromTerminal.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.13.4",
@@ -30,7 +31,8 @@
     "promise-retry": "^2.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-modal": "^3.16.3"
+    "react-modal": "^3.16.3",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.5",
@@ -44,6 +46,7 @@
     "@types/promise-retry": "^1.1.6",
     "@types/react": "19.0.10",
     "@types/react-modal": "^3.16.3",
+    "@types/yargs": "^17.0.33",
     "eslint": "^9",
     "nodemon-webpack-plugin": "^4.8.2",
     "sass": "^1.85.1",
