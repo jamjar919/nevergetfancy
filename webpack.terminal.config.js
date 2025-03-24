@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
     entry: './src/terminal/index.ts',
     target: 'node',
-    mode: "development",
+    mode: "production",
     output: {
         filename: 'indexer.js',
         path: path.resolve(__dirname, 'dist/indexer'),
