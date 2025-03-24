@@ -10,6 +10,7 @@
   line-height: 2em;
 
   @include media.mobile {
+    text-align: center;
     flex-direction: column;
     gap: 0.5em;
 

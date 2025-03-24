@@ -1,9 +1,15 @@
+@use "@media" as media;
+
 .link {
   color: var(--light-text);
   padding: .25rem;
   position: relative;
   text-decoration: none;
   transition: color 0.3s ease;
+
+  @include media.mobile {
+    text-decoration:  underline;
+  }
 }
 
 

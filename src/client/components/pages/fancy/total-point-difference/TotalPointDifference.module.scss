@@ -1,3 +1,5 @@
+@use "@media" as media;
+
 .result {
   display: flex;
   margin: auto;
@@ -5,6 +7,10 @@
   color: #ffffff;
   border-radius: .25em;
   padding: .25em;
+
+  @include media.mobile {
+    font-size: 5em;
+  }
 }
 
 .positive {

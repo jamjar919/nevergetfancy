@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
         <div className={styles.footer}>
             <span>Made with ❤️ by <FooterLink href="https://thejamespaterson.com">James Paterson</FooterLink></span>
             <span className={styles.divider}>•</span>
-            <span><FooterLink href="https://github.com/jamjar919/nevergetfancy">Github</FooterLink></span>
+            <span><FooterLink href="https://github.com/jamjar919/nevergetfancy">Code for nerds</FooterLink></span>
         </div>
     )
 }
