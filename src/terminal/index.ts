@@ -2,6 +2,8 @@ import yargs from "yargs";
 import {hideBin} from "yargs/helpers";
 import {indexTeams} from "../server/fpl/index/core/indexTeams";
 import {FplTeamsDao} from "../server/db/fplTeamsDao";
+import {detectMissing} from "../server/fpl/index/detectMissing";
+import {combineFplDatabases} from "./combine/combineFplDatabases";
 
 const dao = FplTeamsDao.getInstance();
 const defaultStart = dao.getMaxTeamId() + 1;
@@ -36,5 +38,30 @@ await yargs(hideBin(process.argv))
         console.log("Calling main indexer:");
 
         await indexTeams(start, end, batchSize)
+    })
+    .command('index:detectmissing', 'Detect missing fpl teams',
+        () => {},
+        async () => { detectMissing() }
+    )
+    .command('combine [databases..]', 'Combine FPL databases', (yargs) => {
+        return yargs
+            .positional('databases', {
+                describe: 'Databases to combine',
+                array: true,
+                demandOption: true,
+                default: [] as string[]
+            })
+    }, async (argv) => {
+        const {
+            databases
+        } = argv;
+
+        if (!databases || databases.length === 0) {
+            throw new Error("No databases provided")
+        }
+
+        console.log("Calling combine databases:");
+        console.log(databases);
+        combineFplDatabases(databases);
     })
     .parse();

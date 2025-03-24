@@ -8,6 +8,12 @@ enum Columns {
     managerName = 'managerName'
 }
 
+type FplTeamDbRow = {
+    id: number;
+    teamName: string;
+    managerName: string;
+}
+
 class FplTeamsDao {
     private static instance: FplTeamsDao;
 
@@ -47,6 +53,24 @@ class FplTeamsDao {
         `);
         statement.run(Number(id), teamName, managerName);
     }
+
+    public getTeam = (id: number): FplTeamDbRow | null => {
+        const statement = database.prepare(`
+            SELECT ${Columns.id}, ${Columns.teamName}, ${Columns.managerName} FROM ${TABLE_NAME} WHERE ${Columns.id} = ?;
+        `);
+
+        const result = statement.get(id) as any;
+
+        if (!result) {
+            return null;
+        }
+
+        return {
+            id: Number(result[Columns.id]),
+            teamName: String(result[Columns.teamName]),
+            managerName: String(result[Columns.managerName])
+        };
+    };
 
     public addNotFoundTeam = (id: number) => {
         const statement = database.prepare(`
