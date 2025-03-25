@@ -8,6 +8,7 @@
   justify-content: center;
   gap: 1em;
   line-height: 2em;
+  position: relative;
 
   @include media.mobile {
     text-align: center;
@@ -17,5 +18,17 @@
     .divider {
         display: none;
     }
+  }
+
+  &::before {
+    background: linear-gradient(to right, rgb(5, 240, 255), rgb(0, 255, 135));
+    content: "";
+    display: block;
+    height: 0.4rem;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
   }
 }

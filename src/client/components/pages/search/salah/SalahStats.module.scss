@@ -33,10 +33,14 @@
     background-color: var(--dark-text);
     display: flex;
     margin: 40px 0;
-    min-width: 225px;
+
+    height: 200px;
+    width: 200px;
 
     @include media.mobile {
         min-width: 0;
+        height: 175px;
+        width: 175px;
     }
 }
 
@@ -64,6 +68,10 @@
     margin-top: 20px;
     font-size: 1.5em;
     gap: 20px;
+
+    @include media.mobile {
+        font-size: 1.25em;
+    }
 }
 
 .emoji {

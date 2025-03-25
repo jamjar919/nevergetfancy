@@ -10,7 +10,8 @@ type TotalPointDifferenceProps = {
 const TotalPointDifference: React.FC<TotalPointDifferenceProps> = ({ points }) => {
     const pointDifferenceClassnames = classNames({
         [styles.positive]: points > 0,
-        [styles.negative]: points < 0
+        [styles.negative]: points < 0,
+        [styles.neutral]: points === 0
     }, styles.result);
 
     return <div className={pointDifferenceClassnames}>{points}</div>;

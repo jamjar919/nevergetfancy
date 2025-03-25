@@ -2,6 +2,18 @@
 
 .layout {
   margin: 0;
+
+  &::before {
+    background: linear-gradient(93.93deg, #05f0ff 1.12%, #7367ff 63.34%, #963cff 82.72%);
+    content: "";
+    display: block;
+    height: 0.4rem;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+  }
 }
 
 .header {
@@ -16,8 +28,4 @@
 
 .footer {
   margin-top: 1em;
-
-  @include media.mobile {
-      margin-top: 3em;
-  }
 }
