@@ -88,7 +88,9 @@ const getTeamsWithNoDuplicates = (num: number) => {
         }
     }
     return randomTeams.map(({ teamId, teamName, managerName }) => (
-        <TeamCard key={teamId} teamId={teamId} teamName={teamName} managerName={managerName} />
+        <div className={styles.suggestion} key={teamId}>
+            <TeamCard teamId={teamId} teamName={teamName} managerName={managerName} />
+        </div>
     ));
 }
 
@@ -97,9 +99,7 @@ const TeamSuggestions: React.FC = () => {
 
     return (
         <div className={styles.suggestions}>
-            <div className={styles.teamCards}>
-                {randomTeams}
-            </div>
+            {randomTeams}
         </div>
     )
 }
