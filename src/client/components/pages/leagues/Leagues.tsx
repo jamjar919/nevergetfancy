@@ -9,6 +9,7 @@ import {LeagueSearch} from "./search/LeagueSearch";
 import {LeagueLinks} from "./links/LeagueLinks";
 
 import styles from "./Leagues.module.scss";
+import Head from "next/head";
 
 type LeaguesProps = {
     teamId: FantasyManagerId
