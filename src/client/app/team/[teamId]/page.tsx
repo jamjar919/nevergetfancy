@@ -1,9 +1,6 @@
 import {FancyResult} from "../../../components/pages/fancy/FancyResult";
 import {FantasyManagerId} from "../../../../graphql/Reference";
 import {Metadata, ResolvingMetadata} from "next";
-import {GetTeamNameDocument, useGetTeamNameQuery} from "../../../../graphql/generated/Client";
-import {HttpLink} from "@apollo/client";
-import {ApolloClient, InMemoryCache} from "@apollo/client";
 import {getTeamNameForTitle} from "../../../components/framework/head/GetTeamNameForTitle";
 
 type Props = {

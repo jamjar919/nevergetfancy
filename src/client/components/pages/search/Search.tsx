@@ -5,7 +5,6 @@ import {SalahStats} from "./salah/SalahStats";
 import {TeamSuggestions} from "./team-suggestions/TeamSuggestions";
 
 import styles from "./Search.module.scss"
-import Head from "next/head";
 
 enum OpenSearchModes {
     CLOSED = "CLOSED",
@@ -16,9 +15,6 @@ enum OpenSearchModes {
 const Search: React.FC = () => {
     return (
         <div className={styles.searchPage}>
-            <Head>
-                <title>NeverGetFancy</title>
-            </Head>
             <header>
                 <Header title={"NeverGetFancy"} subtitle={`A stupid concept by James`} />
             </header>

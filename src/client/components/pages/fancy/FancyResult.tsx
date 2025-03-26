@@ -11,6 +11,7 @@ import {Header} from "../../framework/header/Header";
 
 import styles from './FancyResult.module.scss';
 import {FancyLinks} from "./links/FancyLinks";
+import {FootballSpinnerLoader} from "../../framework/loader/football-spinner/FootballSpinnerLoader";
 
 type FancyResultProps = {
     teamId: FantasyManagerId
@@ -26,7 +27,9 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
     });
 
     if (!data) {
-        return <div>Loading...</div>
+        return (
+            <FootballSpinnerLoader />
+        )
     }
 
     const {
