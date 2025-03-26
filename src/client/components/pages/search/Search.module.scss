@@ -1,5 +1,11 @@
 @use "@media" as media;
 
+.searchPage {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+}
+
 .salahStats {
   margin-bottom: 2em;
 
@@ -23,6 +29,7 @@
   flex-direction: column;
   gap: 0.5em;
   margin-top: 2em;
+  margin-bottom: auto;
 }
 
 .search {

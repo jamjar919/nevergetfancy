@@ -2,9 +2,9 @@ import React from "react";
 import {EnterTeamId} from "./team-id/EnterTeamId";
 import {Header} from "../../framework/header/Header";
 import {SalahStats} from "./salah/SalahStats";
+import {TeamSuggestions} from "./team-suggestions/TeamSuggestions";
 
 import styles from "./Search.module.scss"
-import {TeamSuggestions} from "./team-suggestions/TeamSuggestions";
 
 enum OpenSearchModes {
     CLOSED = "CLOSED",
@@ -14,7 +14,7 @@ enum OpenSearchModes {
 
 const Search: React.FC = () => {
     return (
-        <div>
+        <div className={styles.searchPage}>
             <header>
                 <Header title={"NeverGetFancy"} subtitle={`A stupid concept by James`} />
             </header>

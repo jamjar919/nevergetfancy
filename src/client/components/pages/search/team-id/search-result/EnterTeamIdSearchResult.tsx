@@ -12,7 +12,7 @@ const EnterTeamIdSearchResult: React.FC<EnterTeamIdSearchResultProps> = (props) 
         teamId
     } = props;
 
-    const {data, loading, error} = useDoesTeamExist(teamId);
+    const {data, loading, error } = useDoesTeamExist(teamId);
 
     if (teamId === "") {
         return;

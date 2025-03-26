@@ -1,9 +1,9 @@
-import React from "react";
-
-import styles from "./HeaderFooterLayout.module.scss";
+import React, {PropsWithChildren} from "react";
 import {Footer} from "./footer/Footer";
 
-const HeaderFooterLayout: React.FC<{}> = ({ children }) => {
+import styles from "./HeaderFooterLayout.module.scss";
+
+const HeaderFooterLayout: React.FC<PropsWithChildren<{}>> = ({ children }) => {
     return (
         <div className={styles.layout}>
             <div className={styles.content}>{children}</div>
