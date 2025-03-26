@@ -1,9 +1,10 @@
 import {FplTeamsDao} from "../../db/fplTeamsDao";
+import {processSingleTeam} from "./core/indexTeams";
 
 const dao = FplTeamsDao.getInstance();
 
 // Detect missing entries in the FPL database
-const detectMissing = (): string[] => {
+const detectMissing = async () => {
     const maxId = dao.getMaxTeamId();
     console.log(`Max team id: ${maxId}`);
     console.log("Detecting missing teams...");
@@ -14,15 +15,32 @@ const detectMissing = (): string[] => {
         const team = dao.getTeam(i);
 
         if (!team) {
-            console.log(`Missing team: ${i}`);
-            missing++;
-            missingTeams.push(i.toString());
+            const notFound = dao.isNotFoundTeam(i);
+
+            if (!notFound) {
+                console.log(`Missing team: ${i}`);
+                missing++;
+                missingTeams.push(i.toString());
+            }
         }
     }
 
     console.log(`Found ${missing} missing teams`);
-    console.log(missingTeams)
-    return missingTeams;
+    console.log(missingTeams);
+
+    console.log("Attempting to fix missing teams...");
+
+    for (const teamId of missingTeams) {
+        const success = await processSingleTeam(Number(teamId));
+        if (success) {
+            console.log(`Fixed team ${teamId} and inserted into database`);
+        } else {
+            console.error(`Fixed to fetch team: ${teamId} will insert into not found table`);
+            dao.addNotFoundTeam(Number(teamId));
+        }
+    }
+
+    console.log("Done!");
 }
 
 export { detectMissing }

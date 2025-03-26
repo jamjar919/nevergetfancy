@@ -72,4 +72,4 @@ const processSingleTeam = async (teamId: number): Promise<boolean> => {
     return true;
 }
 
-export { indexTeams }
+export { indexTeams, processSingleTeam }

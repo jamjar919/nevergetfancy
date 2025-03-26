@@ -72,6 +72,13 @@ class FplTeamsDao {
         };
     };
 
+    public isNotFoundTeam = (id: number): boolean => {
+        const statement = database.prepare(`
+            SELECT ${Columns.id} FROM ${NOT_FOUND_TABLE_NAME} WHERE ${Columns.id} = ?;
+        `);
+        return statement.get(id) !== undefined;
+    }
+
     public addNotFoundTeam = (id: number) => {
         const statement = database.prepare(`
             INSERT INTO ${NOT_FOUND_TABLE_NAME} (${Columns.id})
