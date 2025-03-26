@@ -2,6 +2,7 @@ type Query {
     fancy(fantasyTeamId: ID!): FancyResult!
 
     fantasyTeam(id: ID!): FantasyTeam!
+    searchFantasyTeam(query: String!): [FantasyTeamSearchResult]!
 
     premierLeagueTeams: [PremierLeagueTeam!]!
     premierLeagueTeam(id: ID!): PremierLeagueTeam!
@@ -221,4 +222,11 @@ enum PremierLeaguePlayerPosition {
     MIDFIELDER,
     FORWARD,
     MANAGER
+}
+
+type FantasyTeamSearchResult {
+    id: ID!
+    teamName: String!
+    managerName: String!
+    team: FantasyTeam
 }

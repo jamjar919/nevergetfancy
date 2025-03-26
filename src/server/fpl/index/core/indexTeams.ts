@@ -1,9 +1,9 @@
-import {FplTeamsDao} from "../../../db/fplTeamsDao";
+import {IndexingDao} from "../dao/indexingDao";
 import {fetchFromApi} from "../../../util/fetchFromApi";
 import {FantasyPremierLeagueApi} from "../../api/apiConfig";
 import {FantasyManagerId} from "../../../../graphql/Reference";
 
-const dao = FplTeamsDao.getInstance();
+const dao = IndexingDao.getInstance();
 
 /**
  * The FPL api does not provide any native search functionality by team name, which is massively annoying

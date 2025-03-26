@@ -1,7 +1,7 @@
 import {indexTeams} from "./core/indexTeams";
-import {FplTeamsDao} from "../../db/fplTeamsDao";
+import {IndexingDao} from "./dao/indexingDao";
 
-const dao = FplTeamsDao.getInstance();
+const dao = IndexingDao.getInstance();
 
 const indexTeamsWhereWeLeftOff = async () => {
     // Total number of teams to scan

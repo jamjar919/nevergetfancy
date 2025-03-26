@@ -1,7 +1,7 @@
-import {FplTeamsDao} from "../../db/fplTeamsDao";
-import {processSingleTeam} from "./core/indexTeams";
+import {IndexingDao} from "../../server/fpl/index/dao/indexingDao";
+import {processSingleTeam} from "../../server/fpl/index/core/indexTeams";
 
-const dao = FplTeamsDao.getInstance();
+const dao = IndexingDao.getInstance();
 
 // Detect missing entries in the FPL database
 const detectMissing = async () => {

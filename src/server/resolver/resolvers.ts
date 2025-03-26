@@ -4,7 +4,7 @@ import {
     Resolvers,
     FancyResultLine,
     FantasyPlayerGameSummary,
-    FantasyLeagueStanding, FantasyLeague, FantasyTeam
+    FantasyLeagueStanding, FantasyLeague, FantasyTeam, FantasyTeamSearchResult
 } from "../../graphql/generated/Resolver";
 import {FantasyTeamManagerDto} from "../fpl/api/type/FantasyTeamManagerDto";
 import {getManager} from "../fpl/api/manager/getManager";
@@ -16,6 +16,10 @@ import {fancyCalculator} from "../fpl/fancy/fancyCalculator";
 import {getLeagueStandings} from "../fpl/api/league/getLeagueStandings";
 import {convertFantasyLeagueStanding} from "./converter/convertFantasyLeagueStanding";
 import {convertFantasyManager} from "./converter/convertFantasyManager";
+import {SearchDao} from "../db/searchDao";
+import {convertFantasyTeamSearchResult} from "./converter/convertFantasyTeamSearchResult";
+
+const searchDao = SearchDao.getInstance();
 
 export const resolvers: Resolvers = {
     Query: {
@@ -34,6 +38,9 @@ export const resolvers: Resolvers = {
         },
         fancy: async (_: {}, args: { fantasyTeamId: string }) => {
             return fancyCalculator(args.fantasyTeamId as FantasyManagerId);
+        },
+        searchFantasyTeam: async (_: {}, args: { query: string }) => {
+            return searchDao.search(args.query).map(convertFantasyTeamSearchResult);
         }
     },
     PremierLeagueTeam: {
@@ -67,6 +74,12 @@ export const resolvers: Resolvers = {
     FantasyLeagueStanding: {
         team: async (parent: FantasyLeagueStanding): Promise<FantasyTeam> => {
             const managerResponse: FantasyTeamManagerDto = await getManager(parent.teamId as FantasyManagerId);
+            return convertFantasyManager(managerResponse);
+        }
+    },
+    FantasyTeamSearchResult: {
+        team: async (parent: FantasyTeamSearchResult): Promise<FantasyTeam> => {
+            const managerResponse: FantasyTeamManagerDto = await getManager(parent.id as FantasyManagerId);
             return convertFantasyManager(managerResponse);
         }
     }

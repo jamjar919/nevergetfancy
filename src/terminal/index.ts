@@ -1,11 +1,11 @@
 import yargs from "yargs";
 import {hideBin} from "yargs/helpers";
 import {indexTeams} from "../server/fpl/index/core/indexTeams";
-import {FplTeamsDao} from "../server/db/fplTeamsDao";
-import {detectMissing} from "../server/fpl/index/detectMissing";
+import {IndexingDao} from "../server/fpl/index/dao/indexingDao";
+import {detectMissing} from "./detect-missing/detectMissing";
 import {combineFplDatabases} from "./combine/combineFplDatabases";
 
-const dao = FplTeamsDao.getInstance();
+const dao = IndexingDao.getInstance();
 const defaultStart = dao.getMaxTeamId() + 1;
 
 await yargs(hideBin(process.argv))
