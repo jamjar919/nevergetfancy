@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useState} from "react";
-import {useDoesTeamExistLazyQuery} from "../../../../../graphql/generated/Client";
-import {debounce} from "../../../../util/Debounce";
+import {useDoesTeamExistLazyQuery} from "../../../../../../graphql/generated/Client";
+import {debounce} from "../../../../../util/Debounce";
 
 const useDoesTeamExist = (teamId: string) => {
     const [waitingForDebounce, setWaitingForDebounce] = useState(false);
@@ -17,14 +17,10 @@ const useDoesTeamExist = (teamId: string) => {
         [fetchTeam]
     );
 
-    const validateTeam = useCallback((teamId: string) => {
+    useEffect(() => {
         setWaitingForDebounce(true);
         debouncedFetchTeam(teamId);
-    }, [debouncedFetchTeam]);
-
-    useEffect(() => {
-        validateTeam(teamId);
-    }, [teamId, validateTeam]);
+    }, [teamId]);
 
     return {data, loading: loading || waitingForDebounce, error};
 };

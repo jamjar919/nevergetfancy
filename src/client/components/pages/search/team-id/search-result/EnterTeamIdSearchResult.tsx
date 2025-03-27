@@ -1,6 +1,6 @@
 import {TeamCard} from "../../team-card/TeamCard";
 import React from "react";
-import {useDoesTeamExist} from "../UseDoesTeamExist";
+import {useDoesTeamExist} from "./UseDoesTeamExist";
 import {FootballSpinnerLoader} from "../../../../framework/loader/football-spinner/FootballSpinnerLoader";
 
 type EnterTeamIdSearchResultProps = {

@@ -1,0 +1,7 @@
+query SearchFantasyTeam($query: String!) {
+    searchFantasyTeam(query: $query) {
+        managerName
+        teamName
+        id
+    }
+}

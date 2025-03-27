@@ -1,10 +1,10 @@
 import React from "react";
-import {EnterTeamId} from "./team-id/EnterTeamId";
 import {Header} from "../../framework/header/Header";
 import {SalahStats} from "./salah/SalahStats";
 import {TeamSuggestions} from "./team-suggestions/TeamSuggestions";
 
 import styles from "./Search.module.scss"
+import {EnterTeamName} from "./team-name/EnterTeamName";
 
 enum OpenSearchModes {
     CLOSED = "CLOSED",
@@ -27,7 +27,7 @@ const Search: React.FC = () => {
             </div>
             <div className={styles.searchContainer}>
                 <div className={styles.search}>
-                    <EnterTeamId />
+                    <EnterTeamName />
                 </div>
             </div>
             <TeamSuggestions />
