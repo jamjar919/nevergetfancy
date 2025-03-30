@@ -29,16 +29,29 @@ const Search: React.FC = () => {
         }
     };
 
-    const switchSearch = () => {
-        setOpenSearchMode(
-            openSearchMode === OpenSearchModes.SEARCH_BY_NAME
-                ? OpenSearchModes.SEARCH_BY_ID
-                : OpenSearchModes.SEARCH_BY_NAME
-        );
-    };
-
-    const switchSearchText =
-        openSearchMode === OpenSearchModes.SEARCH_BY_NAME ? 'search by ID' : 'search by name';
+    const getSearchHelpText = () => {
+        switch (openSearchMode) {
+            case OpenSearchModes.SEARCH_BY_NAME:
+                return (
+                    <>
+                        Can't find your team? Try adding the manager's name as well, and check it's spelled correctly.
+                        You can also{' '}
+                        <button className={styles.switchSearch} onClick={() => setOpenSearchMode(OpenSearchModes.SEARCH_BY_ID)}>
+                            search by ID.
+                        </button>
+                    </>
+                );
+            case OpenSearchModes.SEARCH_BY_ID:
+                return (
+                    <>
+                        You can also{' '}
+                        <button className={styles.switchSearch} onClick={() => setOpenSearchMode(OpenSearchModes.SEARCH_BY_NAME)}>
+                            search by name.
+                        </button>
+                    </>
+                );
+        }
+    }
 
     return (
         <div className={styles.searchPage}>
@@ -58,11 +71,7 @@ const Search: React.FC = () => {
                     <SearchComponent />
                 </div>
                 <div>
-                    Can't find your team? You can also{' '}
-                    <button className={styles.switchSearch} onClick={() => switchSearch()}>
-                        {switchSearchText}
-                    </button>
-                    .
+                    {getSearchHelpText()}
                 </div>
             </div>
             <TeamSuggestions />
