@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useMemo} from "react";
+import React, {useLayoutEffect, useMemo, useState} from "react";
 import {TeamCard} from "../team-card/TeamCard";
 
 import styles from "./TeamSuggestions.module.scss";
@@ -95,7 +95,11 @@ const getTeamsWithNoDuplicates = (num: number) => {
 }
 
 const TeamSuggestions: React.FC = () => {
-    const randomTeams = useMemo(() => getTeamsWithNoDuplicates(4), []);
+    const [randomTeams, setRandomTeams] = useState([])
+
+    useLayoutEffect(() => {
+        setRandomTeams(getTeamsWithNoDuplicates(4));
+    }, []);
 
     return (
         <div className={styles.suggestions}>
