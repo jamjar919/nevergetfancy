@@ -1,6 +1,7 @@
+import { Pool } from 'pg';
+
 import { FantasyManagerId } from '../../graphql/Reference';
 import { TeamSearchResultDto } from './type/TeamSearchResultDto';
-import { Pool } from 'pg';
 
 class SearchDao {
     private static instance: SearchDao;
@@ -25,7 +26,7 @@ class SearchDao {
             max: 20,
             idleTimeoutMillis: 30000,
             connectionTimeoutMillis: 2000,
-            ssl: true
+            ssl: true,
         });
     }
 
@@ -38,11 +39,14 @@ class SearchDao {
 
     public search = async (teamOrManagerName: string): Promise<TeamSearchResultDto[]> => {
         const tsQuery = teamOrManagerName.replace(/'/g, "''").split(' ').join(' & '); // Escape single quotes and format for tsquery
-        const data = await this.connectionPool.query(`
+        const data = await this.connectionPool.query(
+            `
             SELECT * FROM fpl_teams
             WHERE tsv @@ to_tsquery('english', $1)
             LIMIT 10
-        `, [tsQuery]);
+        `,
+            [tsQuery]
+        );
 
         return data.rows.map((row: any) => {
             return {

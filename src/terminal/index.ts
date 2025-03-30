@@ -1,6 +1,6 @@
+import 'dotenv/config';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import 'dotenv/config';
 
 import { indexTeams } from '../server/fpl/index/core/indexTeams';
 import { IndexingDao } from '../server/fpl/index/dao/indexingDao';
@@ -75,9 +75,11 @@ await yargs(hideBin(process.argv))
         }
     )
     .command(
-        "exportteams",
-        "Export FPL teams from a local database to a remote",
+        'exportteams',
+        'Export FPL teams from a local database to a remote',
         () => {},
-        () => { exportTeamsDb(); }
+        () => {
+            exportTeamsDb();
+        }
     )
     .parse();
