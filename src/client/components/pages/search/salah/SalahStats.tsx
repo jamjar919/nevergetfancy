@@ -27,12 +27,10 @@ const SalahStats: React.FC = () => {
                 </div>
                 <div className={styles.generalStats}>
                     <div>
-                        <span className={styles.emoji}>⚽</span>{' '}
-                        <Ticker to={goals} time={2000} />
+                        <span className={styles.emoji}>⚽</span> <Ticker to={goals} time={2000} />
                     </div>
                     <div>
-                        <span className={styles.emoji}>🤝🏻</span>{' '}
-                        <Ticker to={assists} time={2000} />
+                        <span className={styles.emoji}>🤝🏻</span> <Ticker to={assists} time={2000} />
                     </div>
                 </div>
             </div>
