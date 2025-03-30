@@ -24,7 +24,7 @@ const getTeamNameForTitle = async (teamId: string) => {
             link: httpLink,
         });
 
-        const result = await client.query<GetTeamNameQueryResult>({
+        const result = await client.query({
             query: GetTeamNameDocument,
             variables: {
                 teamId,

@@ -12,12 +12,15 @@
     "scripts": {
         "build:client": "next build ./src/client",
         "build:client:dev": "next dev ./src/client",
-        "build:server": "npx webpack --config webpack.server.config.js",
+        "start:client": "next start ./src/client",
+        "build:server": "npx webpack --config webpack.server.config.js --mode=production",
         "build:server:dev": "npx webpack -w --config webpack.server.config.js --mode=development",
+        "start:server": "node ./dist/server.js",
         "graphql": "npx graphql-codegen --config ./src/graphql/graphql-codegen.yml",
         "build:indexer": "npx webpack --config 'webpack.terminal.config.js'",
         "run:indexer": "node './dist/indexer/indexer.js'",
-        "format:write": "prettier --write ."
+        "format:write": "prettier --write .",
+        "format:check": "prettier --check ."
     },
     "dependencies": {
         "@apollo/client": "^3.13.4",

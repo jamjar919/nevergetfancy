@@ -14,6 +14,7 @@ const ExplainTeamIdModal: React.FC<ExplainTeamIdModalProps> = (props) => {
     ReactModal.setAppElement('body');
 
     return (
+        // @ts-ignore
         <ReactModal isOpen={isOpen} onRequestClose={onRequestClose} className={styles.modal}>
             <h1 className={styles.title}>
                 How can I find my Team ID?{' '}

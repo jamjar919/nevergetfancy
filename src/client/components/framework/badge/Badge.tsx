@@ -5,6 +5,7 @@ import styles from './Badge.module.scss';
 type BadgeWithOnClickProps = {
     onClick: () => void;
     href?: never;
+    target?: never;
 };
 
 type BadgeWithHrefProps = {
