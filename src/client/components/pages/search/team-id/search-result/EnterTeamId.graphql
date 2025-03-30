@@ -1,9 +1,9 @@
 query DoesTeamExist($teamId: ID!) {
     fantasyTeam(id: $teamId) {
-        id,
-        name,
+        id
+        name
         manager {
             name
-        },
+        }
     }
 }

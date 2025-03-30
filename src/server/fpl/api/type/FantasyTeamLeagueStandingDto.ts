@@ -1,4 +1,4 @@
-import {FantasyManagerId} from "../../../../graphql/Reference";
+import { FantasyManagerId } from '../../../../graphql/Reference';
 
 type FantasyTeamLeagueStandingDto = {
     teamId: FantasyManagerId;
@@ -9,4 +9,4 @@ type FantasyTeamLeagueStandingDto = {
     playerName: string;
 };
 
-export { FantasyTeamLeagueStandingDto }
+export { FantasyTeamLeagueStandingDto };

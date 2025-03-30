@@ -1,14 +1,14 @@
 .input {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 2rem;
-  width: 100%;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
 
-  &:focus {
-    border-color: #007bff;
-    outline: none;
-  }
+    &:focus {
+        border-color: #007bff;
+        outline: none;
+    }
 }

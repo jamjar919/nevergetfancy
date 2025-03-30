@@ -1,38 +1,38 @@
 :root {
-  --positive: rgb(5, 250, 135);
-  --negative: rgb(252, 44, 128);
-  --neutral: rgb(122, 122, 122);
+    --positive: rgb(5, 250, 135);
+    --negative: rgb(252, 44, 128);
+    --neutral: rgb(122, 122, 122);
 
-  // text
-  --light-text: rgb(255, 255, 255);
-  --dark-text: rgb(55, 0, 60);
+    // text
+    --light-text: rgb(255, 255, 255);
+    --dark-text: rgb(55, 0, 60);
 
-  // font sizes
-  --font-size-small: 1.2rem;
-  --font-size-medium: 1.4rem;
-  --font-size-large: 1.6rem;
+    // font sizes
+    --font-size-small: 1.2rem;
+    --font-size-medium: 1.4rem;
+    --font-size-large: 1.6rem;
 }
 
 body {
-  margin: 0;
-  color: var(--dark-text);
-  background: #fff;
-  font-size: 20px;
-  font-family: "Poppins", sans-serif;
-  font-weight: normal;
-  min-height: 100vh;
+    margin: 0;
+    color: var(--dark-text);
+    background: #fff;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: normal;
+    min-height: 100vh;
 }
 
 button {
-  border: none;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  background-color: transparent;
-  font: inherit;
-  padding: 0;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    background-color: transparent;
+    font: inherit;
+    padding: 0;
 }
 
 a {
-  color: var(--dark-text);
+    color: var(--dark-text);
 }

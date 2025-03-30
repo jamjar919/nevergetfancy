@@ -1,9 +1,9 @@
-import {PremierLeaguePlayerId, PremierLeagueTeamId} from "../../../../graphql/Reference";
-import {PremierLeaguePlayerDto} from "../type/PremierLeaguePlayerDto";
-import {PremierLeagueTeamDto} from "../type/PremierLeagueTeamDto";
-import {FantasyPremierLeagueApi} from "../apiConfig";
-import {convertToPlayerType} from "../type/PremierLeaguePlayerTypeDto";
-import {fetchFromApi} from "../../../util/fetchFromApi";
+import { PremierLeaguePlayerId, PremierLeagueTeamId } from '../../../../graphql/Reference';
+import { fetchFromApi } from '../../../util/fetchFromApi';
+import { FantasyPremierLeagueApi } from '../apiConfig';
+import { PremierLeaguePlayerDto } from '../type/PremierLeaguePlayerDto';
+import { convertToPlayerType } from '../type/PremierLeaguePlayerTypeDto';
+import { PremierLeagueTeamDto } from '../type/PremierLeagueTeamDto';
 
 let players: { [key: PremierLeaguePlayerId]: PremierLeaguePlayerDto } = {};
 let teams: { [key: PremierLeagueTeamId]: PremierLeagueTeamDto } = {};
@@ -35,22 +35,21 @@ const fetchPlayersAndTeams = async (): Promise<void> => {
             name: team.name,
             played: team.played,
             position: team.position,
-            shortName: team.short_name
+            shortName: team.short_name,
         };
     });
 };
 
 const getPlayerById = (id: PremierLeaguePlayerId): PremierLeaguePlayerDto => {
     return players[id];
-}
+};
 
 const getTeamById = (id: PremierLeagueTeamId): PremierLeagueTeamDto => {
     return teams[id];
-}
+};
 
 const getPlayers = () => players;
 
-const getTeams =  () => teams;
+const getTeams = () => teams;
 
-
-export { fetchPlayersAndTeams, getPlayerById, getTeamById, getPlayers, getTeams }
+export { fetchPlayersAndTeams, getPlayerById, getTeamById, getPlayers, getTeams };

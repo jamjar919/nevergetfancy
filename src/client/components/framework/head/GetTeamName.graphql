@@ -1,5 +1,5 @@
 query GetTeamName($teamId: ID!) {
     fantasyTeam(id: $teamId) {
-        name,
+        name
     }
 }

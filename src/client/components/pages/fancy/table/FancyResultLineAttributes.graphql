@@ -1,19 +1,19 @@
 fragment FancyResultLineAttributes on FancyResultLine {
-  gameweek
-  gotFancy
-  pointDifference
-  hadSalah
-  captainId
-  captain {
-    displayName
-    team {
-      name
+    gameweek
+    gotFancy
+    pointDifference
+    hadSalah
+    captainId
+    captain {
+        displayName
+        team {
+            name
+        }
     }
-  }
-  captainGameSummary {
-    points
-  }
-  salahGameSummary {
-    points
-  }
+    captainGameSummary {
+        points
+    }
+    salahGameSummary {
+        points
+    }
 }

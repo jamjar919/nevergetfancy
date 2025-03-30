@@ -1,6 +1,6 @@
 query LeaguesForTeam($fantasyTeamId: ID!) {
     fantasyTeam(id: $fantasyTeamId) {
-        name,
+        name
         manager {
             name
         }

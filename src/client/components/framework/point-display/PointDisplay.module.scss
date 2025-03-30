@@ -1,17 +1,17 @@
 .pointDisplay {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .points {
-  margin-left: 0;
-  text-align: right;
-  width: 3em;
-  font-size: var(--font-size-small);
+    margin-left: 0;
+    text-align: right;
+    width: 3em;
+    font-size: var(--font-size-small);
 }
 
 .icon {
-  display: flex;
-  margin: auto 10px auto 10px;
-  width: 30px;
+    display: flex;
+    margin: auto 10px auto 10px;
+    width: 30px;
 }

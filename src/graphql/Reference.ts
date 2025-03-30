@@ -8,5 +8,5 @@ export type PremierLeaguePlayerId = Reference<string, 'PremierLeaguePlayerId'>;
 export type PremierLeagueTeamId = Reference<string, 'PremierLeagueTeamId'>;
 export type EventId = Reference<number, 'EventId'>;
 
-
-export type OffsetDateTime = `${number}-${number}-${number}T${number}:${number}${`:${number}` | ''}${'Z' | `${'+' | '-'}${number}${`:${number}` | ''}`}`;
+export type OffsetDateTime =
+    `${number}-${number}-${number}T${number}:${number}${`:${number}` | ''}${'Z' | `${'+' | '-'}${number}${`:${number}` | ''}`}`;

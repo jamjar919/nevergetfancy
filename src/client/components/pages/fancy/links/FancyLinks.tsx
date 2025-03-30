@@ -1,15 +1,16 @@
-import React from "react";
-import {Badge} from "../../../framework/badge/Badge";
-import {OpenExternalIcon} from "../../../framework/icon/OpenExternalIcon";
-import {GroupsIcon} from "../../../framework/icon/GroupsIcon";
+import React from 'react';
 
-import styles from "./FancyLinks.module.scss";
-import {SearchIcon} from "../../../framework/icon/SearchIcon";
+import { Badge } from '../../../framework/badge/Badge';
+import { GroupsIcon } from '../../../framework/icon/GroupsIcon';
+import { OpenExternalIcon } from '../../../framework/icon/OpenExternalIcon';
+import { SearchIcon } from '../../../framework/icon/SearchIcon';
+
+import styles from './FancyLinks.module.scss';
 
 type FancyLinksProps = {
     teamId: string;
     currentEvent: number;
-}
+};
 
 const FancyLinks: React.FC<FancyLinksProps> = ({ teamId, currentEvent }) => {
     return (
@@ -34,7 +35,7 @@ const FancyLinks: React.FC<FancyLinksProps> = ({ teamId, currentEvent }) => {
                 </Badge>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export { FancyLinks }
+export { FancyLinks };

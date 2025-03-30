@@ -1,29 +1,29 @@
-@use "@media" as media;
+@use '@media' as media;
 
 .modal {
-  display: block;
-  background: white;
-  padding: 1em;
-  max-height: 100vh;
-  overflow: scroll;
-  word-break: break-word;
+    display: block;
+    background: white;
+    padding: 1em;
+    max-height: 100vh;
+    overflow: scroll;
+    word-break: break-word;
 }
 
 .title {
-  display: flex;
-  @include media.mobile {
-    flex-direction: column;
-  }
+    display: flex;
+    @include media.mobile {
+        flex-direction: column;
+    }
 }
 
 .close {
-  font-size: 2rem;
-  margin-left: auto;
-  display: block;
-  text-decoration: underline;
+    font-size: 2rem;
+    margin-left: auto;
+    display: block;
+    text-decoration: underline;
 
-  @include media.mobile {
-    margin-left: 0;
-    text-align: left;
-  }
+    @include media.mobile {
+        margin-left: 0;
+        text-align: left;
+    }
 }

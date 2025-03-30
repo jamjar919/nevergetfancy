@@ -1,8 +1,9 @@
-import {TeamSearchResultDto} from "./type/TeamSearchResultDto";
-import {DatabaseSync} from "node:sqlite";
-import {FantasyManagerId} from "../../graphql/Reference";
+import { DatabaseSync } from 'node:sqlite';
 
-class SearchDao  {
+import { FantasyManagerId } from '../../graphql/Reference';
+import { TeamSearchResultDto } from './type/TeamSearchResultDto';
+
+class SearchDao {
     private static instance: SearchDao;
     private database: DatabaseSync;
 
@@ -26,14 +27,14 @@ class SearchDao  {
 
         const data = statement.all(`%${teamOrManagerName}%`, `%${teamOrManagerName}%`);
 
-        return data.map((row) => {
+        return data.map((row: any) => {
             return {
                 id: String(row.id) as FantasyManagerId,
                 teamName: row.teamName as string,
-                managerName: row.managerName as string
-            }
+                managerName: row.managerName as string,
+            };
         });
-    }
+    };
 }
 
-export { SearchDao }
+export { SearchDao };

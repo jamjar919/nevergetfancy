@@ -1,7 +1,7 @@
-import {EventId, FantasyManagerId} from "../../../../graphql/Reference";
-import {FantasyPremierLeagueApi} from "../apiConfig";
-import {GameweekHistoryDto} from "../type/GameweekHistoryDto";
-import {fetchFromApi} from "../../../util/fetchFromApi";
+import { EventId, FantasyManagerId } from '../../../../graphql/Reference';
+import { fetchFromApi } from '../../../util/fetchFromApi';
+import { FantasyPremierLeagueApi } from '../apiConfig';
+import { GameweekHistoryDto } from '../type/GameweekHistoryDto';
 
 const getGameweekHistory = async (
     managerId: FantasyManagerId,
@@ -10,7 +10,9 @@ const getGameweekHistory = async (
     const response = await fetchFromApi(FantasyPremierLeagueApi.Picks(managerId, gameweek));
 
     if (!response.ok) {
-        throw new Error(`Error fetching gameweek pick for manager ${managerId} on week ${gameweek}: ${response.statusText}`);
+        throw new Error(
+            `Error fetching gameweek pick for manager ${managerId} on week ${gameweek}: ${response.statusText}`
+        );
     }
 
     const data = await response.json();
@@ -23,10 +25,10 @@ const getGameweekHistory = async (
             return {
                 playerId: pick.element,
                 captain: pick.is_captain,
-                viceCaptain: pick.is_vice_captain
+                viceCaptain: pick.is_vice_captain,
             };
-        })
-    }
-}
+        }),
+    };
+};
 
-export { getGameweekHistory }
+export { getGameweekHistory };

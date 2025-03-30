@@ -1,5 +1,5 @@
 enum LocalStorageKey {
-    lastEnteredTeamId = 'lastEnteredTeamId'
+    lastEnteredTeamId = 'lastEnteredTeamId',
 }
 
-export { LocalStorageKey }
+export { LocalStorageKey };

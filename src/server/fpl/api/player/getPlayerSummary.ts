@@ -1,13 +1,17 @@
-import {FantasyPremierLeagueApi} from "../apiConfig";
-import {PlayerPreviousGameDto} from "../type/PlayerPreviousGameDto";
-import {EventId, PremierLeaguePlayerId} from "../../../../graphql/Reference";
-import {fetchFromApi} from "../../../util/fetchFromApi";
+import { EventId, PremierLeaguePlayerId } from '../../../../graphql/Reference';
+import { fetchFromApi } from '../../../util/fetchFromApi';
+import { FantasyPremierLeagueApi } from '../apiConfig';
+import { PlayerPreviousGameDto } from '../type/PlayerPreviousGameDto';
 
-const getPlayerPreviousGames = async (playerId: PremierLeaguePlayerId): Promise<PlayerPreviousGameDto[]> => {
+const getPlayerPreviousGames = async (
+    playerId: PremierLeaguePlayerId
+): Promise<PlayerPreviousGameDto[]> => {
     const response = await fetchFromApi(FantasyPremierLeagueApi.PlayerSummary(playerId));
 
     if (!response.ok) {
-        throw new Error(`Error fetching player summary for player ${playerId}: ${response.statusText}`);
+        throw new Error(
+            `Error fetching player summary for player ${playerId}: ${response.statusText}`
+        );
     }
 
     const data = await response.json();
@@ -32,6 +36,6 @@ const getPlayerPreviousGames = async (playerId: PremierLeaguePlayerId): Promise<
         saves: game.saves,
         bonus: game.bonus,
     }));
-}
+};
 
-export { getPlayerPreviousGames }
+export { getPlayerPreviousGames };

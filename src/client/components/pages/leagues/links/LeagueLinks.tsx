@@ -1,13 +1,14 @@
-import React from "react";
-import {Badge} from "../../../framework/badge/Badge";
-import {SearchIcon} from "../../../framework/icon/SearchIcon";
-import {PersonIcon} from "../../../framework/icon/PersonIcon";
+import React from 'react';
 
-import styles from "./LeagueLinks.module.scss";
+import { Badge } from '../../../framework/badge/Badge';
+import { PersonIcon } from '../../../framework/icon/PersonIcon';
+import { SearchIcon } from '../../../framework/icon/SearchIcon';
+
+import styles from './LeagueLinks.module.scss';
 
 type LeagueLinksProps = {
     teamId: string;
-}
+};
 
 const LeagueLinks: React.FC<LeagueLinksProps> = ({ teamId }) => {
     return (
@@ -23,7 +24,7 @@ const LeagueLinks: React.FC<LeagueLinksProps> = ({ teamId }) => {
                 </Badge>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export { LeagueLinks }
+export { LeagueLinks };

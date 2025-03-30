@@ -1,4 +1,4 @@
-import {PremierLeaguePlayerId} from "../../../../graphql/Reference";
+import { PremierLeaguePlayerId } from '../../../../graphql/Reference';
 
 type GameweekPickDto = {
     playerId: PremierLeaguePlayerId;

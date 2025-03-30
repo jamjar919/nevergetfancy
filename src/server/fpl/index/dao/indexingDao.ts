@@ -1,18 +1,18 @@
-import {DatabaseSync} from "node:sqlite";
+import { DatabaseSync } from 'node:sqlite';
 
 const TABLE_NAME = 'fpl_teams';
 const NOT_FOUND_TABLE_NAME = 'not_found_fpl_teams';
 enum Columns {
     id = 'id',
     teamName = 'teamName',
-    managerName = 'managerName'
+    managerName = 'managerName',
 }
 
 type FplTeamDbRow = {
     id: number;
     teamName: string;
     managerName: string;
-}
+};
 
 /**
  * DAO for indexing FPL teams
@@ -51,8 +51,8 @@ class IndexingDao {
             CREATE TABLE IF NOT EXISTS ${NOT_FOUND_TABLE_NAME}(
                 ${Columns.id} INT PRIMARY KEY
             );
-       `)
-    }
+       `);
+    };
 
     public addTeam = (id: number, teamName: string, managerName: string) => {
         const statement = IndexingDao.database.prepare(`
@@ -60,7 +60,7 @@ class IndexingDao {
           VALUES (?, ?, ?);
         `);
         statement.run(Number(id), teamName, managerName);
-    }
+    };
 
     public getTeam = (id: number): FplTeamDbRow | null => {
         const statement = IndexingDao.database.prepare(`
@@ -76,7 +76,7 @@ class IndexingDao {
         return {
             id: Number(result[Columns.id]),
             teamName: String(result[Columns.teamName]),
-            managerName: String(result[Columns.managerName])
+            managerName: String(result[Columns.managerName]),
         };
     };
 
@@ -85,7 +85,7 @@ class IndexingDao {
             SELECT ${Columns.id} FROM ${NOT_FOUND_TABLE_NAME} WHERE ${Columns.id} = ?;
         `);
         return statement.get(id) !== undefined;
-    }
+    };
 
     public addNotFoundTeam = (id: number) => {
         const statement = IndexingDao.database.prepare(`
@@ -93,14 +93,14 @@ class IndexingDao {
             VALUES (?);
         `);
         statement.run(Number(id));
-    }
+    };
 
     public getMaxTeamId = (): number => {
         const statement = IndexingDao.database.prepare(`
             SELECT MAX(${Columns.id}) as maxId FROM ${TABLE_NAME};
-        `)
-        return ((statement.get() as any)["maxId"] as any) ?? 0;
-    }
+        `);
+        return ((statement.get() as any)['maxId'] as any) ?? 0;
+    };
 }
 
-export { IndexingDao }
+export { IndexingDao };

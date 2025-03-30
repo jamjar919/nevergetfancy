@@ -1,7 +1,7 @@
-import {FantasyLeagueId} from "../../../../graphql/Reference";
-import {FantasyTeamLeagueStandingDto} from "../type/FantasyTeamLeagueStandingDto";
-import {FantasyPremierLeagueApi} from "../apiConfig";
-import {fetchFromApi} from "../../../util/fetchFromApi";
+import { FantasyLeagueId } from '../../../../graphql/Reference';
+import { fetchFromApi } from '../../../util/fetchFromApi';
+import { FantasyPremierLeagueApi } from '../apiConfig';
+import { FantasyTeamLeagueStandingDto } from '../type/FantasyTeamLeagueStandingDto';
 
 const convertStandings = (standings: any): FantasyTeamLeagueStandingDto[] => {
     return standings.results.map((standing: any) => {
@@ -12,9 +12,9 @@ const convertStandings = (standings: any): FantasyTeamLeagueStandingDto[] => {
             total: standing.total,
             teamName: standing.entry_name,
             playerName: standing.player_name,
-        }
+        };
     });
-}
+};
 
 const MAX_STANDINGS_TO_FETCH = 250;
 
@@ -35,12 +35,14 @@ const getLeagueStandings = async (
     while (data.standings.has_next && standings.length < MAX_STANDINGS_TO_FETCH) {
         currentPage++;
 
-        data = await fetchFromApi(FantasyPremierLeagueApi.League(leagueId, currentPage)).then((res) => res.json());
+        data = await fetchFromApi(FantasyPremierLeagueApi.League(leagueId, currentPage)).then(
+            (res) => res.json()
+        );
 
         standings.push(...convertStandings(data.standings));
     }
 
     return standings;
-}
+};
 
-export { getLeagueStandings }
+export { getLeagueStandings };

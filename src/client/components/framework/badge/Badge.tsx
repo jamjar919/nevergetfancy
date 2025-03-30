@@ -1,21 +1,22 @@
-import React, {PropsWithChildren} from "react";
+import React, { PropsWithChildren } from 'react';
 
-import styles from "./Badge.module.scss";
+import styles from './Badge.module.scss';
 
 type BadgeWithOnClickProps = {
     onClick: () => void;
     href?: never;
-}
+};
 
 type BadgeWithHrefProps = {
     href: string;
     target?: string;
     onClick?: never;
-}
+};
 
-type BadgeProps = (BadgeWithHrefProps | BadgeWithOnClickProps) & PropsWithChildren<{
-    Icon?: React.FC<React.SVGProps<SVGSVGElement>>;
-}>;
+type BadgeProps = (BadgeWithHrefProps | BadgeWithOnClickProps) &
+    PropsWithChildren<{
+        Icon?: React.FC<React.SVGProps<SVGSVGElement>>;
+    }>;
 
 const Badge: React.FC<BadgeProps> = (props) => {
     const { children, Icon, href, onClick, target } = props;
@@ -32,13 +33,17 @@ const Badge: React.FC<BadgeProps> = (props) => {
 
     if (href) {
         return (
-            <a href={href} target={target} className={styles.badge}>{badgeContent}</a>
-        )
+            <a href={href} target={target} className={styles.badge}>
+                {badgeContent}
+            </a>
+        );
     }
 
     return (
-        <button className={styles.badge} onClick={onClick}>{badgeContent}</button>
-    )
-}
+        <button className={styles.badge} onClick={onClick}>
+            {badgeContent}
+        </button>
+    );
+};
 
-export { Badge }
+export { Badge };

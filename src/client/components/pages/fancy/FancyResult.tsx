@@ -1,52 +1,40 @@
 'use client';
 
-import React from "react";
+import React from 'react';
 
-import {useFancyQuery} from "../../../../graphql/generated/Client";
-import {FantasyManagerId} from "../../../../graphql/Reference";
-import {FancyTable} from "./table/FancyTable";
-import {TotalPointDifference} from "./total-point-difference/TotalPointDifference";
-import {FancySummary} from "./summary/FancySummary";
-import {Header} from "../../framework/header/Header";
+import { FantasyManagerId } from '../../../../graphql/Reference';
+import { useFancyQuery } from '../../../../graphql/generated/Client';
+import { Header } from '../../framework/header/Header';
+import { FootballSpinnerLoader } from '../../framework/loader/football-spinner/FootballSpinnerLoader';
+import { FancyLinks } from './links/FancyLinks';
+import { FancySummary } from './summary/FancySummary';
+import { FancyTable } from './table/FancyTable';
+import { TotalPointDifference } from './total-point-difference/TotalPointDifference';
 
 import styles from './FancyResult.module.scss';
-import {FancyLinks} from "./links/FancyLinks";
-import {FootballSpinnerLoader} from "../../framework/loader/football-spinner/FootballSpinnerLoader";
 
 type FancyResultProps = {
-    teamId: FantasyManagerId
-}
+    teamId: FantasyManagerId;
+};
 
 const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
-    const {
-        data
-    } = useFancyQuery({
+    const { data } = useFancyQuery({
         variables: {
-            fantasyTeamId: teamId
-        }
+            fantasyTeamId: teamId,
+        },
     });
 
     if (!data) {
-        return (
-            <FootballSpinnerLoader />
-        )
+        return <FootballSpinnerLoader />;
     }
 
     const {
-        fancy: {
-            totalPointDifference,
-            worstGameweekScore,
-            worstGameweek,
-            timesGotFancy,
-            lines
-        },
+        fancy: { totalPointDifference, worstGameweekScore, worstGameweek, timesGotFancy, lines },
         fantasyTeam: {
             name,
-            manager: {
-                name: managerName
-            },
-            currentEvent
-        }
+            manager: { name: managerName },
+            currentEvent,
+        },
     } = data;
 
     return (
@@ -74,7 +62,7 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
                 <FancyLinks teamId={teamId} currentEvent={currentEvent} />
             </div>
         </div>
-    )
+    );
 };
 
-export { FancyResult }
+export { FancyResult };

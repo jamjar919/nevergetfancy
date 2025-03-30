@@ -1,11 +1,12 @@
-import {FancyResult} from "../../../components/pages/fancy/FancyResult";
-import {FantasyManagerId} from "../../../../graphql/Reference";
-import {Metadata, ResolvingMetadata} from "next";
-import {getTeamNameForTitle} from "../../../components/framework/head/GetTeamNameForTitle";
+import { Metadata, ResolvingMetadata } from 'next';
+
+import { FantasyManagerId } from '../../../../graphql/Reference';
+import { getTeamNameForTitle } from '../../../components/framework/head/GetTeamNameForTitle';
+import { FancyResult } from '../../../components/pages/fancy/FancyResult';
 
 type Props = {
-    params: Promise<{ teamId: string }>
-}
+    params: Promise<{ teamId: string }>;
+};
 
 export async function generateMetadata(
     { params }: Props,
@@ -15,17 +16,13 @@ export async function generateMetadata(
 
     if (teamId) {
         return {
-            title: `${await getTeamNameForTitle(teamId)} - NeverGetFancy`
+            title: `${await getTeamNameForTitle(teamId)} - NeverGetFancy`,
         };
     }
 }
 
-export default async function Page({
-    params
-}:  {
-    params: Promise<{ teamId: string }>
-}) {
+export default async function Page({ params }: { params: Promise<{ teamId: string }> }) {
     const { teamId } = await params;
 
-    return <FancyResult teamId={teamId as FantasyManagerId} />
+    return <FancyResult teamId={teamId as FantasyManagerId} />;
 }

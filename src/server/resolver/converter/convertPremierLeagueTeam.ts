@@ -1,5 +1,5 @@
-import {PremierLeagueTeamDto} from "../../fpl/api/type/PremierLeagueTeamDto";
-import {PremierLeagueTeam} from "../../../graphql/generated/Resolver";
+import { PremierLeagueTeam } from '../../../graphql/generated/Resolver';
+import { PremierLeagueTeamDto } from '../../fpl/api/type/PremierLeagueTeamDto';
 
 const convertPremierLeagueTeam = (dto: PremierLeagueTeamDto): PremierLeagueTeam => {
     return {
@@ -9,8 +9,8 @@ const convertPremierLeagueTeam = (dto: PremierLeagueTeamDto): PremierLeagueTeam 
         position: dto.position,
         shirts: {
             homeImageSrc: `/images/shirts/shirt_${dto.shortName}.png`,
-        }
+        },
     };
-}
+};
 
-export { convertPremierLeagueTeam }
+export { convertPremierLeagueTeam };

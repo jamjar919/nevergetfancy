@@ -1,21 +1,21 @@
-@use "@media" as media;
+@use '@media' as media;
 
 .links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 
-  @include media.mobile {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+    @include media.mobile {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 }
 
 .link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
 }

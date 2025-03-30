@@ -1,9 +1,10 @@
-"use client";
+'use client';
 
-import React, {useLayoutEffect, useMemo, useState} from "react";
-import {TeamCard} from "../team-card/TeamCard";
+import React, { useLayoutEffect, useMemo, useState } from 'react';
 
-import styles from "./TeamSuggestions.module.scss";
+import { TeamCard } from '../team-card/TeamCard';
+
+import styles from './TeamSuggestions.module.scss';
 
 // according to https://fpl.page/realplayers
 const REAL_PLAYER_TEAMS: Array<{
@@ -12,69 +13,69 @@ const REAL_PLAYER_TEAMS: Array<{
     managerName: string;
 }> = [
     {
-        teamId: "2458154",
-        teamName: "Substitute Implosion",
-        managerName: "James Paterson"
+        teamId: '2458154',
+        teamName: 'Substitute Implosion',
+        managerName: 'James Paterson',
     },
     {
-        teamId: "5474509",
-        teamName: "The Ruby Reds",
-        managerName: "Susan Clarke"
+        teamId: '5474509',
+        teamName: 'The Ruby Reds',
+        managerName: 'Susan Clarke',
     },
     {
-        teamId: "8206546",
-        teamName: "Mo",
-        managerName: "Mo Salah"
+        teamId: '8206546',
+        teamName: 'Mo',
+        managerName: 'Mo Salah',
     },
     {
-        teamId: "8204280",
-        teamName: "Change Name",
-        managerName: "Andy Robertson"
+        teamId: '8204280',
+        teamName: 'Change Name',
+        managerName: 'Andy Robertson',
     },
     {
-        teamId: "7423041",
-        teamName: "Baines on toast",
-        managerName: "Not The Real Kalvin Phillips"
+        teamId: '7423041',
+        teamName: 'Baines on toast',
+        managerName: 'Not The Real Kalvin Phillips',
     },
     {
-        teamId: "1480147",
-        teamName: "Off the rack",
-        managerName: "Anthony Gordon"
+        teamId: '1480147',
+        teamName: 'Off the rack',
+        managerName: 'Anthony Gordon',
     },
     {
-        teamId: "8355739",
-        teamName: "lallana del rey",
-        managerName: "trent arnold"
+        teamId: '8355739',
+        teamName: 'lallana del rey',
+        managerName: 'trent arnold',
     },
     {
-        teamId: "8199263",
-        teamName: "Meatballers",
-        managerName: "John McGinn"
+        teamId: '8199263',
+        teamName: 'Meatballers',
+        managerName: 'John McGinn',
     },
     {
-        teamId: "4716449",
-        teamName: "Always",
-        managerName: "James Maddison"
+        teamId: '4716449',
+        teamName: 'Always',
+        managerName: 'James Maddison',
     },
     {
-        teamId: "7908566",
-        teamName: "Luna eSports",
-        managerName: "Diogo Jota"
+        teamId: '7908566',
+        teamName: 'Luna eSports',
+        managerName: 'Diogo Jota',
     },
     {
-        teamId: "3886581",
-        teamName: "TeamTav",
-        managerName: "Marcus Tavernier"
+        teamId: '3886581',
+        teamName: 'TeamTav',
+        managerName: 'Marcus Tavernier',
     },
     {
-        teamId: "2561783",
-        teamName: "Pat fc",
-        managerName: "patrick Dorgu"
+        teamId: '2561783',
+        teamName: 'Pat fc',
+        managerName: 'patrick Dorgu',
     },
     {
-        teamId: "6622238",
-        teamName: "Death, Taxes and …..",
-        managerName: "Antoine Semenyo"
+        teamId: '6622238',
+        teamName: 'Death, Taxes and …..',
+        managerName: 'Antoine Semenyo',
     },
 ];
 
@@ -92,20 +93,16 @@ const getTeamsWithNoDuplicates = (num: number) => {
             <TeamCard teamId={teamId} teamName={teamName} managerName={managerName} />
         </div>
     ));
-}
+};
 
 const TeamSuggestions: React.FC = () => {
-    const [randomTeams, setRandomTeams] = useState([])
+    const [randomTeams, setRandomTeams] = useState([]);
 
     useLayoutEffect(() => {
         setRandomTeams(getTeamsWithNoDuplicates(4));
     }, []);
 
-    return (
-        <div className={styles.suggestions}>
-            {randomTeams}
-        </div>
-    )
-}
+    return <div className={styles.suggestions}>{randomTeams}</div>;
+};
 
-export { TeamSuggestions }
+export { TeamSuggestions };

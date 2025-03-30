@@ -1,20 +1,19 @@
-import {TeamCard} from "../../team-card/TeamCard";
-import React from "react";
-import {useDoesTeamExist} from "./UseDoesTeamExist";
-import {FootballSpinnerLoader} from "../../../../framework/loader/football-spinner/FootballSpinnerLoader";
+import React from 'react';
+
+import { FootballSpinnerLoader } from '../../../../framework/loader/football-spinner/FootballSpinnerLoader';
+import { TeamCard } from '../../team-card/TeamCard';
+import { useDoesTeamExist } from './UseDoesTeamExist';
 
 type EnterTeamIdSearchResultProps = {
     teamId: string;
-}
+};
 
 const EnterTeamIdSearchResult: React.FC<EnterTeamIdSearchResultProps> = (props) => {
-    const {
-        teamId
-    } = props;
+    const { teamId } = props;
 
-    const {data, loading, error } = useDoesTeamExist(teamId);
+    const { data, loading, error } = useDoesTeamExist(teamId);
 
-    if (teamId === "") {
+    if (teamId === '') {
         return;
     }
 
@@ -23,7 +22,7 @@ const EnterTeamIdSearchResult: React.FC<EnterTeamIdSearchResultProps> = (props) 
     }
 
     if (error) {
-        return "🚫 Not found";
+        return '🚫 Not found';
     }
 
     if (data) {
@@ -31,22 +30,14 @@ const EnterTeamIdSearchResult: React.FC<EnterTeamIdSearchResultProps> = (props) 
             fantasyTeam: {
                 id,
                 name,
-                manager: {
-                    name: managerName
-                }
-            }
+                manager: { name: managerName },
+            },
         } = data;
 
-        return (
-            <TeamCard
-                teamId={id}
-                teamName={name}
-                managerName={managerName}
-            />
-        );
+        return <TeamCard teamId={id} teamName={name} managerName={managerName} />;
     }
 
-    return "Team not found";
-}
+    return 'Team not found';
+};
 
-export { EnterTeamIdSearchResult }
+export { EnterTeamIdSearchResult };

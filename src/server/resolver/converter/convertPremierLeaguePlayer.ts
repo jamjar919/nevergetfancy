@@ -1,6 +1,6 @@
-import {PremierLeaguePlayerDto} from "../../fpl/api/type/PremierLeaguePlayerDto";
-import {PremierLeaguePlayer} from "../../../graphql/generated/Resolver";
-import {convertPremierLeaguePlayerPosition} from "./convertPremierLeaguePlayerPosition";
+import { PremierLeaguePlayer } from '../../../graphql/generated/Resolver';
+import { PremierLeaguePlayerDto } from '../../fpl/api/type/PremierLeaguePlayerDto';
+import { convertPremierLeaguePlayerPosition } from './convertPremierLeaguePlayerPosition';
 
 const convertPremierLeaguePlayer = (dto: PremierLeaguePlayerDto): PremierLeaguePlayer => {
     return {
@@ -16,6 +16,6 @@ const convertPremierLeaguePlayer = (dto: PremierLeaguePlayerDto): PremierLeagueP
         teamId: dto.team,
         position: convertPremierLeaguePlayerPosition(dto.type),
     };
-}
+};
 
-export { convertPremierLeaguePlayer }
+export { convertPremierLeaguePlayer };

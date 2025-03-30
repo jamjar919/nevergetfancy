@@ -1,10 +1,11 @@
-import React from "react";
-import styles from "./TextInput.module.scss";
+import React from 'react';
+
+import styles from './TextInput.module.scss';
 
 type TextInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+};
 
 const TextInput: React.FC<TextInputProps> = ({ value, onChange, placeholder, className }) => {
     return (

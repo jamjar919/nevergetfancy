@@ -1,11 +1,12 @@
-import React from "react";
-import styles from "./TeamCard.module.scss";
+import React from 'react';
+
+import styles from './TeamCard.module.scss';
 
 type TeamCardProps = {
     teamId: string;
     teamName: string;
     managerName: string;
-}
+};
 
 const TeamCard: React.FC<TeamCardProps> = ({ teamName, managerName, teamId }) => {
     const href = `/team/${teamId}`;

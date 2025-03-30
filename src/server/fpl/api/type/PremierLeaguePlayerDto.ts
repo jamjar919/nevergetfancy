@@ -1,5 +1,5 @@
-import {PremierLeaguePlayerId, PremierLeagueTeamId} from "../../../../graphql/Reference";
-import {PremierLeaguePlayerTypeDto} from "./PremierLeaguePlayerTypeDto";
+import { PremierLeaguePlayerId, PremierLeagueTeamId } from '../../../../graphql/Reference';
+import { PremierLeaguePlayerTypeDto } from './PremierLeaguePlayerTypeDto';
 
 type PremierLeaguePlayerDto = {
     id: PremierLeaguePlayerId;
@@ -14,6 +14,6 @@ type PremierLeaguePlayerDto = {
     cleanSheets: number;
     bonus: number;
     type: PremierLeaguePlayerTypeDto;
-}
+};
 
-export { PremierLeaguePlayerDto }
+export { PremierLeaguePlayerDto };

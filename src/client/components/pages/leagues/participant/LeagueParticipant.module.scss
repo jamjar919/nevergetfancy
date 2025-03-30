@@ -1,74 +1,77 @@
 .link {
-  display: flex;
-  color: var(--dark-text);
-  text-decoration: none;
-  border: 1px solid var(--dark-text);
-  padding: 0.25rem;
-  min-height: 100px;
+    display: flex;
+    color: var(--dark-text);
+    text-decoration: none;
+    border: 1px solid var(--dark-text);
+    padding: 0.25rem;
+    min-height: 100px;
 
-  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-
-  &:hover {
-    transform: translateY(-5px) scale(1.01);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  }
-
-  &.first {
-    border: 1px solid #d4af37;
+    transition:
+        background 0.3s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 
     &:hover {
-      background-color: #d4af37;
-      color: var(--light-text);
+        transform: translateY(-5px) scale(1.01);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     }
-  }
 
-  &.second {
-    border: 1px solid #c0c0c0;
+    &.first {
+        border: 1px solid #d4af37;
 
-    &:hover {
-      background-color: #c0c0c0;
-      color: var(--light-text);
+        &:hover {
+            background-color: #d4af37;
+            color: var(--light-text);
+        }
     }
-  }
 
-  &.third {
-    border: 1px solid #cd7f32;
+    &.second {
+        border: 1px solid #c0c0c0;
 
-    &:hover {
-      background-color: #cd7f32;
-      color: var(--light-text);
+        &:hover {
+            background-color: #c0c0c0;
+            color: var(--light-text);
+        }
     }
-  }
+
+    &.third {
+        border: 1px solid #cd7f32;
+
+        &:hover {
+            background-color: #cd7f32;
+            color: var(--light-text);
+        }
+    }
 }
 
 .participant {
-  display: flex;
-  padding: 0.25em;
+    display: flex;
+    padding: 0.25em;
 }
 
 .nameContainer {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .rank {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 .managerName {
-  font-size: var(--font-size-medium);
-  font-weight: bold;
-  text-decoration: underline;
-  word-break: break-word;
+    font-size: var(--font-size-medium);
+    font-weight: bold;
+    text-decoration: underline;
+    word-break: break-word;
 }
 
 .name {
-  font-size: var(--font-size-small);
-  font-style: italic;
-  word-break: break-word;
+    font-size: var(--font-size-small);
+    font-style: italic;
+    word-break: break-word;
 }
 
 // HONK
 .clown {
-  font-style: normal;
+    font-style: normal;
 }

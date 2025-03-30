@@ -3,22 +3,22 @@ const path = require('path');
 module.exports = {
     entry: './src/terminal/index.ts',
     target: 'node',
-    mode: "production",
+    mode: 'production',
     output: {
         filename: 'indexer.js',
         path: path.resolve(__dirname, 'dist/indexer'),
     },
     resolve: {
-        extensions: [".ts", ".tsx", ".js"],
+        extensions: ['.ts', '.tsx', '.js'],
         extensionAlias: {
-            ".js": [".js", ".ts"],
-        }
+            '.js': ['.js', '.ts'],
+        },
     },
     module: {
         rules: [
             {
                 test: /\.tsx?$/,
-                loader: "ts-loader"
+                loader: 'ts-loader',
             },
         ],
     },

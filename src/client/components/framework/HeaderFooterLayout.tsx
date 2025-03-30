@@ -1,7 +1,8 @@
-import React, {PropsWithChildren} from "react";
-import {Footer} from "./footer/Footer";
+import React, { PropsWithChildren } from 'react';
 
-import styles from "./HeaderFooterLayout.module.scss";
+import { Footer } from './footer/Footer';
+
+import styles from './HeaderFooterLayout.module.scss';
 
 const HeaderFooterLayout: React.FC<PropsWithChildren<{}>> = ({ children }) => {
     return (
@@ -11,7 +12,7 @@ const HeaderFooterLayout: React.FC<PropsWithChildren<{}>> = ({ children }) => {
                 <Footer />
             </footer>
         </div>
-    )
+    );
 };
 
-export { HeaderFooterLayout }
+export { HeaderFooterLayout };

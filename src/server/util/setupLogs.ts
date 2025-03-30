@@ -1,6 +1,4 @@
-const wrapLogFn = (
-    fn: (...args: any[]) => void
-): ((...args: any[]) => void) => {
+const wrapLogFn = (fn: (...args: any[]) => void): ((...args: any[]) => void) => {
     const date = new Date();
     const stamp = `[${date.toLocaleDateString()} ${date.toLocaleTimeString()}]`;
     return (...args) => fn(stamp, ...args);

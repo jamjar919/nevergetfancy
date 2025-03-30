@@ -1,11 +1,12 @@
-"use client";
+'use client';
 
-import React, {useState} from "react";
-import {Badge} from "../../../framework/badge/Badge";
+import React, { useState } from 'react';
+
+import { Badge } from '../../../framework/badge/Badge';
 
 type FancyShareProps = {
     points: number;
-}
+};
 
 const getMessage = (points: number) => {
     if (points < 0) {
@@ -13,7 +14,7 @@ const getMessage = (points: number) => {
     }
 
     return `I scored ${points} extra points by not captaining Salah every game.`;
-}
+};
 
 const FancyShare: React.FC<FancyShareProps> = (props) => {
     const { points } = props;
@@ -31,19 +32,19 @@ const FancyShare: React.FC<FancyShareProps> = (props) => {
         }, 7500);
 
         if (navigator.share) {
-            navigator.share({
-                title: message,
-                text: "View my team at",
-                url: window.location.href
-            }).catch(console.error);
+            navigator
+                .share({
+                    title: message,
+                    text: 'View my team at',
+                    url: window.location.href,
+                })
+                .catch(console.error);
         }
-    }
+    };
 
-    const content = isCopied ? "Copied to clipboard!" : "Share your score 🔗";
+    const content = isCopied ? 'Copied to clipboard!' : 'Share your score 🔗';
 
-    return (
-        <Badge onClick={handleClick}>{content}</Badge>
-    )
-}
+    return <Badge onClick={handleClick}>{content}</Badge>;
+};
 
-export { FancyShare }
+export { FancyShare };

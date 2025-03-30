@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from 'react';
 
 interface TickerProps {
     to: number;
     time: number; // ms
 }
 
-const Ticker: React.FC<TickerProps> = ({  to, time }) => {
+const Ticker: React.FC<TickerProps> = ({ to, time }) => {
     const [current, setCurrent] = useState(0);
 
-    const timeForEachDigit = time/to;
+    const timeForEachDigit = time / to;
 
     useEffect(() => {
         if (current >= to) {
@@ -29,6 +29,6 @@ const Ticker: React.FC<TickerProps> = ({  to, time }) => {
     }, [current, timeForEachDigit]);
 
     return <>{current}</>;
-}
+};
 
-export { Ticker }
+export { Ticker };

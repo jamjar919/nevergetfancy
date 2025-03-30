@@ -1,27 +1,28 @@
-import React from "react";
-import classNames from "classnames";
+import classNames from 'classnames';
+
+import React from 'react';
 
 import styles from './RankChangeIcon.module.scss';
 
 enum RankChangeEnum {
     UP = 'UP',
     DOWN = 'DOWN',
-    SAME = 'SAME'
+    SAME = 'SAME',
 }
 
 type RankChangeIconProps = {
     change: RankChangeEnum;
-    size?: "sm" | "md"  | "lg";
-}
+    size?: 'sm' | 'md' | 'lg';
+};
 
 const getIcon = (change: RankChangeEnum) => {
     if (change === RankChangeEnum.SAME) {
-        return "";
+        return '';
     }
 
-    let transform = "";
+    let transform = '';
     if (change === RankChangeEnum.UP) {
-        transform = "matrix(1 0 0 -1 0 15)";
+        transform = 'matrix(1 0 0 -1 0 15)';
     }
 
     return (
@@ -34,31 +35,26 @@ const getIcon = (change: RankChangeEnum) => {
             />
         </svg>
     );
-}
+};
 
 /**
  * Display the rank change icon, which is a upwards or downwards arrow indicating the users
  * rank change.
  */
-const RankChangeIcon: React.FC<RankChangeIconProps> = ({
-    change,
-    size = "md"
-}) => {
+const RankChangeIcon: React.FC<RankChangeIconProps> = ({ change, size = 'md' }) => {
+    const classes = classNames(
+        {
+            [styles.up]: change === RankChangeEnum.UP,
+            [styles.down]: change === RankChangeEnum.DOWN,
+            [styles.same]: change === RankChangeEnum.SAME,
+            [styles.small]: size === 'sm',
+            [styles.medium]: size === 'md',
+            [styles.large]: size === 'lg',
+        },
+        styles.icon
+    );
 
-    const classes = classNames({
-        [styles.up]: change === RankChangeEnum.UP,
-        [styles.down]: change === RankChangeEnum.DOWN,
-        [styles.same]: change === RankChangeEnum.SAME,
-        [styles.small]: size === "sm",
-        [styles.medium]: size === "md",
-        [styles.large]: size === "lg"
-    }, styles.icon);
+    return <div className={classes}>{getIcon(change)}</div>;
+};
 
-    return (
-        <div className={classes}>
-            {getIcon(change)}
-        </div>
-    )
-}
-
-export { RankChangeIcon, RankChangeEnum }
+export { RankChangeIcon, RankChangeEnum };

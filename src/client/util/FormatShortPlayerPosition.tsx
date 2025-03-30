@@ -1,4 +1,4 @@
-import {PremierLeaguePlayerPosition} from "../../graphql/generated/Client";
+import { PremierLeaguePlayerPosition } from '../../graphql/generated/Client';
 
 const formatShortPlayerPosition = (position: PremierLeaguePlayerPosition): string => {
     switch (position) {
@@ -15,6 +15,6 @@ const formatShortPlayerPosition = (position: PremierLeaguePlayerPosition): strin
         default:
             return 'UNK';
     }
-}
+};
 
-export { formatShortPlayerPosition }
+export { formatShortPlayerPosition };

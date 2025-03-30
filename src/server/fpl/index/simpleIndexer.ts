@@ -1,5 +1,5 @@
-import {indexTeams} from "./core/indexTeams";
-import {IndexingDao} from "./dao/indexingDao";
+import { indexTeams } from './core/indexTeams';
+import { IndexingDao } from './dao/indexingDao';
 
 const dao = IndexingDao.getInstance();
 
@@ -13,12 +13,7 @@ const indexTeamsWhereWeLeftOff = async () => {
     const start = dao.getMaxTeamId() + 1;
     const end = start + seekNumber;
 
-    return indexTeams(
-        start,
-        end,
-        batchSize
-    )
-}
+    return indexTeams(start, end, batchSize);
+};
 
-
-export { indexTeamsWhereWeLeftOff }
+export { indexTeamsWhereWeLeftOff };

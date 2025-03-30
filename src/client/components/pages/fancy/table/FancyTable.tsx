@@ -1,18 +1,16 @@
-import React from "react";
-import {
-    FancyResultLineAttributesFragment
-} from "../../../../../graphql/generated/Client";
+import React from 'react';
 
-import {PointDisplay} from "../../../framework/point-display/PointDisplay";
-import {GraphQLPlayerCard} from "../../../framework/player/GraphQLPlayerCard";
-import {PremierLeaguePlayerId} from "../../../../../graphql/Reference";
-import {SALAH_PLAYER_ID} from "../../../../util/FancyMan";
+import { PremierLeaguePlayerId } from '../../../../../graphql/Reference';
+import { FancyResultLineAttributesFragment } from '../../../../../graphql/generated/Client';
+import { SALAH_PLAYER_ID } from '../../../../util/FancyMan';
+import { GraphQLPlayerCard } from '../../../framework/player/GraphQLPlayerCard';
+import { PointDisplay } from '../../../framework/point-display/PointDisplay';
 
 import styles from './FancyTable.module.scss';
 
 type FancyTableProps = {
-    lines: FancyResultLineAttributesFragment[]
-}
+    lines: FancyResultLineAttributesFragment[];
+};
 
 const FancyTable: React.FC<FancyTableProps> = (props) => {
     const { lines } = props;
@@ -35,10 +33,18 @@ const FancyTable: React.FC<FancyTableProps> = (props) => {
                     <tr key={line.gameweek}>
                         <td>GW {line.gameweek}</td>
                         <td>•</td>
-                        <td className={styles.points}>{line.captainGameSummary && line.captainGameSummary.points}</td>
-                        <td><GraphQLPlayerCard playerId={line.captainId as PremierLeaguePlayerId} /></td>
-                        <td className={styles.points}>{line.salahGameSummary && line.salahGameSummary.points}</td>
-                        <td><GraphQLPlayerCard playerId={SALAH_PLAYER_ID} /></td>
+                        <td className={styles.points}>
+                            {line.captainGameSummary && line.captainGameSummary.points}
+                        </td>
+                        <td>
+                            <GraphQLPlayerCard playerId={line.captainId as PremierLeaguePlayerId} />
+                        </td>
+                        <td className={styles.points}>
+                            {line.salahGameSummary && line.salahGameSummary.points}
+                        </td>
+                        <td>
+                            <GraphQLPlayerCard playerId={SALAH_PLAYER_ID} />
+                        </td>
                         <td>
                             <PointDisplay points={line.pointDifference} />
                         </td>
@@ -46,7 +52,7 @@ const FancyTable: React.FC<FancyTableProps> = (props) => {
                 ))}
             </tbody>
         </table>
-    )
-}
+    );
+};
 
-export { FancyTable }
+export { FancyTable };

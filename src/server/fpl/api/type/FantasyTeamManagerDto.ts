@@ -1,5 +1,10 @@
-import {EventId, FantasyManagerId, OffsetDateTime, PremierLeagueTeamId} from "../../../../graphql/Reference";
-import {FantasyTeamManagerLeagueDto} from "./FantasyTeamManagerLeagueDto";
+import {
+    EventId,
+    FantasyManagerId,
+    OffsetDateTime,
+    PremierLeagueTeamId,
+} from '../../../../graphql/Reference';
+import { FantasyTeamManagerLeagueDto } from './FantasyTeamManagerLeagueDto';
 
 type FantasyTeamManagerDto = {
     id: FantasyManagerId;
@@ -43,13 +48,13 @@ type FantasyTeamManagerDto = {
     lastDeadlineTotalTransfers: number;
 
     leagues: FantasyTeamManagerLeagueDto[];
-}
+};
 
 type FantasyTeamManagerRegionDto = {
     regionId: number;
     regionName: string;
     isoCodeShort: string;
     isoCodeLong: string;
-}
+};
 
-export { FantasyTeamManagerDto }
+export { FantasyTeamManagerDto };

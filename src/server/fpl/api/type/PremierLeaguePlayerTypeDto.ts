@@ -3,7 +3,7 @@ enum PremierLeaguePlayerTypeDto {
     Forward = 'FORWARD',
     Goalkeeper = 'GOALKEEPER',
     Manager = 'MANAGER',
-    Midfielder = 'MIDFIELDER'
+    Midfielder = 'MIDFIELDER',
 }
 
 const convertToPlayerType = (playerType: number): PremierLeaguePlayerTypeDto => {
@@ -21,6 +21,6 @@ const convertToPlayerType = (playerType: number): PremierLeaguePlayerTypeDto => 
         default:
             throw new Error(`Unknown player type: ${playerType}`);
     }
-}
+};
 
-export { PremierLeaguePlayerTypeDto, convertToPlayerType }
+export { PremierLeaguePlayerTypeDto, convertToPlayerType };

@@ -1,59 +1,58 @@
 .icon {
-  display: flex;
+    display: flex;
 }
 
 // variants
 .up {
-  color: var(--dark-text);
-  background-color: var(--positive);
+    color: var(--dark-text);
+    background-color: var(--positive);
 }
 
 .down {
-  color: var(---light-text);
-  background-color: var(--negative);
+    color: var(---light-text);
+    background-color: var(--negative);
 }
 
 .same {
-  color: var(---light-text);
-  background-color: var(--neutral);
+    color: var(---light-text);
+    background-color: var(--neutral);
 }
 
 // sizes
 .small {
-  width: 12px;
-  height: 12px;
-  border-radius: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
 
-  .iconText {
-    width: 8px;
-    height: 8px;
-  }
+    .iconText {
+        width: 8px;
+        height: 8px;
+    }
 }
 
 .medium {
-  width: 16px;
-  height: 16px;
-  border-radius: 8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
 
-  .iconText {
-    width: 10px;
-    height: 10px;
-  }
+    .iconText {
+        width: 10px;
+        height: 10px;
+    }
 }
 
 .large {
-  width: 24px;
-  height: 24px;
-  border-radius: 12px;
-
-  .iconText {
     width: 24px;
     height: 24px;
-    position: relative;
-    top: 7px;
-    left: 6px;
+    border-radius: 12px;
 
-    transform: scale(1.5);
-  }
+    .iconText {
+        width: 24px;
+        height: 24px;
+        position: relative;
+        top: 7px;
+        left: 6px;
+
+        transform: scale(1.5);
+    }
 }
-

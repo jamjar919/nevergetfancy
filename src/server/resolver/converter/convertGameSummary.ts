@@ -1,7 +1,9 @@
-import {PlayerPreviousGameDto} from "../../fpl/api/type/PlayerPreviousGameDto";
-import {FantasyPlayerGameSummary} from "../../../graphql/generated/Resolver";
+import { FantasyPlayerGameSummary } from '../../../graphql/generated/Resolver';
+import { PlayerPreviousGameDto } from '../../fpl/api/type/PlayerPreviousGameDto';
 
-const convertGameSummary = (dto: PlayerPreviousGameDto | undefined): FantasyPlayerGameSummary | null => {
+const convertGameSummary = (
+    dto: PlayerPreviousGameDto | undefined
+): FantasyPlayerGameSummary | null => {
     if (!dto) {
         return null;
     }
@@ -24,8 +26,8 @@ const convertGameSummary = (dto: PlayerPreviousGameDto | undefined): FantasyPlay
         yellowCards: dto.yellowCards,
         redCards: dto.redCards,
         saves: dto.saves,
-        bonus: dto.bonus
-    }
-}
+        bonus: dto.bonus,
+    };
+};
 
-export { convertGameSummary }
+export { convertGameSummary };

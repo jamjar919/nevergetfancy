@@ -1,5 +1,5 @@
-import {FantasyTeamLeagueStandingDto} from "../../fpl/api/type/FantasyTeamLeagueStandingDto";
-import {FantasyLeagueStanding} from "../../../graphql/generated/Resolver";
+import { FantasyLeagueStanding } from '../../../graphql/generated/Resolver';
+import { FantasyTeamLeagueStandingDto } from '../../fpl/api/type/FantasyTeamLeagueStandingDto';
 
 const convertFantasyLeagueStanding = (dto: FantasyTeamLeagueStandingDto): FantasyLeagueStanding => {
     return {
@@ -7,7 +7,7 @@ const convertFantasyLeagueStanding = (dto: FantasyTeamLeagueStandingDto): Fantas
         rank: dto.rank,
         teamName: dto.teamName,
         playerName: dto.playerName,
-    }
-}
+    };
+};
 
-export { convertFantasyLeagueStanding }
+export { convertFantasyLeagueStanding };

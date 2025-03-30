@@ -1,26 +1,26 @@
 .card {
-  display: flex;
-  flex-direction: row;
-  gap: .5em;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
 }
 
 .imageContainer {
-  display: flex;
+    display: flex;
 
-  img {
-    width: 42px;
-  }
+    img {
+        width: 42px;
+    }
 }
 
 .playerDetails {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .playerName {
-  font-size: 1.2rem;
-  font-weight: bold;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .playerDetailsSecondary {

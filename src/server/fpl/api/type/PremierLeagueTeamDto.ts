@@ -1,4 +1,4 @@
-import {PremierLeagueTeamId} from "../../../../graphql/Reference";
+import { PremierLeagueTeamId } from '../../../../graphql/Reference';
 
 type PremierLeagueTeamDto = {
     id: PremierLeagueTeamId;
@@ -6,6 +6,6 @@ type PremierLeagueTeamDto = {
     played: number;
     position: number;
     shortName: string;
-}
+};
 
-export { PremierLeagueTeamDto }
+export { PremierLeagueTeamDto };

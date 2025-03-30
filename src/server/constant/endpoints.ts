@@ -1,8 +1,8 @@
 enum Endpoints {
-    ROOT = "/",
-    PING = "/ping",
-    GRAPHQL = "/graphql",
-    INDEX = "/index",
+    ROOT = '/',
+    PING = '/ping',
+    GRAPHQL = '/graphql',
+    INDEX = '/index',
 }
 
-export { Endpoints }
+export { Endpoints };

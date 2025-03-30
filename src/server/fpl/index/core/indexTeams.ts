@@ -1,7 +1,7 @@
-import {IndexingDao} from "../dao/indexingDao";
-import {fetchFromApi} from "../../../util/fetchFromApi";
-import {FantasyPremierLeagueApi} from "../../api/apiConfig";
-import {FantasyManagerId} from "../../../../graphql/Reference";
+import { FantasyManagerId } from '../../../../graphql/Reference';
+import { fetchFromApi } from '../../../util/fetchFromApi';
+import { FantasyPremierLeagueApi } from '../../api/apiConfig';
+import { IndexingDao } from '../dao/indexingDao';
 
 const dao = IndexingDao.getInstance();
 
@@ -13,16 +13,12 @@ const dao = IndexingDao.getInstance();
  * If you work for the PL and are reading this, please add a search endpoint to the API so I don't have to do this
  * and can save you some bandwidth.
  */
-const indexTeams = async (
-    start: number,
-    end: number,
-    batchSize: number
-) => {
+const indexTeams = async (start: number, end: number, batchSize: number) => {
     // How often to report progress
     const reportingInterval = batchSize * 50;
 
-    console.log("Indexing teams...");
-    console.log("This will take a while");
+    console.log('Indexing teams...');
+    console.log('This will take a while');
     console.log(`Scanning from ${start} to ${end}`);
     console.log(`Batch size: ${batchSize}`);
     console.log(`Reporting interval: ${reportingInterval}`);
@@ -40,19 +36,23 @@ const indexTeams = async (
 
         const promises = [];
         for (let j = 0; j < batchSize; j++) {
-            promises.push(processSingleTeam(i + j).then((found) => {
-                if (!found) {
-                    numNotFound++;
-                }
-            }));
+            promises.push(
+                processSingleTeam(i + j).then((found) => {
+                    if (!found) {
+                        numNotFound++;
+                    }
+                })
+            );
         }
 
-        await Promise.all(promises)
+        await Promise.all(promises);
     }
-}
+};
 
 const processSingleTeam = async (teamId: number): Promise<boolean> => {
-    const team = await fetchFromApi(FantasyPremierLeagueApi.Manager(String(teamId) as FantasyManagerId))
+    const team = await fetchFromApi(
+        FantasyPremierLeagueApi.Manager(String(teamId) as FantasyManagerId)
+    )
         .then((res) => res.json())
         .catch(() => ({}));
 
@@ -63,13 +63,9 @@ const processSingleTeam = async (teamId: number): Promise<boolean> => {
 
     const playerName = `${team.player_first_name} ${team.player_last_name}`;
 
-    dao.addTeam(
-        team.id,
-        team.name,
-        playerName,
-    );
+    dao.addTeam(team.id, team.name, playerName);
 
     return true;
-}
+};
 
-export { indexTeams, processSingleTeam }
+export { indexTeams, processSingleTeam };

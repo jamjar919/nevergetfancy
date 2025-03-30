@@ -1,4 +1,4 @@
-import promiseRetry from "promise-retry";
+import promiseRetry from 'promise-retry';
 
 const fetchFromApi = (url: string): Promise<Response> => {
     // console.log(`[fetch] ${url}`);
@@ -16,15 +16,14 @@ const fetchFromApi = (url: string): Promise<Response> => {
             .catch((error: Error) => {
                 console.error(`[fetch] Retrying - ${attempt} failed`);
                 return retry(error);
-            })
-    }
+            });
+    };
 
-    return promiseRetry(get, { retries: 3, randomize: true })
-        .catch((error) => {
-            console.error(`[fetch] Error: ${error}`);
-            throw new Error(`Error fetching from API: ${error}`);
-            return Response.error(); // make ts happy
-        });
-}
+    return promiseRetry(get, { retries: 3, randomize: true }).catch((error) => {
+        console.error(`[fetch] Error: ${error}`);
+        throw new Error(`Error fetching from API: ${error}`);
+        return Response.error(); // make ts happy
+    });
+};
 
-export { fetchFromApi }
+export { fetchFromApi };

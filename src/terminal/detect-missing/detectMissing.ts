@@ -1,5 +1,5 @@
-import {IndexingDao} from "../../server/fpl/index/dao/indexingDao";
-import {processSingleTeam} from "../../server/fpl/index/core/indexTeams";
+import { processSingleTeam } from '../../server/fpl/index/core/indexTeams';
+import { IndexingDao } from '../../server/fpl/index/dao/indexingDao';
 
 const dao = IndexingDao.getInstance();
 
@@ -7,7 +7,7 @@ const dao = IndexingDao.getInstance();
 const detectMissing = async () => {
     const maxId = dao.getMaxTeamId();
     console.log(`Max team id: ${maxId}`);
-    console.log("Detecting missing teams...");
+    console.log('Detecting missing teams...');
 
     let missing = 0;
     const missingTeams: string[] = [];
@@ -28,7 +28,7 @@ const detectMissing = async () => {
     console.log(`Found ${missing} missing teams`);
     console.log(missingTeams);
 
-    console.log("Attempting to fix missing teams...");
+    console.log('Attempting to fix missing teams...');
 
     for (const teamId of missingTeams) {
         const success = await processSingleTeam(Number(teamId));
@@ -40,7 +40,7 @@ const detectMissing = async () => {
         }
     }
 
-    console.log("Done!");
-}
+    console.log('Done!');
+};
 
-export { detectMissing }
+export { detectMissing };

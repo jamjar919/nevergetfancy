@@ -1,36 +1,36 @@
-@use "@media" as media;
+@use '@media' as media;
 
 .layout {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    min-height: 100vh;
 
-  &::before {
-    background: linear-gradient(93.93deg, #05f0ff 1.12%, #7367ff 63.34%, #963cff 82.72%);
-    content: "";
-    display: block;
-    height: 0.4rem;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: auto;
-  }
+    &::before {
+        background: linear-gradient(93.93deg, #05f0ff 1.12%, #7367ff 63.34%, #963cff 82.72%);
+        content: '';
+        display: block;
+        height: 0.4rem;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: auto;
+    }
 }
 
 .header {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
-  padding: 0 1em;
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    padding: 0 1em;
 }
 
 .footer {
-  flex-shrink: 0;
-  margin-top: 1em;
+    flex-shrink: 0;
+    margin-top: 1em;
 }

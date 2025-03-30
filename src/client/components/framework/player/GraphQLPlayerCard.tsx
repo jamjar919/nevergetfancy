@@ -1,26 +1,25 @@
-import React from "react";
-import {PremierLeaguePlayerId} from "../../../../graphql/Reference";
-import {usePlayerCardQuery} from "../../../../graphql/generated/Client";
-import {PlayerCard} from "./PlayerCard";
+import React from 'react';
+
+import { PremierLeaguePlayerId } from '../../../../graphql/Reference';
+import { usePlayerCardQuery } from '../../../../graphql/generated/Client';
+import { PlayerCard } from './PlayerCard';
 
 type GraphQLPlayerCardProps = {
-    playerId: PremierLeaguePlayerId
-}
+    playerId: PremierLeaguePlayerId;
+};
 
 const GraphQLPlayerCard: React.FC<GraphQLPlayerCardProps> = ({ playerId }) => {
-    const {
-        data
-    } = usePlayerCardQuery({
+    const { data } = usePlayerCardQuery({
         variables: {
-            playerId
-        }
+            playerId,
+        },
     });
 
     if (!data?.premierLeaguePlayer) {
         return null;
     }
 
-    return (<PlayerCard player={data.premierLeaguePlayer} />)
-}
+    return <PlayerCard player={data.premierLeaguePlayer} />;
+};
 
-export { GraphQLPlayerCard }
+export { GraphQLPlayerCard };
