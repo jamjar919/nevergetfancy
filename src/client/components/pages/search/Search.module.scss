@@ -6,14 +6,6 @@
     flex: 1 1;
 }
 
-.salahStats {
-    margin-bottom: 2em;
-
-    @include media.mobile {
-        margin-bottom: 0;
-    }
-}
-
 .about {
     margin: 2em auto 0 auto;
     max-width: 600px;

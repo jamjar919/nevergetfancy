@@ -36,6 +36,11 @@
     width: 100%;
     background: transparent;
     color: var(--dark-text);
+    font-family: 'Poppins', sans-serif;
+
+    &::placeholder {
+        font-family: 'Poppins', sans-serif;
+    }
 
     &:focus {
         outline: none;

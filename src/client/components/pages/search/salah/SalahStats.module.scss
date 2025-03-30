@@ -15,10 +15,15 @@
     flex-direction: row;
     gap: 30px;
 
+    .image {
+        display: none;
+    }
+
     @include media.mobile {
         flex-direction: column;
 
         .image {
+            display: block;
             top: -30px;
             right: -85px;
             position: absolute;
