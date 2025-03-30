@@ -1,18 +1,45 @@
-import React from "react";
+"use client";
+
+import React, {useState} from "react";
 import {Header} from "../../framework/header/Header";
 import {SalahStats} from "./salah/SalahStats";
 import {TeamSuggestions} from "./team-suggestions/TeamSuggestions";
 
 import styles from "./Search.module.scss"
 import {EnterTeamName} from "./team-name/EnterTeamName";
+import {EnterTeamId} from "./team-id/EnterTeamId";
 
 enum OpenSearchModes {
-    CLOSED = "CLOSED",
     SEARCH_BY_NAME = "SEARCH_BY_NAME",
     SEARCH_BY_ID = "SEARCH_BY_ID"
 }
 
 const Search: React.FC = () => {
+    const [openSearchMode, setOpenSearchMode] = useState<OpenSearchModes>(
+        OpenSearchModes.SEARCH_BY_NAME
+    )
+
+    const SearchComponent = () => {
+        switch (openSearchMode) {
+            case OpenSearchModes.SEARCH_BY_NAME:
+                return <EnterTeamName />
+            case OpenSearchModes.SEARCH_BY_ID:
+                return <EnterTeamId />
+        }
+    }
+
+    const switchSearch = () => {
+        setOpenSearchMode(
+            openSearchMode === OpenSearchModes.SEARCH_BY_NAME
+                ? OpenSearchModes.SEARCH_BY_ID
+                : OpenSearchModes.SEARCH_BY_NAME
+        )
+    }
+
+    const switchSearchText = openSearchMode === OpenSearchModes.SEARCH_BY_NAME
+        ? "search by ID"
+        : "search by name"
+
     return (
         <div className={styles.searchPage}>
             <header>
@@ -27,7 +54,10 @@ const Search: React.FC = () => {
             </div>
             <div className={styles.searchContainer}>
                 <div className={styles.search}>
-                    <EnterTeamName />
+                    <SearchComponent />
+                </div>
+                <div>
+                    Can't find your team? You can also <button className={styles.switchSearch} onClick={() => switchSearch()}>{switchSearchText}</button>.
                 </div>
             </div>
             <TeamSuggestions />

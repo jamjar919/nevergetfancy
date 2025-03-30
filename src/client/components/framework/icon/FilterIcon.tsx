@@ -1,6 +1,6 @@
 import React from "react";
 
-type FilterIconProps = React.SVGProps<SVGElement> & {}
+type FilterIconProps = React.SVGProps<SVGSVGElement> & {}
 
 const FilterIcon: React.FC<FilterIconProps> = (props) => {
     return (

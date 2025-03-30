@@ -7,6 +7,7 @@ import {TextInput} from "../../../framework/text-input/TextInput";
 import {EnterTeamIdSearchResult} from "./search-result/EnterTeamIdSearchResult";
 import {LocalStorageKey} from "../../../../util/LocalStorage";
 import {ExplainTeamIdModal} from "./explanation-modal/ExplainTeamIdModal";
+import {SearchInput} from "../../../framework/search-input/SearchInput";
 
 const EnterTeamId: React.FC = () => {
     const [teamId, setTeamId] = useState<string>("");
@@ -31,8 +32,7 @@ const EnterTeamId: React.FC = () => {
                 <label className={styles.label}>
                     Enter your Team ID: <button className={styles.whatsThat} onClick={() => setIsModalOpen(true)}>(what's that?)</button>
                 </label>
-                <TextInput
-                    type="text"
+                <SearchInput
                     placeholder="123456"
                     onChange={handleChange}
                     value={teamId}

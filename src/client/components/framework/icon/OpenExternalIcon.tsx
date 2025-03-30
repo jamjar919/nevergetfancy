@@ -1,6 +1,6 @@
 import React from "react";
 
-type OpenExternalIconProps = React.SVGProps<SVGElement> & {}
+type OpenExternalIconProps = React.SVGProps<SVGSVGElement> & {}
 
 const OpenExternalIcon: React.FC<OpenExternalIconProps> = (props) => {
     return (

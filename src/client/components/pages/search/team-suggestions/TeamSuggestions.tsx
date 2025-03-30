@@ -1,9 +1,9 @@
+"use client";
+
 import React, {useMemo} from "react";
 import {TeamCard} from "../team-card/TeamCard";
 
 import styles from "./TeamSuggestions.module.scss";
-
-
 
 // according to https://fpl.page/realplayers
 const REAL_PLAYER_TEAMS: Array<{

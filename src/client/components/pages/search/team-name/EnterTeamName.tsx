@@ -1,10 +1,10 @@
 "use client";
 
-import React, {useEffect, useMemo, useState} from "react";
-import {TextInput} from "../../../framework/text-input/TextInput";
+import React, {useEffect, useState} from "react";
 
 import styles from "./EnterTeamName.module.scss";
 import {EnterTeamNameSearchResult} from "./search-result/EnterTeamNameSearchResult";
+import {SearchInput} from "../../../framework/search-input/SearchInput";
 
 const MOST_COMMON_NAME = [
     "Hakuna Mateta",
@@ -29,8 +29,8 @@ const MOST_COMMON_NAME = [
     "Expected Toulouse"
 ]
 
-const EnterTeamName: React.FC = () => {
-    const [query, setQuery] = React.useState<string>("");
+const EnterTeamName: React.FC = (props) => {
+    const [query, setQuery] = useState<string>("");
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const query= e.target.value;
@@ -47,10 +47,9 @@ const EnterTeamName: React.FC = () => {
         <div className={styles.enterTeamName}>
             <div>
                 <label className={styles.label}>
-                    Enter your Team Name:
+                    Search for team:
                 </label>
-                <TextInput
-                    type="Team or manager name"
+                <SearchInput
                     placeholder={placeholder}
                     onChange={handleChange}
                     value={query}

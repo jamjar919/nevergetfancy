@@ -1,6 +1,6 @@
 import React from "react";
 
-type PersonIconProps = React.SVGProps<SVGElement> & {}
+type PersonIconProps = React.SVGProps<SVGSVGElement> & {}
 
 const PersonIcon: React.FC<PersonIconProps> = (props) => {
     return (

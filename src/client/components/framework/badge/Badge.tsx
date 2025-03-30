@@ -1,4 +1,4 @@
-import React from "react";
+import React, {PropsWithChildren} from "react";
 
 import styles from "./Badge.module.scss";
 
@@ -13,9 +13,9 @@ type BadgeWithHrefProps = {
     onClick?: never;
 }
 
-type BadgeProps = (BadgeWithHrefProps | BadgeWithOnClickProps) & {
-    Icon?: React.FC<React.SVGProps<SVGElement>>;
-};
+type BadgeProps = (BadgeWithHrefProps | BadgeWithOnClickProps) & PropsWithChildren<{
+    Icon?: React.FC<React.SVGProps<SVGSVGElement>>;
+}>;
 
 const Badge: React.FC<BadgeProps> = (props) => {
     const { children, Icon, href, onClick, target } = props;

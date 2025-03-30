@@ -1,6 +1,6 @@
 import React from "react";
 
-type ShareIconProps = React.SVGProps<SVGElement> & {}
+type ShareIconProps = React.SVGProps<SVGSVGElement> & {}
 
 const ShareIcon: React.FC<ShareIconProps> = (props) => {
     return (

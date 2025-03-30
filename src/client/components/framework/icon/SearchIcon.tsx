@@ -1,6 +1,6 @@
 import React from "react";
 
-type GroupsIconProps = React.SVGProps<SVGElement> & {}
+type GroupsIconProps = React.SVGProps<SVGSVGElement> & {}
 
 const SearchIcon: React.FC<GroupsIconProps> = (props) => {
     return (

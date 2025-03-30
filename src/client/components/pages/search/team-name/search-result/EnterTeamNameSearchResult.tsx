@@ -45,6 +45,7 @@ const EnterTeamNameSearchResult: React.FC<EnterTeamNameSearchResultProps> = (pro
 
         return (
             <TeamCard
+                key={id}
                 teamId={id}
                 teamName={teamName}
                 managerName={managerName}
