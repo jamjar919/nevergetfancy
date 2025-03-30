@@ -15,6 +15,7 @@ import { fetchPlayersAndTeams, getPlayers, getTeams } from './fpl/api/bootstrap/
 import { resolvers } from './resolver/resolvers';
 import { randomIntegerInRange } from './util/randomIntegerInRange';
 import { setupLogs } from './util/setupLogs';
+import { SearchDao } from './db/searchDao';
 
 setupLogs();
 
@@ -58,6 +59,12 @@ app.get(Endpoints.PING, async (_, res) => {
 });
 
 // Startup
+
+// Verify DB
+await SearchDao.getInstance().ping()
+    .then(() => console.log("📡 Connected to DB"))
+    .catch((e) => console.error("🚫📡 No DB connection", e))
+
 await new Promise<void>(async (resolve) => {
     console.log('Fetching players and teams...');
 

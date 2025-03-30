@@ -37,6 +37,16 @@ class SearchDao {
         return SearchDao.instance;
     }
 
+    public ping = async () => {
+        try {
+            await this.connectionPool.query('SELECT NOW()');
+            return true;
+        } catch (e) {
+            console.error('Failed to ping database', e);
+            return false;
+        }
+    }
+
     public search = async (teamOrManagerName: string): Promise<TeamSearchResultDto[]> => {
         const tsQuery = teamOrManagerName.replace(/'/g, "''").split(' ').join(' & '); // Escape single quotes and format for tsquery
         const data = await this.connectionPool.query(
