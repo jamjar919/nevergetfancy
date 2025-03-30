@@ -10,10 +10,12 @@ import {
 } from '@apollo/experimental-nextjs-app-support';
 
 function makeClient() {
-    const graphQlHost = process.env.NEXT_PUBLIC_GRAPH_QL_HOST
+    const graphQlHost = process.env.NEXT_PUBLIC_GRAPH_QL_HOST;
 
     if (!graphQlHost) {
-        throw new Error("No graphQl server configured, this should be set as an environment variable")
+        throw new Error(
+            'No graphQl server configured, this should be set as an environment variable'
+        );
     }
 
     const httpLink = new HttpLink({
