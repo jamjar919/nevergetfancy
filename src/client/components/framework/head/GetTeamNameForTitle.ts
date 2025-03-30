@@ -6,8 +6,14 @@ import { GetTeamNameDocument, GetTeamNameQueryResult } from '../../../../graphql
 // It creates it's own ApolloClient to make the query rather than using the one from the ApolloWrapper
 const getTeamNameForTitle = async (teamId: string) => {
     try {
+        const graphQlHost = process.env.NEXT_PUBLIC_GRAPH_QL_HOST
+
+        if (!graphQlHost) {
+            throw new Error("No graphQl server configured, this should be set as an environment variable")
+        }
+
         const httpLink = new HttpLink({
-            uri: 'http://localhost:16000/graphql',
+            uri: graphQlHost,
             fetchOptions: { cache: 'no-store' },
         });
 
