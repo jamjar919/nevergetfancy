@@ -1,10 +1,12 @@
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
+import 'dotenv/config';
 
 import { indexTeams } from '../server/fpl/index/core/indexTeams';
 import { IndexingDao } from '../server/fpl/index/dao/indexingDao';
 import { combineFplDatabases } from './combine/combineFplDatabases';
 import { detectMissing } from './detect-missing/detectMissing';
+import { exportTeamsDb } from './import/exportTeamsDb';
 
 const dao = IndexingDao.getInstance();
 const defaultStart = dao.getMaxTeamId() + 1;
@@ -71,5 +73,11 @@ await yargs(hideBin(process.argv))
             console.log(databases);
             combineFplDatabases(databases as string[]);
         }
+    )
+    .command(
+        "exportteams",
+        "Export FPL teams from a local database to a remote",
+        () => {},
+        () => { exportTeamsDb(); }
     )
     .parse();

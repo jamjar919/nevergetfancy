@@ -25,6 +25,7 @@ class SearchDao {
             max: 20,
             idleTimeoutMillis: 30000,
             connectionTimeoutMillis: 2000,
+            ssl: true
         });
     }
 
@@ -36,17 +37,18 @@ class SearchDao {
     }
 
     public search = async (teamOrManagerName: string): Promise<TeamSearchResultDto[]> => {
+        const tsQuery = teamOrManagerName.replace(/'/g, "''").split(' ').join(' & '); // Escape single quotes and format for tsquery
         const data = await this.connectionPool.query(`
             SELECT * FROM fpl_teams
-            WHERE teamName LIKE $1 OR managerName LIKE $2
+            WHERE tsv @@ to_tsquery('english', $1)
             LIMIT 10
-        `, [`%${teamOrManagerName}%`, `%${teamOrManagerName}%`]);
+        `, [tsQuery]);
 
         return data.rows.map((row: any) => {
             return {
                 id: String(row.id) as FantasyManagerId,
-                teamName: row.teamName as string,
-                managerName: row.managerName as string,
+                teamName: row.team as string,
+                managerName: row.manager as string,
             };
         });
     };
