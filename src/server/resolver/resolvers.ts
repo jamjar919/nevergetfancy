@@ -50,7 +50,8 @@ export const resolvers: Resolvers = {
             return fancyCalculator(args.fantasyTeamId as FantasyManagerId);
         },
         searchFantasyTeam: async (_: {}, args: { query: string }) => {
-            return searchDao.search(args.query).map(convertFantasyTeamSearchResult);
+            const results = await searchDao.search(args.query);
+            return results.map(convertFantasyTeamSearchResult);
         },
     },
     PremierLeagueTeam: {
