@@ -34,9 +34,12 @@ const Search: React.FC = () => {
             case OpenSearchModes.SEARCH_BY_NAME:
                 return (
                     <>
-                        Can't find your team? Try adding the manager's name as well, and check it's spelled correctly.
-                        You can also{' '}
-                        <button className={styles.switchSearch} onClick={() => setOpenSearchMode(OpenSearchModes.SEARCH_BY_ID)}>
+                        Can't find your team? Try adding the manager's name as well, and check it's
+                        spelled correctly. You can also{' '}
+                        <button
+                            className={styles.switchSearch}
+                            onClick={() => setOpenSearchMode(OpenSearchModes.SEARCH_BY_ID)}
+                        >
                             search by ID.
                         </button>
                     </>
@@ -45,13 +48,16 @@ const Search: React.FC = () => {
                 return (
                     <>
                         You can also{' '}
-                        <button className={styles.switchSearch} onClick={() => setOpenSearchMode(OpenSearchModes.SEARCH_BY_NAME)}>
+                        <button
+                            className={styles.switchSearch}
+                            onClick={() => setOpenSearchMode(OpenSearchModes.SEARCH_BY_NAME)}
+                        >
                             search by name.
                         </button>
                     </>
                 );
         }
-    }
+    };
 
     return (
         <div className={styles.searchPage}>
@@ -70,9 +76,7 @@ const Search: React.FC = () => {
                 <div className={styles.search}>
                     <SearchComponent />
                 </div>
-                <div>
-                    {getSearchHelpText()}
-                </div>
+                <div>{getSearchHelpText()}</div>
             </div>
             <TeamSuggestions />
         </div>
