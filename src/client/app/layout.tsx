@@ -17,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     rel="stylesheet"
                 />
                 <meta content="width=device-width,initial-scale=1" name="viewport" />
+                <script defer data-domain="nevergetfancy.com" src="https://plausible.io/js/script.tagged-events.js"></script>
                 <title>Never Get Fancy</title>
             </head>
             <body>
