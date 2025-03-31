@@ -9,7 +9,7 @@ declare global {
 enum TrackingEvent {
     shareTeam = 'share-team',
     searchByTeamName = 'search-by-team-name',
-    searchByTeamId = 'search-by-team-id'
+    searchByTeamId = 'search-by-team-id',
 }
 
 /**
@@ -18,11 +18,11 @@ enum TrackingEvent {
  */
 const trackEvent = (event: TrackingEvent) => {
     try {
-        window.plausible?.(event)
+        window.plausible?.(event);
     } catch (e) {
         console.error(`Failed to track event ${event}`, e);
     }
-}
+};
 
 // Hook to ensure that a tracking event is only tracked once per component lifecycle
 const useTrackEventOnce = (event: TrackingEvent) => {
@@ -33,7 +33,7 @@ const useTrackEventOnce = (event: TrackingEvent) => {
             trackEvent(event);
             hasTracked.current = true;
         }
-    }
-}
+    };
+};
 
 export { trackEvent, useTrackEventOnce, TrackingEvent };

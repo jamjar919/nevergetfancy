@@ -3,10 +3,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import { SearchInput } from '../../../framework/search-input/SearchInput';
+import {
+    trackEvent,
+    TrackingEvent,
+    useTrackEventOnce,
+} from '../../../framework/tracking/trackEvent';
 import { EnterTeamNameSearchResult } from './search-result/EnterTeamNameSearchResult';
 
 import styles from './EnterTeamName.module.scss';
-import { trackEvent, TrackingEvent, useTrackEventOnce } from '../../../framework/tracking/trackEvent';
 
 const MOST_COMMON_NAME = [
     'Hakuna Mateta',
