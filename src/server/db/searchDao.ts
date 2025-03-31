@@ -2,32 +2,14 @@ import { Pool } from 'pg';
 
 import { FantasyManagerId } from '../../graphql/Reference';
 import { TeamSearchResultDto } from './type/TeamSearchResultDto';
+import { createConnectionPool } from './connectionPool';
 
 class SearchDao {
     private static instance: SearchDao;
     private connectionPool: Pool;
 
     private constructor() {
-        const username = process.env.DB_USERNAME;
-        const password = process.env.DB_PASSWORD;
-        const host = process.env.DB_HOST;
-        const port = process.env.DB_PORT;
-
-        if (!username || !password || !host || !port) {
-            throw new Error('Missing database connection information');
-        }
-
-        this.connectionPool = new Pool({
-            host,
-            user: username,
-            password,
-            port: Number(port),
-            database: 'fpl',
-            max: 20,
-            idleTimeoutMillis: 30000,
-            connectionTimeoutMillis: 2000,
-            ssl: true,
-        });
+        this.connectionPool = createConnectionPool();
     }
 
     public static getInstance() {
