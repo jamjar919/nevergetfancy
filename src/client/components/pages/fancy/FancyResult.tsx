@@ -12,6 +12,7 @@ import { FancyTable } from './table/FancyTable';
 import { TotalPointDifference } from './total-point-difference/TotalPointDifference';
 
 import styles from './FancyResult.module.scss';
+import { FullPageLoader } from '../../framework/loader/full-page/FullPageLoader';
 
 type FancyResultProps = {
     teamId: FantasyManagerId;
@@ -25,7 +26,7 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
     });
 
     if (!data) {
-        return <FootballSpinnerLoader />;
+        return <FullPageLoader />;
     }
 
     const {

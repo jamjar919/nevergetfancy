@@ -12,6 +12,7 @@ import { LeagueLinks } from './links/LeagueLinks';
 import { LeagueSearch } from './search/LeagueSearch';
 
 import styles from './Leagues.module.scss';
+import { FullPageLoader } from '../../framework/loader/full-page/FullPageLoader';
 
 type LeaguesProps = {
     teamId: FantasyManagerId;
@@ -25,7 +26,7 @@ const Leagues: React.FC<LeaguesProps> = ({ teamId }) => {
     });
 
     if (!data) {
-        return <div>Loading...</div>;
+        return <FullPageLoader />;
     }
 
     const {
