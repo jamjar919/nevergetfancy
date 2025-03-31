@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from "./FullPageLoader.module.scss";
+import styles from './FullPageLoader.module.scss';
 
 const FullPageLoader: React.FC = () => {
     return (
@@ -13,7 +13,7 @@ const FullPageLoader: React.FC = () => {
                 />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export { FullPageLoader }
+export { FullPageLoader };

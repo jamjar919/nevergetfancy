@@ -6,13 +6,13 @@ import { FantasyManagerId } from '../../../../graphql/Reference';
 import { useFancyQuery } from '../../../../graphql/generated/Client';
 import { Header } from '../../framework/header/Header';
 import { FootballSpinnerLoader } from '../../framework/loader/football-spinner/FootballSpinnerLoader';
+import { FullPageLoader } from '../../framework/loader/full-page/FullPageLoader';
 import { FancyLinks } from './links/FancyLinks';
 import { FancySummary } from './summary/FancySummary';
 import { FancyTable } from './table/FancyTable';
 import { TotalPointDifference } from './total-point-difference/TotalPointDifference';
 
 import styles from './FancyResult.module.scss';
-import { FullPageLoader } from '../../framework/loader/full-page/FullPageLoader';
 
 type FancyResultProps = {
     teamId: FantasyManagerId;
