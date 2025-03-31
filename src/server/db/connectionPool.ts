@@ -8,9 +8,9 @@ const createConnectionPool = (): Pool => {
 
     let ca = process.env.DB_CACERT;
     if (!ca) {
-        console.log("Loading CA from file as no environment variable was supplied");
+        console.log('Loading CA from file as no environment variable was supplied');
         const fs = require('fs');
-        ca = fs.readFileSync('ca-certificate-database.crt', 'utf8')
+        ca = fs.readFileSync('ca-certificate-database.crt', 'utf8');
     }
 
     if (!user || !password || !host || !port || !ca) {
@@ -27,9 +27,9 @@ const createConnectionPool = (): Pool => {
         idleTimeoutMillis: 30000,
         connectionTimeoutMillis: 2000,
         ssl: {
-            ca
-        }
+            ca,
+        },
     });
-}
+};
 
-export { createConnectionPool }
+export { createConnectionPool };

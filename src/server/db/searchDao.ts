@@ -1,8 +1,8 @@
 import { Pool } from 'pg';
 
 import { FantasyManagerId } from '../../graphql/Reference';
-import { TeamSearchResultDto } from './type/TeamSearchResultDto';
 import { createConnectionPool } from './connectionPool';
+import { TeamSearchResultDto } from './type/TeamSearchResultDto';
 
 class SearchDao {
     private static instance: SearchDao;
