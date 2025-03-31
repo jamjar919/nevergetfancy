@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 
 import { Badge } from '../../../framework/badge/Badge';
+import { trackEvent, TrackingEvent } from '../../../framework/tracking/trackEvent';
 
 type FancyShareProps = {
     points: number;
@@ -22,6 +23,8 @@ const FancyShare: React.FC<FancyShareProps> = (props) => {
     const [isCopied, setIsCopied] = useState(false);
 
     const handleClick = () => {
+        trackEvent(TrackingEvent.shareTeam);
+
         const message = getMessage(points);
 
         navigator.clipboard.writeText(`${message} - View my team at ${window.location.href}`);

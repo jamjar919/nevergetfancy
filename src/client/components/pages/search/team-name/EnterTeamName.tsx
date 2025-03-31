@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { SearchInput } from '../../../framework/search-input/SearchInput';
 import { EnterTeamNameSearchResult } from './search-result/EnterTeamNameSearchResult';
 
 import styles from './EnterTeamName.module.scss';
+import { trackEvent, TrackingEvent, useTrackEventOnce } from '../../../framework/tracking/trackEvent';
 
 const MOST_COMMON_NAME = [
     'Hakuna Mateta',
@@ -33,9 +34,12 @@ const MOST_COMMON_NAME = [
 const EnterTeamName: React.FC = (props) => {
     const [query, setQuery] = useState<string>('');
 
+    const trackChange = useTrackEventOnce(TrackingEvent.searchByTeamName);
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const query = e.target.value;
         setQuery(query);
+        trackChange();
     };
 
     // Avoid SSR errors
