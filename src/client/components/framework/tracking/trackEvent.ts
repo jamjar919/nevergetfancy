@@ -18,6 +18,7 @@ enum TrackingEvent {
  */
 const trackEvent = (event: TrackingEvent) => {
     try {
+        console.debug(`Tracking event ${event}`);
         window.plausible?.(event);
     } catch (e) {
         console.error(`Failed to track event ${event}`, e);
