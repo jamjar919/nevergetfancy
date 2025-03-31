@@ -9,8 +9,7 @@ declare global {
 enum TrackingEvent {
     shareTeam = 'share-team',
     searchByTeamName = 'search-by-team-name',
-    searchByTeamId = 'search-by-team-id',
-    clickTeamCard = 'click-team-card',
+    searchByTeamId = 'search-by-team-id'
 }
 
 /**
