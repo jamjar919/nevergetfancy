@@ -7,6 +7,7 @@ import React from 'react';
 import { FantasyManagerId } from '../../../../graphql/Reference';
 import { useLeaguesForTeamQuery } from '../../../../graphql/generated/Client';
 import { Header } from '../../framework/header/Header';
+import { FullPageLoader } from '../../framework/loader/full-page/FullPageLoader';
 import { League } from './league/League';
 import { LeagueLinks } from './links/LeagueLinks';
 import { LeagueSearch } from './search/LeagueSearch';
@@ -25,7 +26,7 @@ const Leagues: React.FC<LeaguesProps> = ({ teamId }) => {
     });
 
     if (!data) {
-        return <div>Loading...</div>;
+        return <FullPageLoader />;
     }
 
     const {
