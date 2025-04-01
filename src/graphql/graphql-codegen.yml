@@ -1,4 +1,4 @@
-schema: './src/graphql/schema.graphql'
+schema: './src/graphql/**.graphql'
 generates:
     ./src/graphql/generated/Resolver.ts:
         plugins:
@@ -15,3 +15,7 @@ generates:
             - 'typescript-react-apollo'
         config:
             withHooks: true
+    ./src/graphql/generated/completeSchema.graphql:
+        documents: './src/**/*.graphql'
+        plugins:
+            - "schema-ast"

@@ -26,7 +26,7 @@ const port = process.env.PORT || 16000;
 /**
  * GRAPHQL
  */
-const typeDefs = readFileSync('./src/graphql/schema.graphql', {
+const typeDefs = readFileSync('./src/graphql/generated/completeSchema.graphql', {
     encoding: 'utf-8',
 });
 

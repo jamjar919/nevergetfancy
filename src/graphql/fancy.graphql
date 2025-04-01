@@ -1,0 +1,68 @@
+type FancyResult {
+    """
+    The total point difference the user lost out on by not captaining Salah
+    """
+    totalPointDifference: Int!
+
+    """
+    The number of gameweeks the user got fancy (didn't pick Salah as captain)
+    """
+    timesGotFancy: Int!
+
+    """
+    Worst gameweek
+    """
+    worstGameweek: Int!
+
+    """
+    Score difference in the worst gameweek
+    """
+    worstGameweekScore: Int!
+
+    """
+    Line items used to calculate the total point difference
+    """
+    lines: [FancyResultLine]!
+}
+
+type FancyResultLine {
+    """
+    The gameweek the user played
+    """
+    gameweek: Int!
+
+    """
+    Whether the user got fancy
+    """
+    gotFancy: Boolean!
+
+    """
+    The point difference between the user's captain and Salah
+    """
+    pointDifference: Int!
+
+    """
+    Whether the user had Salah in their team
+    """
+    hadSalah: Boolean!
+
+    """
+    The user's captain ID
+    """
+    captainId: ID!
+
+    """
+    The user's captain
+    """
+    captain: PremierLeaguePlayer
+
+    """
+    The points the user's captain scored
+    """
+    captainGameSummary: FantasyPlayerGameSummary
+
+    """
+    The points Salah scored
+    """
+    salahGameSummary: FantasyPlayerGameSummary
+}
