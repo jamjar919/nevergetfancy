@@ -18,4 +18,4 @@ generates:
     ./src/graphql/generated/completeSchema.graphql:
         documents: './src/**/*.graphql'
         plugins:
-            - "schema-ast"
+            - 'schema-ast'
