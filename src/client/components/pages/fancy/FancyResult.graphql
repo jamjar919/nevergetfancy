@@ -1,11 +1,22 @@
 query Fancy($fantasyTeamId: ID!) {
     fancy(fantasyTeamId: $fantasyTeamId) {
-        totalPointDifference
-        timesGotFancy
-        worstGameweek
-        worstGameweekScore
-        lines {
-            ...FancyResultLineAttributes
+        captainScores {
+            gameweek
+            captainId
+            captainGameSummary {
+                points
+            }
+        }
+        salah {
+            totalPointDifference
+            timesGotFancy
+            worstGameweek {
+                gameweek
+                pointDifference
+            }
+            comparisonScores {
+                ...FancyResultLineAttributes
+            }
         }
     }
     fantasyTeam(id: $fantasyTeamId) {

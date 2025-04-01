@@ -17,6 +17,7 @@ const getPlayerPreviousGames = async (
     const data = await response.json();
 
     return data.history.map((game: any) => ({
+        playerId,
         gameweek: game.round as EventId,
         points: game.total_points,
         opposingTeam: game.opponent_team,

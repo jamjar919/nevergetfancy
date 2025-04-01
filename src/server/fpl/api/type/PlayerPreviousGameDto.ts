@@ -1,6 +1,7 @@
-import { EventId, PremierLeagueTeamId } from '../../../../graphql/Reference';
+import { EventId, PremierLeaguePlayerId, PremierLeagueTeamId } from '../../../../graphql/Reference';
 
 type PlayerPreviousGameDto = {
+    playerId: PremierLeaguePlayerId;
     gameweek: EventId;
     points: number;
     opposingTeam: PremierLeagueTeamId;

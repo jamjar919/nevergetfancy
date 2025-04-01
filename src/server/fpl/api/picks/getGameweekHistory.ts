@@ -2,6 +2,8 @@ import { EventId, FantasyManagerId } from '../../../../graphql/Reference';
 import { fetchFromApi } from '../../../util/fetchFromApi';
 import { FantasyPremierLeagueApi } from '../apiConfig';
 import { GameweekHistoryDto } from '../type/GameweekHistoryDto';
+import { GameweekSubDto } from '../type/GameweekSubDto';
+import { GameweekPickDto } from '../type/GameweekPickDto';
 
 const getGameweekHistory = async (
     managerId: FantasyManagerId,
@@ -15,13 +17,19 @@ const getGameweekHistory = async (
         );
     }
 
-    const data = await response.json();
+    const data: any = await response.json();
 
     return {
         gameweek,
         points: data.entry_history.points,
         totalPoints: data.entry_history.total_points,
-        picks: data.picks.map((pick: any) => {
+        subs: data.automatic_subs.map((sub: any): GameweekSubDto => {
+            return {
+                playerIn: sub.element_in,
+                playerOut: sub.element_out,
+            };
+        }),
+        picks: data.picks.map((pick: any): GameweekPickDto => {
             return {
                 playerId: pick.element,
                 captain: pick.is_captain,

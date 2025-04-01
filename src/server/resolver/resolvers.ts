@@ -8,12 +8,11 @@ import {
     PremierLeaguePlayer,
     PremierLeagueTeam,
     Resolvers,
-    FancyResultLine,
     FantasyPlayerGameSummary,
     FantasyLeagueStanding,
     FantasyLeague,
     FantasyTeam,
-    FantasyTeamSearchResult,
+    FantasyTeamSearchResult, FancyPickLine,
 } from '../../graphql/generated/Resolver';
 import { SearchDao } from '../db/searchDao';
 import { getPlayerById, getPlayers, getTeamById, getTeams } from '../fpl/api/bootstrap/bootstrap';
@@ -66,8 +65,8 @@ export const resolvers: Resolvers = {
             return convertPremierLeagueTeam(getTeamById(parent.teamId as PremierLeagueTeamId));
         },
     },
-    FancyResultLine: {
-        captain: async (parent: FancyResultLine) => {
+    FancyPickLine: {
+        captain: async (parent: FancyPickLine) => {
             return convertPremierLeaguePlayer(
                 getPlayerById(parent.captainId as PremierLeaguePlayerId)
             );

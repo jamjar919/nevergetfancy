@@ -1,55 +1,62 @@
 type FancyResult {
     """
-    The total point difference the user lost out on by not captaining Salah
+    The score for the captain the user picked every week
+    """
+    captainScores: [FancyPickLine!]!
+
+    """
+    Comparison with Salah (original fancy)
+    """
+    salah: FancyComparison
+
+    """
+    Comparison with the best player in the user's team each week
+    """
+    bestPlayerInTeam: FancyComparison
+
+    """
+    Comparison with the best player in FPL each week
+    """
+    bestPlayerInFpl: FancyComparison
+}
+
+type FancyComparison {
+    """
+    The total point difference the user lost out on
     """
     totalPointDifference: Int!
 
     """
-    The number of gameweeks the user got fancy (didn't pick Salah as captain)
+    The number of gameweeks the user got fancy (didn't pick the comparison player)
     """
     timesGotFancy: Int!
 
     """
-    Worst gameweek
+    Worst gameweek where the user lost the most points
     """
-    worstGameweek: Int!
-
-    """
-    Score difference in the worst gameweek
-    """
-    worstGameweekScore: Int!
+    worstGameweek: FancyResultLine!
 
     """
     Line items used to calculate the total point difference
     """
-    lines: [FancyResultLine]!
+    comparisonScores: [FancyResultLine]!
 }
 
-type FancyResultLine {
+type FancyPickLine {
     """
     The gameweek the user played
     """
     gameweek: Int!
 
     """
-    Whether the user got fancy
-    """
-    gotFancy: Boolean!
-
-    """
-    The point difference between the user's captain and Salah
-    """
-    pointDifference: Int!
-
-    """
-    Whether the user had Salah in their team
-    """
-    hadSalah: Boolean!
-
-    """
     The user's captain ID
     """
     captainId: ID!
+
+    """
+    Whether the captain was originally vice captain
+    """
+    wasOriginallyViceCaptain: Boolean!
 
     """
     The user's captain
@@ -60,9 +67,26 @@ type FancyResultLine {
     The points the user's captain scored
     """
     captainGameSummary: FantasyPlayerGameSummary
+}
+
+type FancyResultLine {
+    """
+    The gameweek the user played
+    """
+    gameweek: Int!
 
     """
-    The points Salah scored
+    The player we are comparing against
     """
-    salahGameSummary: FantasyPlayerGameSummary
+    playerId: ID!
+
+    """
+    The point difference between the player and the user's captain
+    """
+    pointDifference: Int!
+
+    """
+    The game summary for the comparison player
+    """
+    comparisonGameSummary: FantasyPlayerGameSummary!
 }
