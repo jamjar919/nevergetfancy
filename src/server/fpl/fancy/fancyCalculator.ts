@@ -1,10 +1,10 @@
 import { EventId, FantasyManagerId } from '../../../graphql/Reference';
 import { FancyPickLine, FancyResult } from '../../../graphql/generated/Resolver';
+import { convertGameSummary } from '../../resolver/converter/convertGameSummary';
 import { getArrayWithNumbersInRange } from '../../util/getArrayWithNumbersInRange';
 import { getManager } from '../api/manager/getManager';
 import { getGameweekHistory } from '../api/picks/getGameweekHistory';
 import { getCaptainScoresByWeek } from './gameweek/getCaptainPicksByWeek';
-import { convertGameSummary } from '../../resolver/converter/convertGameSummary';
 
 const fancyCalculator = async (managerId: FantasyManagerId): Promise<FancyResult> => {
     // Get the manager info + what weeks they've played
@@ -25,26 +25,23 @@ const fancyCalculator = async (managerId: FantasyManagerId): Promise<FancyResult
     const captainScoresAsArray: FancyPickLine[] = Object.entries(captainScores)
         .map(([gameweek, performance]) => {
             const {
-                captain: {
-                    captainId,
-                    wasOriginallyViceCaptain
-                },
-                gameSummary
+                captain: { captainId, wasOriginallyViceCaptain },
+                gameSummary,
             } = performance;
 
             return {
                 gameweek: parseInt(gameweek),
                 captainId,
                 wasOriginallyViceCaptain,
-                captainGameSummary: gameSummary ? convertGameSummary(gameSummary) : undefined
-            }
+                captainGameSummary: gameSummary ? convertGameSummary(gameSummary) : undefined,
+            };
         })
         .sort((a, b) => b.gameweek - a.gameweek);
 
     // WHERE ARE THE COMPARISONS??
     // (they're handled in the resolver)
     return {
-        captainScores: captainScoresAsArray
+        captainScores: captainScoresAsArray,
     };
 };
 

@@ -12,7 +12,8 @@ import {
     FantasyLeagueStanding,
     FantasyLeague,
     FantasyTeam,
-    FantasyTeamSearchResult, FancyPickLine,
+    FantasyTeamSearchResult,
+    FancyPickLine,
 } from '../../graphql/generated/Resolver';
 import { SearchDao } from '../db/searchDao';
 import { getPlayerById, getPlayers, getTeamById, getTeams } from '../fpl/api/bootstrap/bootstrap';

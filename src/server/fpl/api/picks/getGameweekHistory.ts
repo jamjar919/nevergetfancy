@@ -2,8 +2,8 @@ import { EventId, FantasyManagerId } from '../../../../graphql/Reference';
 import { fetchFromApi } from '../../../util/fetchFromApi';
 import { FantasyPremierLeagueApi } from '../apiConfig';
 import { GameweekHistoryDto } from '../type/GameweekHistoryDto';
-import { GameweekSubDto } from '../type/GameweekSubDto';
 import { GameweekPickDto } from '../type/GameweekPickDto';
+import { GameweekSubDto } from '../type/GameweekSubDto';
 
 const getGameweekHistory = async (
     managerId: FantasyManagerId,

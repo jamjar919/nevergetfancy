@@ -1,23 +1,27 @@
 import { GameweekHistoryDto } from '../../api/type/GameweekHistoryDto';
-import { CaptainDto } from './type/CaptainDto';
-import { GameweekSubDto } from '../../api/type/GameweekSubDto';
 import { GameweekPickDto } from '../../api/type/GameweekPickDto';
+import { GameweekSubDto } from '../../api/type/GameweekSubDto';
+import { CaptainDto } from './type/CaptainDto';
 
 const getCaptainForGameweek = (week: GameweekHistoryDto): CaptainDto => {
     const captain = week.picks.find((pick: GameweekPickDto) => pick.captain);
-    const wasCaptainSubbed = week.subs.some((sub: GameweekSubDto) => sub.playerOut === captain?.playerId);
-    
+    const wasCaptainSubbed = week.subs.some(
+        (sub: GameweekSubDto) => sub.playerOut === captain?.playerId
+    );
+
     // If the captain was subbed, the vice captain becomes the captain
     if (wasCaptainSubbed) {
         const viceCaptain = week.picks.find((pick) => pick.viceCaptain);
 
         if (!viceCaptain) {
-            throw new Error(`Captain was subbed and no vice captain found for gameweek ${week.gameweek}`);
+            throw new Error(
+                `Captain was subbed and no vice captain found for gameweek ${week.gameweek}`
+            );
         }
 
         return {
             captainId: viceCaptain.playerId,
-            wasOriginallyViceCaptain: true
+            wasOriginallyViceCaptain: true,
         };
     }
 
@@ -27,8 +31,8 @@ const getCaptainForGameweek = (week: GameweekHistoryDto): CaptainDto => {
 
     return {
         captainId: captain.playerId,
-        wasOriginallyViceCaptain: false
+        wasOriginallyViceCaptain: false,
     };
 };
 
-export { getCaptainForGameweek }
+export { getCaptainForGameweek };

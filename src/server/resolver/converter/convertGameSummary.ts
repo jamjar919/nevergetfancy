@@ -1,9 +1,7 @@
 import { FantasyPlayerGameSummary } from '../../../graphql/generated/Resolver';
 import { PlayerPreviousGameDto } from '../../fpl/api/type/PlayerPreviousGameDto';
 
-const convertGameSummary = (
-    dto: PlayerPreviousGameDto
-): FantasyPlayerGameSummary => {
+const convertGameSummary = (dto: PlayerPreviousGameDto): FantasyPlayerGameSummary => {
     return {
         gameweek: dto.gameweek,
         points: dto.points,

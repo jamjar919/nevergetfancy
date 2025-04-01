@@ -2,7 +2,7 @@ import { PremierLeaguePlayerId } from '../../../../../graphql/Reference';
 
 type CaptainDto = {
     captainId: PremierLeaguePlayerId;
-    wasOriginallyViceCaptain: boolean
-}
+    wasOriginallyViceCaptain: boolean;
+};
 
-export { CaptainDto }
+export { CaptainDto };
