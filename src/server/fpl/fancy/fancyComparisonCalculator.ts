@@ -63,8 +63,8 @@ const fancyComparisonCalculator = async (
 
             const pointDifference = playerScore - points;
 
-            const gotFancy = line.captainId !== comparisonPlayerId;
-
+            const gotFancy = String(line.captainId) !== String(comparisonPlayerId);
+            
             return {
                 gameweek: line.gameweek,
                 playerId: comparisonPlayerId,
