@@ -18,8 +18,9 @@ const fancyCalculator = async (managerId: FantasyManagerId): Promise<FancyResult
     );
 
     // Get the total scores for the captain
-    const captainScores = (await getCaptainScoresByWeek(history))
-        .sort((a, b) => b.gameweek - a.gameweek);
+    const captainScores = (await getCaptainScoresByWeek(history)).sort(
+        (a, b) => b.gameweek - a.gameweek
+    );
 
     // WHERE ARE THE COMPARISONS??
     // (they're handled in the resolver)

@@ -1,16 +1,14 @@
 import { EventId } from '../../../../graphql/Reference';
+import { FancyPickLine } from '../../../../graphql/generated/Resolver';
+import { convertGameSummary } from '../../../resolver/converter/convertGameSummary';
 import { getPlayerPreviousGame } from '../../api/player/getPlayerPreviousGame';
 import { GameweekHistoryDto } from '../../api/type/GameweekHistoryDto';
 import { getCaptainForGameweek } from './getCaptainForGameweek';
-import { convertGameSummary } from '../../../resolver/converter/convertGameSummary';
-import { FancyPickLine } from '../../../../graphql/generated/Resolver';
 
 /**
  * Get the results by gameweek for a team
  */
-const getCaptainScoresByWeek = async (
-    weeks: GameweekHistoryDto[]
-): Promise<FancyPickLine[]> => {
+const getCaptainScoresByWeek = async (weeks: GameweekHistoryDto[]): Promise<FancyPickLine[]> => {
     return await Promise.all(
         weeks.map(async (week) => {
             const eventId: EventId = week.gameweek;
