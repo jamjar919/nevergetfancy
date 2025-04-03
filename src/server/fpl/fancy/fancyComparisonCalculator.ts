@@ -5,7 +5,6 @@ import {
     FancyResultLine,
 } from '../../../graphql/generated/Resolver';
 import { convertGameSummary } from '../../resolver/converter/convertGameSummary';
-import { getPlayers } from '../api/bootstrap/bootstrap';
 import { getDreamPlayerInGameWeek } from '../api/dream/getDreamPlayerInGameWeek';
 import { getBestCaptainPickInTeamForGameWeek } from '../api/picks/getBestCaptainPickInTeamForGameWeek';
 import { getPlayerPreviousGame } from '../api/player/getPlayerPreviousGame';

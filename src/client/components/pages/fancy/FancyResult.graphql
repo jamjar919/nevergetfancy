@@ -1,11 +1,7 @@
 query Fancy($fantasyTeamId: ID!, $comparison: FancyComparisonType = SALAH) {
     fancy(fantasyTeamId: $fantasyTeamId) {
         captainScores {
-            gameweek
-            captainId
-            captainGameSummary {
-                points
-            }
+            ...FancyPickLineAttributes
         }
         comparison(comparison: $comparison) {
             totalPointDifference

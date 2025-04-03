@@ -1,19 +1,37 @@
 import React from 'react';
 
-import { PremierLeaguePlayerId } from '../../../../../graphql/Reference';
-import { FancyResultLineAttributesFragment } from '../../../../../graphql/generated/Client';
-import { SALAH_PLAYER_ID } from '../../../../util/FancyMan';
-import { GraphQLPlayerCard } from '../../../framework/player/GraphQLPlayerCard';
-import { PointDisplay } from '../../../framework/point-display/PointDisplay';
+import {
+    FancyPickLineAttributesFragment,
+    FancyResultLineAttributesFragment,
+} from '../../../../../graphql/generated/Client';
 
 import styles from './FancyTable.module.scss';
+import { FancyTableLine, FancyTableLineProps } from './line/FancyTableLine';
+import { PremierLeaguePlayerId } from '../../../../../graphql/Reference';
 
 type FancyTableProps = {
-    lines: FancyResultLineAttributesFragment[];
+    captainScores: FancyPickLineAttributesFragment[];
+    comparisonScores: FancyResultLineAttributesFragment[];
 };
 
 const FancyTable: React.FC<FancyTableProps> = (props) => {
-    const { lines } = props;
+    const lines: FancyTableLineProps[] = Array.from(
+        { length: props.captainScores.length },
+        (_, i) => {
+            const captainScore = props.captainScores[i];
+            const comparisonScore = props.comparisonScores[i];
+
+            return {
+                gameweek: captainScore.gameweek,
+                captainId: captainScore.captainId as PremierLeaguePlayerId,
+                wasViceCaptain: captainScore.wasOriginallyViceCaptain,
+                captainGameSummary: captainScore.captainGameSummary,
+                comparisonPlayerId: comparisonScore.playerId as PremierLeaguePlayerId,
+                comparisonGameSummary: comparisonScore.comparisonGameSummary,
+                pointDifference: comparisonScore.pointDifference,
+            };
+        }
+    )
 
     return (
         <table className={styles.table}>
@@ -29,27 +47,7 @@ const FancyTable: React.FC<FancyTableProps> = (props) => {
                 </tr>
             </thead>
             <tbody>
-                {lines.map((line) => (
-                    <tr key={line.gameweek}>
-                        <td>GW {line.gameweek}</td>
-                        <td>•</td>
-                        <td className={styles.points}>
-                            {line.captainGameSummary && line.captainGameSummary.points}
-                        </td>
-                        <td>
-                            <GraphQLPlayerCard playerId={line.captainId as PremierLeaguePlayerId} />
-                        </td>
-                        <td className={styles.points}>
-                            {line.salahGameSummary && line.salahGameSummary.points}
-                        </td>
-                        <td>
-                            <GraphQLPlayerCard playerId={SALAH_PLAYER_ID} />
-                        </td>
-                        <td>
-                            <PointDisplay points={line.pointDifference} />
-                        </td>
-                    </tr>
-                ))}
+                {lines.map((line) => <FancyTableLine key={line.gameweek} {...line} />)}
             </tbody>
         </table>
     );

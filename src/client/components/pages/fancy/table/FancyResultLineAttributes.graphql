@@ -1,8 +1,0 @@
-fragment FancyResultLineAttributes on FancyResultLine {
-    gameweek
-    playerId
-    pointDifference
-    comparisonGameSummary {
-        points
-    }
-}

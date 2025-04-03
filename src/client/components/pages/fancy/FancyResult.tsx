@@ -3,9 +3,8 @@
 import React from 'react';
 
 import { FantasyManagerId } from '../../../../graphql/Reference';
-import { useFancyQuery } from '../../../../graphql/generated/Client';
+import { FancyComparisonType, useFancyQuery } from '../../../../graphql/generated/Client';
 import { Header } from '../../framework/header/Header';
-import { FootballSpinnerLoader } from '../../framework/loader/football-spinner/FootballSpinnerLoader';
 import { FullPageLoader } from '../../framework/loader/full-page/FullPageLoader';
 import { FancyLinks } from './links/FancyLinks';
 import { FancySummary } from './summary/FancySummary';
@@ -19,9 +18,10 @@ type FancyResultProps = {
 };
 
 const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
-    const { data } = useFancyQuery({
+    const { data, error } = useFancyQuery({
         variables: {
             fantasyTeamId: teamId,
+            comparison: FancyComparisonType.Salah
         },
     });
 
@@ -29,12 +29,27 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
         return <FullPageLoader />;
     }
 
+    if (error) {
+        return "error loading page";
+    }
+
     const {
-        fancy: { totalPointDifference, worstGameweekScore, worstGameweek, timesGotFancy, lines },
         fantasyTeam: {
             name,
             manager: { name: managerName },
             currentEvent,
+        },
+        fancy: {
+            captainScores,
+            comparison: {
+                totalPointDifference,
+                timesGotFancy,
+                worstGameweek: {
+                    gameweek: worstGameweek,
+                    pointDifference: worstGameweekScore,
+                },
+                comparisonScores
+            }
         },
     } = data;
 
@@ -51,13 +66,13 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
                     teamId={teamId}
                     points={totalPointDifference}
                     timesGotFancy={timesGotFancy}
-                    timesCouldHaveGotFancy={lines.length}
+                    timesCouldHaveGotFancy={comparisonScores.length}
                     worstGameweekScore={worstGameweekScore}
                     worstGameweek={worstGameweek}
                 />
             </div>
             <div className={styles.tableContainer}>
-                <FancyTable lines={lines} />
+                <FancyTable captainScores={captainScores} comparisonScores={comparisonScores} />
             </div>
             <div className={styles.linksContainer}>
                 <FancyLinks teamId={teamId} currentEvent={currentEvent} />
