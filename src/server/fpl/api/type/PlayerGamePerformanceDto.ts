@@ -22,7 +22,10 @@ type PlayerGamePerformanceDto = {
     bonus: number;
 };
 
-const playerPerformanceDtoFromApi = (game: any, playerId: PremierLeaguePlayerId): PlayerGamePerformanceDto => {
+const playerPerformanceDtoFromApi = (
+    game: any,
+    playerId: PremierLeaguePlayerId
+): PlayerGamePerformanceDto => {
     return {
         playerId,
         gameweek: game.round as EventId,
@@ -43,7 +46,7 @@ const playerPerformanceDtoFromApi = (game: any, playerId: PremierLeaguePlayerId)
         redCards: game.red_cards,
         saves: game.saves,
         bonus: game.bonus,
-    }
-}
+    };
+};
 
 export { playerPerformanceDtoFromApi, PlayerGamePerformanceDto };

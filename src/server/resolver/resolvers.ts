@@ -80,7 +80,11 @@ export const resolvers: Resolvers = {
         ): Promise<FancyComparison> => {
             const comparison =
                 (args.comparison as FancyComparisonTypeEnum) || FancyComparisonTypeEnum.Salah;
-            return fancyComparisonCalculator(parent.teamId as FantasyManagerId, parent.captainScores, comparison);
+            return fancyComparisonCalculator(
+                parent.teamId as FantasyManagerId,
+                parent.captainScores,
+                comparison
+            );
         },
     },
     FancyPickLine: {

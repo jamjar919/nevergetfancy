@@ -5,12 +5,12 @@ import {
     FancyResultLine,
 } from '../../../graphql/generated/Resolver';
 import { convertGameSummary } from '../../resolver/converter/convertGameSummary';
+import { getPlayers } from '../api/bootstrap/bootstrap';
+import { getDreamPlayerInGameWeek } from '../api/dream/getDreamPlayerInGameWeek';
+import { getBestCaptainPickInTeamForGameWeek } from '../api/picks/getBestCaptainPickInTeamForGameWeek';
 import { getPlayerPreviousGame } from '../api/player/getPlayerPreviousGame';
 import { PlayerGamePerformanceDto } from '../api/type/PlayerGamePerformanceDto';
 import { HAALAND_PLAYER_ID, SALAH_PLAYER_ID } from './fancyMan';
-import { getDreamPlayerInGameWeek } from '../api/dream/getDreamPlayerInGameWeek';
-import { getBestCaptainPickInTeamForGameWeek } from '../api/picks/getBestCaptainPickInTeamForGameWeek';
-import { getPlayers } from '../api/bootstrap/bootstrap';
 
 enum FancyComparisonTypeEnum {
     BestPlayerInTeam = 'BEST_PLAYER_IN_TEAM',
@@ -30,7 +30,11 @@ const fancyGetPlayerComparisonFactory = (
         case FancyComparisonTypeEnum.BestPlayerOverall:
             return (gameweek: EventId) => getDreamPlayerInGameWeek(gameweek);
         case FancyComparisonTypeEnum.BestPlayerInTeam:
-            return (gameweek: EventId, managerId: FantasyManagerId): Promise<PremierLeaguePlayerId> => getBestCaptainPickInTeamForGameWeek(managerId, gameweek);
+            return (
+                gameweek: EventId,
+                managerId: FantasyManagerId
+            ): Promise<PremierLeaguePlayerId> =>
+                getBestCaptainPickInTeamForGameWeek(managerId, gameweek);
         default:
             throw new Error('Not implemented');
     }
@@ -46,7 +50,10 @@ const fancyComparisonCalculator = async (
     // Get the list of comparison scores for each gameweek
     const comparisonScores = await Promise.all(
         playerPicks.map(async (line: FancyPickLine): Promise<FancyResultLine> => {
-            const comparisonPlayerId = await getPlayerToCompareTo(line.gameweek as EventId, managerId);
+            const comparisonPlayerId = await getPlayerToCompareTo(
+                line.gameweek as EventId,
+                managerId
+            );
 
             console.log(line.gameweek, getPlayers()[comparisonPlayerId].webName);
 

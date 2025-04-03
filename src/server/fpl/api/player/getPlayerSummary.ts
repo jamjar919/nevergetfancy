@@ -1,7 +1,10 @@
 import { PremierLeaguePlayerId } from '../../../../graphql/Reference';
 import { fetchFromApi } from '../../../util/fetchFromApi';
 import { FantasyPremierLeagueApi } from '../apiConfig';
-import { PlayerGamePerformanceDto, playerPerformanceDtoFromApi } from '../type/PlayerGamePerformanceDto';
+import {
+    PlayerGamePerformanceDto,
+    playerPerformanceDtoFromApi,
+} from '../type/PlayerGamePerformanceDto';
 
 const getPlayerPreviousGames = async (
     playerId: PremierLeaguePlayerId
