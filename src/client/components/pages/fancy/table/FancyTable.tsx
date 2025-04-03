@@ -1,13 +1,13 @@
 import React from 'react';
 
+import { PremierLeaguePlayerId } from '../../../../../graphql/Reference';
 import {
     FancyPickLineAttributesFragment,
     FancyResultLineAttributesFragment,
 } from '../../../../../graphql/generated/Client';
+import { FancyTableLine, FancyTableLineProps } from './line/FancyTableLine';
 
 import styles from './FancyTable.module.scss';
-import { FancyTableLine, FancyTableLineProps } from './line/FancyTableLine';
-import { PremierLeaguePlayerId } from '../../../../../graphql/Reference';
 
 type FancyTableProps = {
     captainScores: FancyPickLineAttributesFragment[];
@@ -31,7 +31,7 @@ const FancyTable: React.FC<FancyTableProps> = (props) => {
                 pointDifference: comparisonScore.pointDifference,
             };
         }
-    )
+    );
 
     return (
         <table className={styles.table}>
@@ -47,7 +47,9 @@ const FancyTable: React.FC<FancyTableProps> = (props) => {
                 </tr>
             </thead>
             <tbody>
-                {lines.map((line) => <FancyTableLine key={line.gameweek} {...line} />)}
+                {lines.map((line) => (
+                    <FancyTableLine key={line.gameweek} {...line} />
+                ))}
             </tbody>
         </table>
     );

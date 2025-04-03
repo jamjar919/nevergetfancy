@@ -21,7 +21,7 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
     const { data, error } = useFancyQuery({
         variables: {
             fantasyTeamId: teamId,
-            comparison: FancyComparisonType.Salah
+            comparison: FancyComparisonType.Salah,
         },
     });
 
@@ -30,7 +30,7 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
     }
 
     if (error) {
-        return "error loading page";
+        return 'error loading page';
     }
 
     const {
@@ -44,12 +44,9 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
             comparison: {
                 totalPointDifference,
                 timesGotFancy,
-                worstGameweek: {
-                    gameweek: worstGameweek,
-                    pointDifference: worstGameweekScore,
-                },
-                comparisonScores
-            }
+                worstGameweek: { gameweek: worstGameweek, pointDifference: worstGameweekScore },
+                comparisonScores,
+            },
         },
     } = data;
 

@@ -1,8 +1,10 @@
 import React from 'react';
-import styles from '../FancyTable.module.scss';
-import { GraphQLPlayerCard } from '../../../../framework/player/GraphQLPlayerCard';
+
 import { PremierLeaguePlayerId } from '../../../../../../graphql/Reference';
+import { GraphQLPlayerCard } from '../../../../framework/player/GraphQLPlayerCard';
 import { PointDisplay } from '../../../../framework/point-display/PointDisplay';
+
+import styles from '../FancyTable.module.scss';
 
 type FancyTableLineProps = {
     gameweek: number;
@@ -16,10 +18,9 @@ type FancyTableLineProps = {
         points: number;
     };
     pointDifference: number;
-}
+};
 
 const FancyTableLine: React.FC<FancyTableLineProps> = (props) => {
-
     const {
         captainId,
         wasViceCaptain,
@@ -27,16 +28,14 @@ const FancyTableLine: React.FC<FancyTableLineProps> = (props) => {
         comparisonPlayerId,
         comparisonGameSummary,
         pointDifference,
-        gameweek
+        gameweek,
     } = props;
 
     return (
         <tr>
             <td>GW {gameweek}</td>
             <td>•</td>
-            <td className={styles.points}>
-                {captainGameSummary && captainGameSummary.points}
-            </td>
+            <td className={styles.points}>{captainGameSummary && captainGameSummary.points}</td>
             <td>
                 <GraphQLPlayerCard playerId={captainId as PremierLeaguePlayerId} />
                 {wasViceCaptain && <span className={styles.viceCaptain}> (VC)</span>}
@@ -52,7 +51,7 @@ const FancyTableLine: React.FC<FancyTableLineProps> = (props) => {
             </td>
         </tr>
     );
-}
+};
 
-export { FancyTableLine }
-export type { FancyTableLineProps }
+export { FancyTableLine };
+export type { FancyTableLineProps };
