@@ -19,6 +19,7 @@ enum FancyComparisonTypeEnum {
     Salah = 'SALAH',
 }
 
+// return a fn that returns the player id we should compare to for a given gameweek
 const fancyGetPlayerComparisonFactory = (
     type: FancyComparisonTypeEnum
 ): ((gameweek: EventId, managerId: FantasyManagerId) => Promise<PremierLeaguePlayerId>) => {
@@ -55,8 +56,6 @@ const fancyComparisonCalculator = async (
                 managerId
             );
 
-            console.log(line.gameweek, getPlayers()[comparisonPlayerId].webName);
-
             const comparisonGameSummary: PlayerGamePerformanceDto | undefined =
                 await getPlayerPreviousGame(comparisonPlayerId, line.gameweek as EventId);
 
@@ -71,7 +70,6 @@ const fancyComparisonCalculator = async (
                 gameweek: line.gameweek,
                 playerId: comparisonPlayerId,
                 gotFancy,
-                points,
                 pointDifference,
                 comparisonGameSummary: comparisonGameSummary
                     ? convertGameSummary(comparisonGameSummary)

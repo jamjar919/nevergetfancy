@@ -92,11 +92,6 @@ type FancyResultLine {
     player: PremierLeaguePlayer
 
     """
-    The amount of points the comparison player scored
-    """
-    points: Int!
-
-    """
     The point difference between the player and the user's captain
     """
     pointDifference: Int!

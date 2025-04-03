@@ -23,7 +23,7 @@ type PlayerGamePerformanceDto = {
 };
 
 const playerPerformanceDtoFromApi = (
-    game: any,
+    game: Record<string, any>,
     playerId: PremierLeaguePlayerId
 ): PlayerGamePerformanceDto => {
     return {

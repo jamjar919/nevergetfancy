@@ -15,7 +15,7 @@ const getEventPerformance = async (gameweek: EventId): Promise<PlayerGamePerform
         throw new Error(`Error fetching event performance for gameweek ${gameweek}`);
     }
 
-    return response.elements.map((element: any) =>
+    return response.elements.map((element: Record<string, any>) =>
         playerPerformanceDtoFromApi(element.stats, element.id as PremierLeaguePlayerId)
     );
 };

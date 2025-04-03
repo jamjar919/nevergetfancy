@@ -19,7 +19,7 @@ const getPlayerPreviousGames = async (
 
     const data = await response.json();
 
-    return data.history.map((game: any) => playerPerformanceDtoFromApi(game, playerId));
+    return data.history.map((game: Record<string, any>) => playerPerformanceDtoFromApi(game, playerId));
 };
 
 export { getPlayerPreviousGames };
