@@ -11,9 +11,9 @@ type FancyResult {
 }
 
 enum FancyComparisonType {
-    SALAH,
-    HAALAND,
-    BEST_PLAYER_IN_TEAM,
+    SALAH
+    HAALAND
+    BEST_PLAYER_IN_TEAM
     BEST_PLAYER_OVERALL
 }
 
