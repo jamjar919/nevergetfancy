@@ -5,7 +5,7 @@ import { getManager } from '../api/manager/getManager';
 import { getGameweekHistory } from '../api/picks/getGameweekHistory';
 import { getCaptainScoresByWeek } from './gameweek/getCaptainPicksByWeek';
 
-const fancyCalculator = async (managerId: FantasyManagerId): Promise<FancyResult> => {
+const teamScoresCalculator = async (managerId: FantasyManagerId): Promise<FancyResult> => {
     // Get the manager info + what weeks they've played
     const manager = await getManager(managerId);
     const activeGameweeks = getArrayWithNumbersInRange(manager.startedEvent, manager.currentEvent);
@@ -29,4 +29,4 @@ const fancyCalculator = async (managerId: FantasyManagerId): Promise<FancyResult
     };
 };
 
-export { fancyCalculator };
+export { teamScoresCalculator };

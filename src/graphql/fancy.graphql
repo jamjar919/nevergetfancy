@@ -7,17 +7,14 @@ type FancyResult {
     """
     Comparison with Salah (original fancy)
     """
-    salah: FancyComparison
+    comparison(comparison: FancyComparisonType): FancyComparison
+}
 
-    """
-    Comparison with the best player in the user's team each week
-    """
-    bestPlayerInTeam: FancyComparison
-
-    """
-    Comparison with the best player in FPL each week
-    """
-    bestPlayerInFpl: FancyComparison
+enum FancyComparisonType {
+    SALAH,
+    HAALAND,
+    BEST_PLAYER_IN_TEAM,
+    BEST_PLAYER_OVERALL
 }
 
 type FancyComparison {
@@ -76,9 +73,24 @@ type FancyResultLine {
     gameweek: Int!
 
     """
-    The player we are comparing against
+    Whether the user got fancy (didn't pick the comparison player)
+    """
+    gotFancy: Boolean!
+
+    """
+    The player we are comparing against's id
     """
     playerId: ID!
+
+    """
+    The player we are comparing against
+    """
+    player: PremierLeaguePlayer
+
+    """
+    The amount of points the comparison player scored
+    """
+    points: Int!
 
     """
     The point difference between the player and the user's captain
@@ -88,5 +100,5 @@ type FancyResultLine {
     """
     The game summary for the comparison player
     """
-    comparisonGameSummary: FantasyPlayerGameSummary!
+    comparisonGameSummary: FantasyPlayerGameSummary
 }
