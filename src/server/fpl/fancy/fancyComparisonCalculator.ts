@@ -1,4 +1,4 @@
-import { EventId, PremierLeaguePlayerId } from '../../../graphql/Reference';
+import { EventId, FantasyManagerId, PremierLeaguePlayerId } from '../../../graphql/Reference';
 import {
     FancyComparison,
     FancyPickLine,
@@ -6,8 +6,11 @@ import {
 } from '../../../graphql/generated/Resolver';
 import { convertGameSummary } from '../../resolver/converter/convertGameSummary';
 import { getPlayerPreviousGame } from '../api/player/getPlayerPreviousGame';
-import { PlayerPreviousGameDto } from '../api/type/PlayerPreviousGameDto';
-import { SALAH_PLAYER_ID } from './fancyMan';
+import { PlayerGamePerformanceDto } from '../api/type/PlayerGamePerformanceDto';
+import { HAALAND_PLAYER_ID, SALAH_PLAYER_ID } from './fancyMan';
+import { getDreamPlayerInGameWeek } from '../api/dream/getDreamPlayerInGameWeek';
+import { getBestCaptainPickInTeamForGameWeek } from '../api/picks/getBestCaptainPickInTeamForGameWeek';
+import { getPlayers } from '../api/bootstrap/bootstrap';
 
 enum FancyComparisonTypeEnum {
     BestPlayerInTeam = 'BEST_PLAYER_IN_TEAM',
@@ -18,16 +21,23 @@ enum FancyComparisonTypeEnum {
 
 const fancyGetPlayerComparisonFactory = (
     type: FancyComparisonTypeEnum
-): (() => Promise<PremierLeaguePlayerId>) => {
+): ((gameweek: EventId, managerId: FantasyManagerId) => Promise<PremierLeaguePlayerId>) => {
     switch (type) {
         case FancyComparisonTypeEnum.Salah:
             return () => Promise.resolve(SALAH_PLAYER_ID);
+        case FancyComparisonTypeEnum.Haaland:
+            return () => Promise.resolve(HAALAND_PLAYER_ID);
+        case FancyComparisonTypeEnum.BestPlayerOverall:
+            return (gameweek: EventId) => getDreamPlayerInGameWeek(gameweek);
+        case FancyComparisonTypeEnum.BestPlayerInTeam:
+            return (gameweek: EventId, managerId: FantasyManagerId): Promise<PremierLeaguePlayerId> => getBestCaptainPickInTeamForGameWeek(managerId, gameweek);
         default:
             throw new Error('Not implemented');
     }
 };
 
 const fancyComparisonCalculator = async (
+    managerId: FantasyManagerId,
     playerPicks: FancyPickLine[],
     type: FancyComparisonTypeEnum
 ): Promise<FancyComparison> => {
@@ -36,8 +46,11 @@ const fancyComparisonCalculator = async (
     // Get the list of comparison scores for each gameweek
     const comparisonScores = await Promise.all(
         playerPicks.map(async (line: FancyPickLine): Promise<FancyResultLine> => {
-            const comparisonPlayerId = await getPlayerToCompareTo();
-            const comparisonGameSummary: PlayerPreviousGameDto | undefined =
+            const comparisonPlayerId = await getPlayerToCompareTo(line.gameweek as EventId, managerId);
+
+            console.log(line.gameweek, getPlayers()[comparisonPlayerId].webName);
+
+            const comparisonGameSummary: PlayerGamePerformanceDto | undefined =
                 await getPlayerPreviousGame(comparisonPlayerId, line.gameweek as EventId);
 
             const points = comparisonGameSummary?.points || 0;
@@ -49,7 +62,7 @@ const fancyComparisonCalculator = async (
 
             return {
                 gameweek: line.gameweek,
-                playerId: line.captainId,
+                playerId: comparisonPlayerId,
                 gotFancy,
                 points,
                 pointDifference,

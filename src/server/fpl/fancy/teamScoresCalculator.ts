@@ -25,6 +25,7 @@ const teamScoresCalculator = async (managerId: FantasyManagerId): Promise<FancyR
     // WHERE ARE THE COMPARISONS??
     // (they're handled in the resolver)
     return {
+        teamId: managerId,
         captainScores,
     };
 };

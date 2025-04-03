@@ -1,5 +1,9 @@
 type FancyResult {
     """
+    The id of the user's team
+    """
+    teamId: ID!
+    """
     The score for the captain the user picked every week
     """
     captainScores: [FancyPickLine!]!
