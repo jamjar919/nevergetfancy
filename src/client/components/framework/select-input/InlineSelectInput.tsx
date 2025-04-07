@@ -1,19 +1,20 @@
+import classNames from 'classnames';
+
 import React, { useEffect, useRef } from 'react';
 
-import styles from "./InlineSelectInput.module.scss";
-import classNames from 'classnames';
+import styles from './InlineSelectInput.module.scss';
 
 type SelectOption = {
     value: string;
     label: string;
-}
+};
 
 type SelectInputProps = {
     options: SelectOption[];
 } & React.SelectHTMLAttributes<HTMLSelectElement>;
 
 const InlineSelectInput: React.FC<SelectInputProps> = (props) => {
-    const { options,  className, ...passThroughProps } = props;
+    const { options, className, ...passThroughProps } = props;
 
     const ref = useRef<HTMLSelectElement>(null);
 
@@ -36,10 +37,14 @@ const InlineSelectInput: React.FC<SelectInputProps> = (props) => {
     ));
 
     return (
-        <select ref={ref} className={classNames(className, styles.selectInput)} {...passThroughProps}>
+        <select
+            ref={ref}
+            className={classNames(className, styles.selectInput)}
+            {...passThroughProps}
+        >
             {optionElements}
         </select>
     );
-}
+};
 
-export { InlineSelectInput }
+export { InlineSelectInput };

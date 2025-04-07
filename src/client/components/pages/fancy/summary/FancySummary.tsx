@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { FantasyManagerId } from '../../../../../graphql/Reference';
+import { FancyComparisonType } from '../../../../../graphql/generated/Client';
+import { InlineSelectInput } from '../../../framework/select-input/InlineSelectInput';
+import { useFancyContext } from '../context/FancyContext';
 import { FancyShare } from '../share/FancyShare';
 import { getSummaryOfPerformance } from './GetSummaryOfPerformance';
 
 import styles from './FancySummary.module.scss';
-import { useFancyContext } from '../context/FancyContext';
-import { InlineSelectInput } from '../../../framework/select-input/InlineSelectInput';
-import { FancyComparisonType } from '../../../../../graphql/generated/Client';
 
 type FancySummaryProps = {
     teamId: FantasyManagerId;
@@ -56,8 +56,7 @@ const FancySummary: React.FC<FancySummaryProps> = ({
                 setComparisonType(selectedValue);
             }}
             className={styles.select}
-        >
-        </InlineSelectInput>
+        ></InlineSelectInput>
     );
 
     const comparisonName = (() => {
@@ -94,7 +93,8 @@ const FancySummary: React.FC<FancySummaryProps> = ({
                     <a href={`/team/${teamId}/leagues/`}>here</a>.
                 </div>
                 <div className={styles.comparisonSelect}>
-                    The table below shows your performance for each gameweek compared to {switchFancyComparisonSelect}
+                    The table below shows your performance for each gameweek compared to{' '}
+                    {switchFancyComparisonSelect}
                 </div>
             </div>
             <div className={styles.share}>

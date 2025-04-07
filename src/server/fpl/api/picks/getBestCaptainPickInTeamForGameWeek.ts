@@ -15,15 +15,12 @@ const getBestCaptainPickInTeamForGameWeek = async (
         players.has(performance.playerId)
     );
 
-    const bestPerformance = performances.reduce(
-        (best, current) => {
-            if (!best || current.points > best.points) {
-                return current;
-            }
-            return best;
-        },
-        performances[0]
-    );
+    const bestPerformance = performances.reduce((best, current) => {
+        if (!best || current.points > best.points) {
+            return current;
+        }
+        return best;
+    }, performances[0]);
 
     return bestPerformance.playerId;
 };

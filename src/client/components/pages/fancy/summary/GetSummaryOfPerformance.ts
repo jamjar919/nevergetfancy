@@ -85,10 +85,7 @@ const getSummaryOfPerformance = (points: number): string => {
     }
 
     if (points < 100) {
-        return (
-            '👑 You gained over 50 points! ' +
-            "You're making it work. Keep it up! "
-        );
+        return '👑 You gained over 50 points! ' + "You're making it work. Keep it up! ";
     }
 
     if (points < 200) {

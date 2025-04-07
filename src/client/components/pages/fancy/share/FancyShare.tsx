@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 
+import { FancyComparisonType } from '../../../../../graphql/generated/Client';
 import { Badge } from '../../../framework/badge/Badge';
 import { trackEvent, TrackingEvent } from '../../../framework/tracking/trackEvent';
-import { FancyComparisonType } from '../../../../../graphql/generated/Client';
 
 type FancyShareProps = {
     comparisonType: FancyComparisonType;
@@ -37,7 +37,7 @@ const getMessage = (points: number, comparisonType: FancyComparisonType) => {
             return `I am prescient - I picked the player who scored the most points in my team every time.`;
         }
 
-        return "This should be impossible.";
+        return 'This should be impossible.';
     }
 
     if (comparisonType === FancyComparisonType.BestPlayerOverall) {
@@ -49,7 +49,7 @@ const getMessage = (points: number, comparisonType: FancyComparisonType) => {
             return `I am a god - I picked the player who scored the most points in FPL every single time.`;
         }
 
-        return "This also should be impossible.";
+        return 'This also should be impossible.';
     }
 };
 

@@ -6,13 +6,13 @@ import { FantasyManagerId } from '../../../../graphql/Reference';
 import { FancyComparisonType, useFancyQuery } from '../../../../graphql/generated/Client';
 import { Header } from '../../framework/header/Header';
 import { FullPageLoader } from '../../framework/loader/full-page/FullPageLoader';
+import { useFancyContext } from './context/FancyContext';
 import { FancyLinks } from './links/FancyLinks';
 import { FancySummary } from './summary/FancySummary';
 import { FancyTable } from './table/FancyTable';
 import { TotalPointDifference } from './total-point-difference/TotalPointDifference';
 
 import styles from './FancyResult.module.scss';
-import { useFancyContext } from './context/FancyContext';
 
 type FancyResultProps = {
     teamId: FantasyManagerId;
