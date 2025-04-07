@@ -5,6 +5,9 @@ import { FancyShare } from '../share/FancyShare';
 import { getSummaryOfPerformance } from './GetSummaryOfPerformance';
 
 import styles from './FancySummary.module.scss';
+import { useFancyContext } from '../context/FancyContext';
+import { InlineSelectInput } from '../../../framework/select-input/InlineSelectInput';
+import { FancyComparisonType } from '../../../../../graphql/generated/Client';
 
 type FancySummaryProps = {
     teamId: FantasyManagerId;
@@ -23,7 +26,52 @@ const FancySummary: React.FC<FancySummaryProps> = ({
     worstGameweekScore,
     worstGameweek,
 }) => {
+    const { comparisonType, setComparisonType } = useFancyContext();
+
     const quote = getSummaryOfPerformance(points);
+
+    const switchFancyComparisonSelect = (
+        <InlineSelectInput
+            value={comparisonType}
+            options={[
+                {
+                    value: FancyComparisonType.Salah,
+                    label: 'Salah',
+                },
+                {
+                    value: FancyComparisonType.Haaland,
+                    label: 'Haaland',
+                },
+                {
+                    value: FancyComparisonType.BestPlayerInTeam,
+                    label: 'the best player in your team',
+                },
+                {
+                    value: FancyComparisonType.BestPlayerOverall,
+                    label: 'the best player in FPL',
+                },
+            ]}
+            onChange={(e) => {
+                const selectedValue = e.target.value as FancyComparisonType;
+                setComparisonType(selectedValue);
+            }}
+            className={styles.select}
+        >
+        </InlineSelectInput>
+    );
+
+    const comparisonName = (() => {
+        switch (comparisonType) {
+            case FancyComparisonType.Salah:
+                return 'Salah';
+            case FancyComparisonType.Haaland:
+                return 'Haaland';
+            case FancyComparisonType.BestPlayerInTeam:
+                return 'the best player in your team';
+            case FancyComparisonType.BestPlayerOverall:
+                return 'the best player in FPL';
+        }
+    })();
 
     return (
         <div className={styles.container}>
@@ -39,18 +87,18 @@ const FancySummary: React.FC<FancySummaryProps> = ({
                         out on <strong>{Math.abs(worstGameweekScore)} points.</strong>
                     </div>
                 ) : (
-                    <div>You beat Salah every week (or picked him every week!)</div>
+                    <div>You beat {comparisonName} every week (or picked them every week!)</div>
                 )}
                 <div>
                     Want to know how your Mini League rival did? See your leagues{' '}
                     <a href={`/team/${teamId}/leagues/`}>here</a>.
                 </div>
-                <div>
-                    The table below shows your performance for each gameweek compared to Salah.
+                <div className={styles.comparisonSelect}>
+                    The table below shows your performance for each gameweek compared to {switchFancyComparisonSelect}
                 </div>
             </div>
             <div className={styles.share}>
-                <FancyShare points={points} />
+                <FancyShare points={points} comparisonType={comparisonType} />
             </div>
         </div>
     );

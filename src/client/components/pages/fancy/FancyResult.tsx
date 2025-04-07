@@ -12,16 +12,19 @@ import { FancyTable } from './table/FancyTable';
 import { TotalPointDifference } from './total-point-difference/TotalPointDifference';
 
 import styles from './FancyResult.module.scss';
+import { useFancyContext } from './context/FancyContext';
 
 type FancyResultProps = {
     teamId: FantasyManagerId;
 };
 
 const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
+    const { comparisonType } = useFancyContext();
+
     const { data, error } = useFancyQuery({
         variables: {
             fantasyTeamId: teamId,
-            comparison: FancyComparisonType.Salah,
+            comparison: comparisonType,
         },
     });
 
