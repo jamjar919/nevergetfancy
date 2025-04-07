@@ -1,0 +1,17 @@
+fragment FancyResultLineAttributes on FancyResultLine {
+    gameweek
+    playerId
+    pointDifference
+    comparisonGameSummary {
+        points
+    }
+}
+
+fragment FancyPickLineAttributes on FancyPickLine {
+    gameweek
+    captainId
+    wasOriginallyViceCaptain
+    captainGameSummary {
+        points
+    }
+}

@@ -1,0 +1,103 @@
+type FancyResult {
+    """
+    The id of the user's team
+    """
+    teamId: ID!
+    """
+    The score for the captain the user picked every week
+    """
+    captainScores: [FancyPickLine!]!
+
+    """
+    Comparison with Salah (original fancy)
+    """
+    comparison(comparison: FancyComparisonType): FancyComparison
+}
+
+enum FancyComparisonType {
+    SALAH
+    HAALAND
+    BEST_PLAYER_IN_TEAM
+    BEST_PLAYER_OVERALL
+}
+
+type FancyComparison {
+    """
+    The total point difference the user lost out on
+    """
+    totalPointDifference: Int!
+
+    """
+    The number of gameweeks the user got fancy (didn't pick the comparison player)
+    """
+    timesGotFancy: Int!
+
+    """
+    Worst gameweek where the user lost the most points
+    """
+    worstGameweek: FancyResultLine!
+
+    """
+    Line items used to calculate the total point difference
+    """
+    comparisonScores: [FancyResultLine]!
+}
+
+type FancyPickLine {
+    """
+    The gameweek the user played
+    """
+    gameweek: Int!
+
+    """
+    The user's captain ID
+    """
+    captainId: ID!
+
+    """
+    Whether the captain was originally vice captain
+    """
+    wasOriginallyViceCaptain: Boolean!
+
+    """
+    The user's captain
+    """
+    captain: PremierLeaguePlayer
+
+    """
+    The points the user's captain scored
+    """
+    captainGameSummary: FantasyPlayerGameSummary
+}
+
+type FancyResultLine {
+    """
+    The gameweek the user played
+    """
+    gameweek: Int!
+
+    """
+    Whether the user got fancy (didn't pick the comparison player)
+    """
+    gotFancy: Boolean!
+
+    """
+    The player we are comparing against's id
+    """
+    playerId: ID!
+
+    """
+    The player we are comparing against
+    """
+    player: PremierLeaguePlayer
+
+    """
+    The point difference between the player and the user's captain
+    """
+    pointDifference: Int!
+
+    """
+    The game summary for the comparison player
+    """
+    comparisonGameSummary: FantasyPlayerGameSummary
+}

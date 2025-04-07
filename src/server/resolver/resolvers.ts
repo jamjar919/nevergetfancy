@@ -8,19 +8,26 @@ import {
     PremierLeaguePlayer,
     PremierLeagueTeam,
     Resolvers,
-    FancyResultLine,
     FantasyPlayerGameSummary,
     FantasyLeagueStanding,
     FantasyLeague,
     FantasyTeam,
     FantasyTeamSearchResult,
+    FancyPickLine,
+    FancyComparison,
+    FancyResult,
+    FancyResultLine,
 } from '../../graphql/generated/Resolver';
 import { SearchDao } from '../db/searchDao';
 import { getPlayerById, getPlayers, getTeamById, getTeams } from '../fpl/api/bootstrap/bootstrap';
 import { getLeagueStandings } from '../fpl/api/league/getLeagueStandings';
 import { getManager } from '../fpl/api/manager/getManager';
 import { FantasyTeamManagerDto } from '../fpl/api/type/FantasyTeamManagerDto';
-import { fancyCalculator } from '../fpl/fancy/fancyCalculator';
+import {
+    fancyComparisonCalculator,
+    FancyComparisonTypeEnum,
+} from '../fpl/fancy/fancyComparisonCalculator';
+import { teamScoresCalculator } from '../fpl/fancy/teamScoresCalculator';
 import { convertFantasyLeagueStanding } from './converter/convertFantasyLeagueStanding';
 import { convertFantasyManager } from './converter/convertFantasyManager';
 import { convertFantasyTeamSearchResult } from './converter/convertFantasyTeamSearchResult';
@@ -47,7 +54,7 @@ export const resolvers: Resolvers = {
             return convertPremierLeaguePlayer(getPlayerById(args.id as PremierLeaguePlayerId));
         },
         fancy: async (_: {}, args: { fantasyTeamId: string }) => {
-            return fancyCalculator(args.fantasyTeamId as FantasyManagerId);
+            return teamScoresCalculator(args.fantasyTeamId as FantasyManagerId);
         },
         searchFantasyTeam: async (_: {}, args: { query: string }) => {
             const results = await searchDao.search(args.query);
@@ -66,10 +73,31 @@ export const resolvers: Resolvers = {
             return convertPremierLeagueTeam(getTeamById(parent.teamId as PremierLeagueTeamId));
         },
     },
-    FancyResultLine: {
-        captain: async (parent: FancyResultLine) => {
+    FancyResult: {
+        comparison: async (
+            parent: FancyResult,
+            args: { comparison?: string | null }
+        ): Promise<FancyComparison> => {
+            const comparison =
+                (args.comparison as FancyComparisonTypeEnum) || FancyComparisonTypeEnum.Salah;
+            return fancyComparisonCalculator(
+                parent.teamId as FantasyManagerId,
+                parent.captainScores,
+                comparison
+            );
+        },
+    },
+    FancyPickLine: {
+        captain: async (parent: FancyPickLine) => {
             return convertPremierLeaguePlayer(
                 getPlayerById(parent.captainId as PremierLeaguePlayerId)
+            );
+        },
+    },
+    FancyResultLine: {
+        player: async (parent: FancyResultLine) => {
+            return convertPremierLeaguePlayer(
+                getPlayerById(parent.playerId as PremierLeaguePlayerId)
             );
         },
     },

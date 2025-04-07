@@ -921,7 +921,7 @@
     lodash "~4.17.0"
     tslib "~2.6.0"
 
-"@graphql-codegen/schema-ast@^4.0.2":
+"@graphql-codegen/schema-ast@^4.0.2", "@graphql-codegen/schema-ast@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/schema-ast/-/schema-ast-4.1.0.tgz#a1e71f99346495b9272161a9ed07756e82648726"
   integrity sha512-kZVn0z+th9SvqxfKYgztA6PM7mhnSZaj4fiuBWvMTqA+QqQ9BBed6Pz41KuD/jr0gJtnlr2A4++/0VlpVbCTmQ==

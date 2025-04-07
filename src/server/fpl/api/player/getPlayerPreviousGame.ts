@@ -1,11 +1,11 @@
 import { EventId, PremierLeaguePlayerId } from '../../../../graphql/Reference';
-import { PlayerPreviousGameDto } from '../type/PlayerPreviousGameDto';
+import { PlayerGamePerformanceDto } from '../type/PlayerGamePerformanceDto';
 import { getPlayerPreviousGames } from './getPlayerSummary';
 
 const getPlayerPreviousGame = async (
     playerId: PremierLeaguePlayerId,
     gameweek: EventId
-): Promise<PlayerPreviousGameDto | undefined> => {
+): Promise<PlayerGamePerformanceDto | undefined> => {
     const previousGames = await getPlayerPreviousGames(playerId);
 
     return previousGames.find((game) => game.gameweek === gameweek);

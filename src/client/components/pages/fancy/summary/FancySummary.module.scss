@@ -1,7 +1,13 @@
+@use '@media' as media;
+
 .container {
     max-width: 960px;
     text-align: center;
     margin: auto;
+
+    @include media.mobile {
+        max-width: 100%;
+    }
 }
 
 .quote {
@@ -28,4 +34,8 @@
 
 .share {
     margin-top: 1em;
+}
+
+.select {
+    padding-top: 0.25em;
 }

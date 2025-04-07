@@ -1,0 +1,17 @@
+.selectInput {
+    border: none;
+    font-size: inherit;
+    font-family: inherit;
+    display: inline;
+    border-bottom: 5px solid var(--dark-text);
+    cursor: pointer;
+    word-break: break-all;
+    background: #fff;
+    outline: none;
+
+    & option {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+}

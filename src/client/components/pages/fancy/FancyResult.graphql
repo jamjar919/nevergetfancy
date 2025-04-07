@@ -1,11 +1,18 @@
-query Fancy($fantasyTeamId: ID!) {
+query Fancy($fantasyTeamId: ID!, $comparison: FancyComparisonType = SALAH) {
     fancy(fantasyTeamId: $fantasyTeamId) {
-        totalPointDifference
-        timesGotFancy
-        worstGameweek
-        worstGameweekScore
-        lines {
-            ...FancyResultLineAttributes
+        captainScores {
+            ...FancyPickLineAttributes
+        }
+        comparison(comparison: $comparison) {
+            totalPointDifference
+            timesGotFancy
+            worstGameweek {
+                gameweek
+                pointDifference
+            }
+            comparisonScores {
+                ...FancyResultLineAttributes
+            }
         }
     }
     fantasyTeam(id: $fantasyTeamId) {
