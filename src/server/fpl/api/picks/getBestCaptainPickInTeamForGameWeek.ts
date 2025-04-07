@@ -22,8 +22,8 @@ const getBestCaptainPickInTeamForGameWeek = async (
             }
             return best;
         },
-        undefined as PlayerGamePerformanceDto | undefined
-    ) as PlayerGamePerformanceDto;
+        performances[0]
+    );
 
     return bestPerformance.playerId;
 };
