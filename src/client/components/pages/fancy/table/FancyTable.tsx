@@ -46,7 +46,7 @@ const FancyTable: React.FC<FancyTableProps> = (props) => {
     if (isMobile) {
         const visibleLines = lines.slice(0, visibleGameweeks);
         const hasMoreToShow = visibleGameweeks < lines.length;
-        
+
         return (
             <div className={styles.cardsContainer}>
                 {visibleLines.map((line) => (
@@ -54,10 +54,7 @@ const FancyTable: React.FC<FancyTableProps> = (props) => {
                 ))}
                 {hasMoreToShow && (
                     <div className={styles.showMoreContainer}>
-                        <button 
-                            className={styles.showMoreButton} 
-                            onClick={handleShowMore}
-                        >
+                        <button className={styles.showMoreButton} onClick={handleShowMore}>
                             Show all gameweeks ({lines.length - visibleGameweeks} remaining)
                         </button>
                     </div>
