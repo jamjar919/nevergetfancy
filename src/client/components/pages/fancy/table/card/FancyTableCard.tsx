@@ -7,7 +7,7 @@ import { FancyTableLineProps } from '../line/FancyTableLine';
 
 import styles from './FancyTableCard.module.scss';
 
-type FancyTableCardProps = FancyTableLineProps;
+type FancyTableCardProps = FancyTableLineProps & { teamId?: string };
 
 const FancyTableCard: React.FC<FancyTableCardProps> = ({
     gameweek,
@@ -17,12 +17,23 @@ const FancyTableCard: React.FC<FancyTableCardProps> = ({
     comparisonPlayerId,
     comparisonGameSummary,
     pointDifference,
+    teamId,
 }) => {
     return (
         <div className={styles.card}>
             <div className={styles.header}>
                 <div className={styles.gameweek}>
-                    <span className={styles.calendarIcon}>🗓</span> GW {gameweek}
+                    <span className={styles.calendarIcon}>🗓</span>{' '}
+                    {teamId ? (
+                        <a 
+                            href={`https://fantasy.premierleague.com/entry/${teamId}/event/${gameweek}`}
+                            target="_blank"
+                        >
+                            GW {gameweek}
+                        </a>
+                    ) : (
+                        `GW ${gameweek}`
+                    )}
                 </div>
                 <div className={styles.difference}>
                     <PointDisplay points={pointDifference} />

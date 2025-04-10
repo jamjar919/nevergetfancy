@@ -72,7 +72,11 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
                 />
             </div>
             <div className={styles.tableContainer}>
-                <FancyTable captainScores={captainScores} comparisonScores={comparisonScores} />
+                <FancyTable 
+                    captainScores={captainScores} 
+                    comparisonScores={comparisonScores}
+                    teamId={teamId}
+                />
             </div>
             <div className={styles.linksContainer}>
                 <FancyLinks teamId={teamId} currentEvent={currentEvent} />

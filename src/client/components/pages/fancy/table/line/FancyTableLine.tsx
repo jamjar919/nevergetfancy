@@ -19,6 +19,7 @@ type FancyTableLineProps = {
         points: number;
     };
     pointDifference: number;
+    teamId?: string;
 };
 
 const FancyTableLine: React.FC<FancyTableLineProps> = (props) => {
@@ -30,11 +31,23 @@ const FancyTableLine: React.FC<FancyTableLineProps> = (props) => {
         comparisonGameSummary,
         pointDifference,
         gameweek,
+        teamId,
     } = props;
 
     return (
         <tr>
-            <td>GW {gameweek}</td>
+            <td>
+                {teamId ? (
+                    <a
+                        href={`https://fantasy.premierleague.com/entry/${teamId}/event/${gameweek}`}
+                        target="_blank"
+                    >
+                        GW {gameweek}
+                    </a>
+                ) : (
+                    `GW ${gameweek}`
+                )}
+            </td>
             <td>•</td>
             <td className={styles.points}>{captainGameSummary && captainGameSummary.points}</td>
             <td>
@@ -45,6 +58,7 @@ const FancyTableLine: React.FC<FancyTableLineProps> = (props) => {
                     }
                 />
             </td>
+            <td></td>
             <td className={styles.points}>
                 {comparisonGameSummary && comparisonGameSummary.points}
             </td>

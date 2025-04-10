@@ -14,17 +14,23 @@ import styles from './FancyTable.module.scss';
 type FancyTableProps = {
     captainScores: FancyPickLineAttributesFragment[];
     comparisonScores: FancyResultLineAttributesFragment[];
+    teamId?: string;
 };
 
 const FancyTable: React.FC<FancyTableProps> = (props) => {
     const { isMobile } = useDisplaySize();
     const [visibleGameweeks, setVisibleGameweeks] = useState<number>(15);
+    const {
+        captainScores,
+        comparisonScores,
+        teamId,
+    } = props;
 
     const lines: FancyTableLineProps[] = Array.from(
-        { length: props.captainScores.length },
+        { length: captainScores.length },
         (_, i) => {
-            const captainScore = props.captainScores[i];
-            const comparisonScore = props.comparisonScores[i];
+            const captainScore = captainScores[i];
+            const comparisonScore = comparisonScores[i];
 
             return {
                 gameweek: captainScore.gameweek,
@@ -50,7 +56,7 @@ const FancyTable: React.FC<FancyTableProps> = (props) => {
         return (
             <div className={styles.cardsContainer}>
                 {visibleLines.map((line) => (
-                    <FancyTableCard key={line.gameweek} {...line} />
+                    <FancyTableCard key={line.gameweek} teamId={teamId} {...line} />
                 ))}
                 {hasMoreToShow && (
                     <div className={styles.showMoreContainer}>
@@ -72,6 +78,7 @@ const FancyTable: React.FC<FancyTableProps> = (props) => {
                     <th />
                     <th>Pts</th>
                     <th>Captain</th>
+                    <th />
                     <th>Pts</th>
                     <th>Comparison</th>
                     <th>Diff</th>
@@ -79,7 +86,7 @@ const FancyTable: React.FC<FancyTableProps> = (props) => {
             </thead>
             <tbody>
                 {lines.map((line) => (
-                    <FancyTableLine key={line.gameweek} {...line} />
+                    <FancyTableLine key={line.gameweek} teamId={teamId} {...line} />
                 ))}
             </tbody>
         </table>
