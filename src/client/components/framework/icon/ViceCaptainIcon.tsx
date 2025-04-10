@@ -3,13 +3,11 @@ import React from 'react';
 interface ViceCaptainIconProps {
   className?: string;
   size?: number;
-  color?: string;
 }
 
 const ViceCaptainIcon: React.FC<ViceCaptainIconProps> = ({
   className = '',
-  size = 24,
-  color = 'currentColor'
+  size = 24
 }) => {
   return (
     <svg
@@ -26,7 +24,7 @@ const ViceCaptainIcon: React.FC<ViceCaptainIconProps> = ({
       <polygon
         points="13.5 .375 8.925 12.375 4.65 12.375 0 .375 3.15 .375 6.75 10.05 10.35 .375"
         transform="translate(5.25 6)"
-        fill={color}
+        fill={"#FFF"}
         aria-hidden="true"
       ></polygon>
     </svg>

@@ -2,14 +2,23 @@ import React from 'react';
 
 import { PlayerCardFragment } from '../../../../graphql/generated/Client';
 import { formatShortPlayerPosition } from '../../../util/FormatShortPlayerPosition';
+import CaptainIcon from '../icon/CaptainIcon';
+import ViceCaptainIcon from '../icon/ViceCaptainIcon';
 
 import styles from './PlayerCard.module.scss';
 
+export enum CaptainStatus {
+    NONE = 'NONE',
+    CAPTAIN = 'CAPTAIN',
+    VICE_CAPTAIN = 'VICE_CAPTAIN'
+}
+
 type PlayerProps = {
     player: PlayerCardFragment;
+    captainStatus?: CaptainStatus;
 };
 
-const PlayerCard: React.FC<PlayerProps> = ({ player }) => {
+const PlayerCard: React.FC<PlayerProps> = ({ player, captainStatus = CaptainStatus.NONE }) => {
     const {
         displayName,
         team: {
@@ -18,6 +27,17 @@ const PlayerCard: React.FC<PlayerProps> = ({ player }) => {
         },
         position,
     } = player;
+
+    const renderCaptainIcon = () => {
+        switch (captainStatus) {
+            case CaptainStatus.CAPTAIN:
+                return <CaptainIcon size={16} className={styles.captainIcon} />;
+            case CaptainStatus.VICE_CAPTAIN:
+                return <ViceCaptainIcon size={16} className={styles.captainIcon} />;
+            default:
+                return null;
+        }
+    };
 
     return (
         <div className={styles.card}>
@@ -28,7 +48,10 @@ const PlayerCard: React.FC<PlayerProps> = ({ player }) => {
                 />
             </div>
             <div className={styles.playerDetails}>
-                <div className={styles.playerName}>{displayName}</div>
+                <div className={styles.playerName}>
+                    {displayName}
+                    {renderCaptainIcon()}
+                </div>
                 <div className={styles.playerDetailsSecondary}>
                     <div>{teamShortName}</div>
                     <div>{formatShortPlayerPosition(position)}</div>

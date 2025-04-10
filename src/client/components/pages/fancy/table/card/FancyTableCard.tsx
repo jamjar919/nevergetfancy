@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { CaptainStatus } from '../../../../framework/player/PlayerCard';
 import { GraphQLPlayerCard } from '../../../../framework/player/GraphQLPlayerCard';
 import { PointDisplay } from '../../../../framework/point-display/PointDisplay';
 import { FancyTableLineProps } from '../line/FancyTableLine';
@@ -29,11 +30,11 @@ const FancyTableCard: React.FC<FancyTableCardProps> = ({
             </div>
             <div className={styles.content}>
                 <div className={styles.playerRow}>
-                    <div className={styles.playerLabel}>
-                        {wasViceCaptain && <span className={styles.viceCaptain}> (VC)</span>}
-                    </div>
                     <div className={styles.playerInfo}>
-                        <GraphQLPlayerCard playerId={captainId} />
+                        <GraphQLPlayerCard 
+                            playerId={captainId} 
+                            captainStatus={wasViceCaptain ? CaptainStatus.VICE_CAPTAIN : CaptainStatus.CAPTAIN} 
+                        />
                         <div className={styles.points}>
                             {captainGameSummary ? `${captainGameSummary.points} pts` : '-'}
                         </div>

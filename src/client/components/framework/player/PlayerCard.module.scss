@@ -36,10 +36,19 @@
 .playerName {
     font-size: 1.2rem;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 
     @include media.mobile {
         margin: auto auto auto 0.5em;
     }
+}
+
+.captainIcon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 4px;
 }
 
 .playerDetailsSecondary {
