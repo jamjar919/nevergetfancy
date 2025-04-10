@@ -20,29 +20,22 @@ type FancyTableProps = {
 const FancyTable: React.FC<FancyTableProps> = (props) => {
     const { isMobile } = useDisplaySize();
     const [visibleGameweeks, setVisibleGameweeks] = useState<number>(15);
-    const {
-        captainScores,
-        comparisonScores,
-        teamId,
-    } = props;
+    const { captainScores, comparisonScores, teamId } = props;
 
-    const lines: FancyTableLineProps[] = Array.from(
-        { length: captainScores.length },
-        (_, i) => {
-            const captainScore = captainScores[i];
-            const comparisonScore = comparisonScores[i];
+    const lines: FancyTableLineProps[] = Array.from({ length: captainScores.length }, (_, i) => {
+        const captainScore = captainScores[i];
+        const comparisonScore = comparisonScores[i];
 
-            return {
-                gameweek: captainScore.gameweek,
-                captainId: captainScore.captainId as PremierLeaguePlayerId,
-                wasViceCaptain: captainScore.wasOriginallyViceCaptain,
-                captainGameSummary: captainScore.captainGameSummary,
-                comparisonPlayerId: comparisonScore.playerId as PremierLeaguePlayerId,
-                comparisonGameSummary: comparisonScore.comparisonGameSummary,
-                pointDifference: comparisonScore.pointDifference,
-            };
-        }
-    );
+        return {
+            gameweek: captainScore.gameweek,
+            captainId: captainScore.captainId as PremierLeaguePlayerId,
+            wasViceCaptain: captainScore.wasOriginallyViceCaptain,
+            captainGameSummary: captainScore.captainGameSummary,
+            comparisonPlayerId: comparisonScore.playerId as PremierLeaguePlayerId,
+            comparisonGameSummary: comparisonScore.comparisonGameSummary,
+            pointDifference: comparisonScore.pointDifference,
+        };
+    });
 
     const handleShowMore = () => {
         setVisibleGameweeks(lines.length);
