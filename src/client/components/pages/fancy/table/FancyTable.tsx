@@ -5,7 +5,7 @@ import {
     FancyPickLineAttributesFragment,
     FancyResultLineAttributesFragment,
 } from '../../../../../graphql/generated/Client';
-import { useIsMobile } from '../../../../components/framework/hooks';
+import { useDisplaySize } from '../../../../components/framework/context/DisplaySizeContext';
 import { FancyTableCard } from './card/FancyTableCard';
 import { FancyTableLine, FancyTableLineProps } from './line/FancyTableLine';
 
@@ -17,7 +17,7 @@ type FancyTableProps = {
 };
 
 const FancyTable: React.FC<FancyTableProps> = (props) => {
-    const isMobile = useIsMobile();
+    const { isMobile } = useDisplaySize();
 
     const lines: FancyTableLineProps[] = Array.from(
         { length: props.captainScores.length },

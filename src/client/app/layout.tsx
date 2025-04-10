@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { HeaderFooterLayout } from '../components/framework/HeaderFooterLayout';
+import { DisplaySizeProvider } from '../components/framework/context/DisplaySizeContext';
 import { ApolloWrapper } from '../graphql/ApolloWrapper';
 
 import './_app.scss';
@@ -29,7 +30,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </head>
             <body>
                 <ApolloWrapper>
-                    <HeaderFooterLayout>{children}</HeaderFooterLayout>
+                    <DisplaySizeProvider>
+                        <HeaderFooterLayout>{children}</HeaderFooterLayout>
+                    </DisplaySizeProvider>
                 </ApolloWrapper>
             </body>
         </html>
