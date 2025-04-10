@@ -5,6 +5,8 @@ import {
     FancyPickLineAttributesFragment,
     FancyResultLineAttributesFragment,
 } from '../../../../../graphql/generated/Client';
+import { useIsMobile } from '../../../../components/framework/hooks';
+import { FancyTableCard } from './card/FancyTableCard';
 import { FancyTableLine, FancyTableLineProps } from './line/FancyTableLine';
 
 import styles from './FancyTable.module.scss';
@@ -15,6 +17,8 @@ type FancyTableProps = {
 };
 
 const FancyTable: React.FC<FancyTableProps> = (props) => {
+    const isMobile = useIsMobile();
+
     const lines: FancyTableLineProps[] = Array.from(
         { length: props.captainScores.length },
         (_, i) => {
@@ -33,6 +37,18 @@ const FancyTable: React.FC<FancyTableProps> = (props) => {
         }
     );
 
+    // Mobile view with cards
+    if (isMobile) {
+        return (
+            <div className={styles.cardsContainer}>
+                {lines.map((line) => (
+                    <FancyTableCard key={line.gameweek} {...line} />
+                ))}
+            </div>
+        );
+    }
+
+    // Desktop view with table
     return (
         <table className={styles.table}>
             <thead>
@@ -42,7 +58,7 @@ const FancyTable: React.FC<FancyTableProps> = (props) => {
                     <th>Pts</th>
                     <th>Captain</th>
                     <th>Pts</th>
-                    <th>Salah</th>
+                    <th>Comparison</th>
                     <th>Diff</th>
                 </tr>
             </thead>
