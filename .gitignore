@@ -137,3 +137,7 @@ dist
 
 ca-certificate-database.crt
 fplTeams.db
+
+.DS_Store
+.idea
+.vs_code
