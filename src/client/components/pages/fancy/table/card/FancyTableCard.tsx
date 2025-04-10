@@ -23,7 +23,6 @@ const FancyTableCard: React.FC<FancyTableCardProps> = ({
         <div className={styles.card}>
             <div className={styles.header}>
                 <div className={styles.gameweek}>
-                    <span className={styles.calendarIcon}>🗓</span>{' '}
                     {teamId ? (
                         <a
                             href={`https://fantasy.premierleague.com/entry/${teamId}/event/${gameweek}`}
