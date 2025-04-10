@@ -10,7 +10,7 @@ import styles from './PlayerCard.module.scss';
 export enum CaptainStatus {
     NONE = 'NONE',
     CAPTAIN = 'CAPTAIN',
-    VICE_CAPTAIN = 'VICE_CAPTAIN'
+    VICE_CAPTAIN = 'VICE_CAPTAIN',
 }
 
 type PlayerProps = {

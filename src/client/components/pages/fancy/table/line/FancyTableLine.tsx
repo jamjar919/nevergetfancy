@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { PremierLeaguePlayerId } from '../../../../../../graphql/Reference';
-import { CaptainStatus } from '../../../../framework/player/PlayerCard';
 import { GraphQLPlayerCard } from '../../../../framework/player/GraphQLPlayerCard';
+import { CaptainStatus } from '../../../../framework/player/PlayerCard';
 import { PointDisplay } from '../../../../framework/point-display/PointDisplay';
 
 import styles from '../FancyTable.module.scss';
@@ -38,9 +38,11 @@ const FancyTableLine: React.FC<FancyTableLineProps> = (props) => {
             <td>•</td>
             <td className={styles.points}>{captainGameSummary && captainGameSummary.points}</td>
             <td>
-                <GraphQLPlayerCard 
-                    playerId={captainId} 
-                    captainStatus={wasViceCaptain ? CaptainStatus.VICE_CAPTAIN : CaptainStatus.CAPTAIN}
+                <GraphQLPlayerCard
+                    playerId={captainId}
+                    captainStatus={
+                        wasViceCaptain ? CaptainStatus.VICE_CAPTAIN : CaptainStatus.CAPTAIN
+                    }
                 />
             </td>
             <td className={styles.points}>
