@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { PremierLeaguePlayerId } from '../../../../../graphql/Reference';
 import {
@@ -18,6 +18,7 @@ type FancyTableProps = {
 
 const FancyTable: React.FC<FancyTableProps> = (props) => {
     const { isMobile } = useDisplaySize();
+    const [visibleGameweeks, setVisibleGameweeks] = useState<number>(15);
 
     const lines: FancyTableLineProps[] = Array.from(
         { length: props.captainScores.length },
@@ -37,13 +38,30 @@ const FancyTable: React.FC<FancyTableProps> = (props) => {
         }
     );
 
+    const handleShowMore = () => {
+        setVisibleGameweeks(lines.length);
+    };
+
     // Mobile view with cards
     if (isMobile) {
+        const visibleLines = lines.slice(0, visibleGameweeks);
+        const hasMoreToShow = visibleGameweeks < lines.length;
+        
         return (
             <div className={styles.cardsContainer}>
-                {lines.map((line) => (
+                {visibleLines.map((line) => (
                     <FancyTableCard key={line.gameweek} {...line} />
                 ))}
+                {hasMoreToShow && (
+                    <div className={styles.showMoreContainer}>
+                        <button 
+                            className={styles.showMoreButton} 
+                            onClick={handleShowMore}
+                        >
+                            Show all gameweeks ({lines.length - visibleGameweeks} remaining)
+                        </button>
+                    </div>
+                )}
             </div>
         );
     }
