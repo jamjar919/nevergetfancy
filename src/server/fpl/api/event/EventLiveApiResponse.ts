@@ -1,23 +1,22 @@
-import { PremierLeaguePlayerId } from '../../../../graphql/Reference';
 import { PlayerStats } from '../type/response-types/CommonTypes';
 
-export interface EventLiveApiResponse {
+export type EventLiveApiResponse = {
     elements: EventLiveElement[];
-}
+};
 
-export interface EventLiveElement {
-    id: PremierLeaguePlayerId;
+export type EventLiveElement = {
+    id: number; // PremierLeaguePlayerId
     stats: PlayerStats;
     explain: EventExplainElement[];
-}
+};
 
-export interface EventExplainElement {
+export type EventExplainElement = {
     fixture: number;
     stats: EventExplainStat[];
-}
+};
 
-export interface EventExplainStat {
+export type EventExplainStat = {
     identifier: string;
     points: number;
     value: number;
-}
+};

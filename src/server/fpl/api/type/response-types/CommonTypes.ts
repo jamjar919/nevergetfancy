@@ -1,7 +1,4 @@
-// Only importing types that we're using in interfaces
-import { FantasyLeagueId } from '../../../../../graphql/Reference';
-
-export interface PlayerStats {
+export type PlayerStats = {
     minutes: number;
     goals_scored: number;
     assists: number;
@@ -21,17 +18,17 @@ export interface PlayerStats {
     ict_index: number;
     total_points: number;
     in_dreamteam: boolean;
-}
+};
 
-export interface PlayerRegion {
+export type PlayerRegion = {
     id: number;
     name: string;
     iso_code_short: string;
     iso_code_long: string;
-}
+};
 
-export interface League {
-    id: FantasyLeagueId;
+export type League = {
+    id: number; // FantasyLeagueId
     name: string;
     created: string;
     closed: boolean;
@@ -48,4 +45,4 @@ export interface League {
     entry_can_leave: boolean;
     entry_can_admin: boolean;
     entry_can_invite: boolean;
-}
+};

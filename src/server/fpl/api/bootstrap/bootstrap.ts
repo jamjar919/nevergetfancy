@@ -4,15 +4,16 @@ import { FantasyPremierLeagueApi } from '../apiConfig';
 import { PremierLeaguePlayerDto } from '../type/PremierLeaguePlayerDto';
 import { convertToPlayerType } from '../type/PremierLeaguePlayerTypeDto';
 import { PremierLeagueTeamDto } from '../type/PremierLeagueTeamDto';
+import { BootstrapApiResponse } from './BootstrapApiResponse';
 
 let players: { [key: PremierLeaguePlayerId]: PremierLeaguePlayerDto } = {};
 let teams: { [key: PremierLeagueTeamId]: PremierLeagueTeamDto } = {};
 
 const fetchPlayersAndTeams = async (): Promise<void> => {
     const response = await fetchFromApi(FantasyPremierLeagueApi.Bootstrap());
-    const data = await response.json();
+    const data = await response.json() as BootstrapApiResponse;
 
-    data.elements.map((player: any) => {
+    data.elements.map((player) => {
         players[player.id] = {
             id: player.id,
             firstName: player.first_name,
@@ -29,7 +30,7 @@ const fetchPlayersAndTeams = async (): Promise<void> => {
         };
     });
 
-    data.teams.forEach((team: any) => {
+    data.teams.forEach((team) => {
         teams[team.id] = {
             id: team.id,
             name: team.name,

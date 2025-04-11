@@ -1,24 +1,19 @@
-import { 
-    EventId, 
-    PremierLeaguePlayerId, 
-    PremierLeagueTeamId 
-} from '../../../../graphql/Reference';
-import { PlayerStats } from '../type/response-types/CommonTypes';
+import { PlayerStats } from "../type/response-types/CommonTypes";
 
-export interface PlayerSummaryApiResponse {
+export type PlayerSummaryApiResponse = {
     fixtures: PlayerFixture[];
     history: PlayerHistoryEntry[];
     history_past: PlayerHistoryPastEntry[];
-}
+};
 
-export interface PlayerFixture {
+export type PlayerFixture = {
     id: number;
     code: number;
-    team_h: PremierLeagueTeamId;
+    team_h: number; // PremierLeagueTeamId
     team_h_score: number | null;
-    team_a: PremierLeagueTeamId;
+    team_a: number; // PremierLeagueTeamId
     team_a_score: number | null;
-    event: EventId;
+    event: number; // EventId
     finished: boolean;
     minutes: number;
     provisional_start_time: boolean;
@@ -26,27 +21,27 @@ export interface PlayerFixture {
     event_name: string;
     is_home: boolean;
     difficulty: number;
-}
+};
 
-export interface PlayerHistoryEntry extends PlayerStats {
-    element: PremierLeaguePlayerId;
+export type PlayerHistoryEntry = PlayerStats & {
+    element: number; // PremierLeaguePlayerId
     fixture: number;
-    opponent_team: PremierLeagueTeamId;
+    opponent_team: number; // PremierLeagueTeamId
     team_h_score: number | null;
     team_a_score: number | null;
-    round: EventId;
+    round: number; // EventId
     was_home: boolean;
     kickoff_time: string;
-    team_h: PremierLeagueTeamId;
-    team_a: PremierLeagueTeamId;
+    team_h: number; // PremierLeagueTeamId
+    team_a: number; // PremierLeagueTeamId
     value: number;
     transfers_balance: number;
     selected: number;
     transfers_in: number;
     transfers_out: number;
-}
+};
 
-export interface PlayerHistoryPastEntry {
+export type PlayerHistoryPastEntry = {
     season_name: string;
     element_code: number;
     start_cost: number;
@@ -69,4 +64,4 @@ export interface PlayerHistoryPastEntry {
     creativity: string;
     threat: string;
     ict_index: string;
-}
+};

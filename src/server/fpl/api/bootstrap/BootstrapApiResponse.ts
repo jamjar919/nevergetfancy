@@ -1,11 +1,5 @@
-import { 
-    EventId, 
-    PremierLeaguePlayerId, 
-    PremierLeagueTeamId 
-} from '../../../../graphql/Reference';
-
-// Bootstrap API response
-export interface BootstrapApiResponse {
+// Bootstrap API response using type definitions and basic types
+export type BootstrapApiResponse = {
     events: Event[];
     game_settings: GameSettings;
     phases: Phase[];
@@ -14,10 +8,10 @@ export interface BootstrapApiResponse {
     elements: Player[];
     element_stats: ElementStat[];
     element_types: ElementType[];
-}
+};
 
-interface Event {
-    id: EventId;
+type Event = {
+    id: number; // EventId
     name: string;
     deadline_time: string;
     average_entry_score: number;
@@ -31,26 +25,26 @@ interface Event {
     is_current: boolean;
     is_next: boolean;
     chip_plays: ChipPlay[];
-    most_selected: PremierLeaguePlayerId | null;
-    most_transferred_in: PremierLeaguePlayerId | null;
-    top_element: PremierLeaguePlayerId | null;
+    most_selected: number | null; // PremierLeaguePlayerId
+    most_transferred_in: number | null; // PremierLeaguePlayerId
+    top_element: number | null; // PremierLeaguePlayerId
     top_element_info: TopElementInfo | null;
     transfers_made: number;
-    most_captained: PremierLeaguePlayerId | null;
-    most_vice_captained: PremierLeaguePlayerId | null;
-}
+    most_captained: number | null; // PremierLeaguePlayerId
+    most_vice_captained: number | null; // PremierLeaguePlayerId
+};
 
-interface ChipPlay {
+type ChipPlay = {
     chip_name: string;
     num_played: number;
-}
+};
 
-interface TopElementInfo {
-    id: PremierLeaguePlayerId;
+type TopElementInfo = {
+    id: number; // PremierLeaguePlayerId
     points: number;
-}
+};
 
-interface GameSettings {
+type GameSettings = {
     league_join_private_max: number;
     league_join_public_max: number;
     league_max_size_public_classic: number;
@@ -80,17 +74,17 @@ interface GameSettings {
     squad_bboost_limit: number;
     squad_freehit_limit: number;
     squad_tc_limit: number;
-}
+};
 
-interface Phase {
+type Phase = {
     id: number;
     name: string;
     start_event: number;
     stop_event: number;
-}
+};
 
-interface Team {
-    id: PremierLeagueTeamId;
+type Team = {
+    id: number; // PremierLeagueTeamId
     name: string;
     short_name: string;
     code: number;
@@ -109,10 +103,10 @@ interface Team {
     form: string | null;
     position: number;
     points: number;
-}
+};
 
-interface Player {
-    id: PremierLeaguePlayerId;
+type Player = {
+    id: number; // PremierLeaguePlayerId
     chance_of_playing_next_round: number | null;
     chance_of_playing_this_round: number | null;
     code: number;
@@ -138,7 +132,7 @@ interface Player {
     special: boolean;
     squad_number: number | null;
     status: string;
-    team: PremierLeagueTeamId;
+    team: number; // PremierLeagueTeamId
     team_code: number;
     total_points: number;
     transfers_in: number;
@@ -179,14 +173,14 @@ interface Player {
     direct_freekicks_text: string | null;
     penalties_order: number | null;
     penalties_text: string | null;
-}
+};
 
-interface ElementStat {
+type ElementStat = {
     label: string;
     name: string;
-}
+};
 
-interface ElementType {
+type ElementType = {
     id: number;
     plural_name: string;
     plural_name_short: string;
@@ -196,4 +190,4 @@ interface ElementType {
     squad_min_play: number;
     squad_max_play: number;
     element_count: number;
-}
+};

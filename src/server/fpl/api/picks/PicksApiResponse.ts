@@ -1,25 +1,19 @@
-import { 
-    EventId, 
-    FantasyManagerId, 
-    PremierLeaguePlayerId 
-} from '../../../../graphql/Reference';
-
-export interface PicksApiResponse {
+export type PicksApiResponse = {
     active_chip: string | null;
     automatic_subs: AutomaticSub[];
     entry_history: EntryHistory;
     picks: Pick[];
-}
+};
 
-export interface AutomaticSub {
-    entry: FantasyManagerId;
-    element_in: PremierLeaguePlayerId;
-    element_out: PremierLeaguePlayerId;
-    event: EventId;
-}
+export type AutomaticSub = {
+    entry: number; // FantasyManagerId
+    element_in: number; // PremierLeaguePlayerId
+    element_out: number; // PremierLeaguePlayerId
+    event: number; // EventId
+};
 
-export interface EntryHistory {
-    event: EventId;
+export type EntryHistory = {
+    event: number; // EventId
     points: number;
     total_points: number;
     rank: number;
@@ -30,12 +24,12 @@ export interface EntryHistory {
     event_transfers: number;
     event_transfers_cost: number;
     points_on_bench: number;
-}
+};
 
-export interface Pick {
-    element: PremierLeaguePlayerId;
+export type Pick = {
+    element: number; // PremierLeaguePlayerId
     position: number;
     multiplier: number;
     is_captain: boolean;
     is_vice_captain: boolean;
-}
+};

@@ -1,11 +1,6 @@
-import { 
-    FantasyLeagueId, 
-    FantasyManagerId 
-} from '../../../../graphql/Reference';
-
-export interface LeagueApiResponse {
+export type LeagueApiResponse = {
     league: {
-        id: FantasyLeagueId;
+        id: number; // FantasyLeagueId
         name: string;
         created: string;
         closed: boolean;
@@ -30,9 +25,9 @@ export interface LeagueApiResponse {
         results: any[];
     };
     last_updated_data: string;
-}
+};
 
-export interface LeagueStandingResult {
+export type LeagueStandingResult = {
     id: number;
     event_total: number;
     player_name: string;
@@ -40,6 +35,6 @@ export interface LeagueStandingResult {
     last_rank: number;
     rank_sort: number;
     total: number;
-    entry: FantasyManagerId;
+    entry: number; // FantasyManagerId
     entry_name: string;
-}
+};
