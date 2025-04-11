@@ -11,7 +11,7 @@ let teams: { [key: PremierLeagueTeamId]: PremierLeagueTeamDto } = {};
 
 const fetchPlayersAndTeams = async (): Promise<void> => {
     const response = await fetchFromApi(FantasyPremierLeagueApi.Bootstrap());
-    const data = await response.json() as BootstrapApiResponse;
+    const data = (await response.json()) as BootstrapApiResponse;
 
     data.elements.map((player) => {
         players[player.id] = {

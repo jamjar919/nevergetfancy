@@ -1,4 +1,4 @@
-import { PlayerStats } from "../type/response-types/CommonTypes";
+import { PlayerStats } from '../type/response-types/CommonTypes';
 
 export type PlayerSummaryApiResponse = {
     fixtures: PlayerFixture[];
