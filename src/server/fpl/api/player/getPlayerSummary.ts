@@ -5,6 +5,7 @@ import {
     PlayerGamePerformanceDto,
     playerPerformanceDtoFromApi,
 } from '../type/PlayerGamePerformanceDto';
+import { PlayerSummaryApiResponse } from './PlayerSummaryApiResponse';
 
 const getPlayerPreviousGames = async (
     playerId: PremierLeaguePlayerId
@@ -17,11 +18,9 @@ const getPlayerPreviousGames = async (
         );
     }
 
-    const data = await response.json();
+    const data: PlayerSummaryApiResponse = await response.json();
 
-    return data.history.map((game: Record<string, any>) =>
-        playerPerformanceDtoFromApi(game, playerId)
-    );
+    return data.history.map((game) => playerPerformanceDtoFromApi(game, playerId));
 };
 
 export { getPlayerPreviousGames };

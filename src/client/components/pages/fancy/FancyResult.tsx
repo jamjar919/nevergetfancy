@@ -5,6 +5,7 @@ import React from 'react';
 import { FantasyManagerId } from '../../../../graphql/Reference';
 import { FancyComparisonType, useFancyQuery } from '../../../../graphql/generated/Client';
 import { Header } from '../../framework/header/Header';
+import { FullPageError } from '../../framework/loader/full-page/FullPageError';
 import { FullPageLoader } from '../../framework/loader/full-page/FullPageLoader';
 import { useFancyContext } from './context/FancyContext';
 import { FancyLinks } from './links/FancyLinks';
@@ -28,12 +29,14 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
         },
     });
 
-    if (!data) {
-        return <FullPageLoader />;
+    if (error) {
+        return (
+            <FullPageError message="Something went wrong and we couldn't load your fantasy team." />
+        );
     }
 
-    if (error) {
-        return 'error loading page';
+    if (!data) {
+        return <FullPageLoader />;
     }
 
     const {
@@ -77,6 +80,10 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
                     comparisonScores={comparisonScores}
                     teamId={teamId}
                 />
+            </div>
+            <div className={styles.info}>
+                The captaincy points and comparison points are the points scored by the player each
+                week, and are not doubled.
             </div>
             <div className={styles.linksContainer}>
                 <FancyLinks teamId={teamId} currentEvent={currentEvent} />
