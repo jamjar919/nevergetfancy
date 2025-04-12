@@ -1,9 +1,10 @@
-import { EventId, FantasyManagerId } from '../../../../graphql/Reference';
+import { EventId, FantasyManagerId, PremierLeaguePlayerId } from '../../../../graphql/Reference';
 import { fetchFromApi } from '../../../util/fetchFromApi';
 import { FantasyPremierLeagueApi } from '../apiConfig';
 import { GameweekHistoryDto } from '../type/GameweekHistoryDto';
 import { GameweekPickDto } from '../type/GameweekPickDto';
 import { GameweekSubDto } from '../type/GameweekSubDto';
+import { PicksApiResponse } from './PicksApiResponse';
 
 const getGameweekHistory = async (
     managerId: FantasyManagerId,
@@ -17,21 +18,21 @@ const getGameweekHistory = async (
         );
     }
 
-    const data: any = await response.json();
+    const data: PicksApiResponse = await response.json();
 
     return {
         gameweek,
         points: data.entry_history.points,
         totalPoints: data.entry_history.total_points,
-        subs: data.automatic_subs.map((sub: any): GameweekSubDto => {
+        subs: data.automatic_subs.map((sub): GameweekSubDto => {
             return {
-                playerIn: sub.element_in,
-                playerOut: sub.element_out,
+                playerIn: String(sub.element_in) as PremierLeaguePlayerId,
+                playerOut: String(sub.element_out) as PremierLeaguePlayerId,
             };
         }),
-        picks: data.picks.map((pick: any): GameweekPickDto => {
+        picks: data.picks.map((pick): GameweekPickDto => {
             return {
-                playerId: pick.element,
+                playerId: String(pick.element) as PremierLeaguePlayerId,
                 captain: pick.is_captain,
                 viceCaptain: pick.is_vice_captain,
             };
