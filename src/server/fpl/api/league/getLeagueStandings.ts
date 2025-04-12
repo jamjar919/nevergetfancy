@@ -4,7 +4,9 @@ import { FantasyPremierLeagueApi } from '../apiConfig';
 import { FantasyTeamLeagueStandingDto } from '../type/FantasyTeamLeagueStandingDto';
 import { LeagueApiResponse, LeagueStandingResult } from './LeagueApiResponse';
 
-const convertStandings = (standings: LeagueApiResponse['standings']): FantasyTeamLeagueStandingDto[] => {
+const convertStandings = (
+    standings: LeagueApiResponse['standings']
+): FantasyTeamLeagueStandingDto[] => {
     return standings.results.map((standing: LeagueStandingResult) => {
         return {
             teamId: String(standing.entry) as FantasyManagerId,

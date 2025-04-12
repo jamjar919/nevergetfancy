@@ -1,4 +1,9 @@
-import { EventId, FantasyLeagueId, FantasyManagerId, PremierLeagueTeamId } from '../../../../graphql/Reference';
+import {
+    EventId,
+    FantasyLeagueId,
+    FantasyManagerId,
+    PremierLeagueTeamId,
+} from '../../../../graphql/Reference';
 import { fetchFromApi } from '../../../util/fetchFromApi';
 import { FantasyPremierLeagueApi } from '../apiConfig';
 import { FantasyTeamManagerDto } from '../type/FantasyTeamManagerDto';
