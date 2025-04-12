@@ -7,13 +7,13 @@ import React from 'react';
 import { FantasyManagerId } from '../../../../graphql/Reference';
 import { useLeaguesForTeamQuery } from '../../../../graphql/generated/Client';
 import { Header } from '../../framework/header/Header';
+import { FullPageError } from '../../framework/loader/full-page/FullPageError';
 import { FullPageLoader } from '../../framework/loader/full-page/FullPageLoader';
 import { League } from './league/League';
 import { LeagueLinks } from './links/LeagueLinks';
 import { LeagueSearch } from './search/LeagueSearch';
 
 import styles from './Leagues.module.scss';
-import { FullPageError } from '../../framework/loader/full-page/FullPageError';
 
 type LeaguesProps = {
     teamId: FantasyManagerId;
@@ -27,7 +27,7 @@ const Leagues: React.FC<LeaguesProps> = ({ teamId }) => {
     });
 
     if (error) {
-        return (<FullPageError />)
+        return <FullPageError />;
     }
 
     if (!data) {
