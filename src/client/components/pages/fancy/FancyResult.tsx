@@ -9,6 +9,7 @@ import { FullPageError } from '../../framework/loader/full-page/FullPageError';
 import { FullPageLoader } from '../../framework/loader/full-page/FullPageLoader';
 import { useFancyContext } from './context/FancyContext';
 import { FancyLinks } from './links/FancyLinks';
+import { FancyPointsGraph } from './points-graph/FancyPointsGraph';
 import { FancySummary } from './summary/FancySummary';
 import { FancyTable } from './table/FancyTable';
 import { TotalPointDifference } from './total-point-difference/TotalPointDifference';
@@ -73,6 +74,9 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
                     worstGameweekScore={worstGameweekScore}
                     worstGameweek={worstGameweek}
                 />
+            </div>
+            <div className={styles.graphContainer}>
+                <FancyPointsGraph comparisonScores={comparisonScores} />
             </div>
             <div className={styles.tableContainer}>
                 <FancyTable
