@@ -81,6 +81,9 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
                     teamId={teamId}
                 />
             </div>
+            <div className={styles.info}>
+                The captaincy points and comparison points are the points scored by the player each week, and are not doubled.
+            </div>
             <div className={styles.linksContainer}>
                 <FancyLinks teamId={teamId} currentEvent={currentEvent} />
             </div>
