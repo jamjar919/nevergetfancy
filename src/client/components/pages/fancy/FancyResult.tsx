@@ -4,8 +4,8 @@ import React from 'react';
 
 import { FantasyManagerId } from '../../../../graphql/Reference';
 import { FancyComparisonType, useFancyQuery } from '../../../../graphql/generated/Client';
-import { FullPageError } from '../../framework/loader/full-page/FullPageError';
 import { Header } from '../../framework/header/Header';
+import { FullPageError } from '../../framework/loader/full-page/FullPageError';
 import { FullPageLoader } from '../../framework/loader/full-page/FullPageLoader';
 import { useFancyContext } from './context/FancyContext';
 import { FancyLinks } from './links/FancyLinks';
@@ -34,7 +34,9 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
     }
 
     if (error) {
-        return <FullPageError message="We couldn't load your fantasy data. Mo Salah is not impressed!" />;
+        return (
+            <FullPageError message="We couldn't load your fantasy data. Mo Salah is not impressed!" />
+        );
     }
 
     const {
