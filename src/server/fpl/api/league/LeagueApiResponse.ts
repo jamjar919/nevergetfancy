@@ -19,11 +19,6 @@ export type LeagueApiResponse = {
         page: number;
         results: LeagueStandingResult[];
     };
-    new_entries: {
-        has_next: boolean;
-        page: number;
-        results: any[];
-    };
     last_updated_data: string;
 };
 

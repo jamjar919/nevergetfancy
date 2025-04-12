@@ -1,6 +1,8 @@
+import { OffsetDateTime } from '../../../../graphql/Reference';
+
 export type ManagerApiResponse = {
     id: number; // FantasyManagerId
-    joined_time: string;
+    joined_time: OffsetDateTime;
     favourite_team: number;
     name: string;
     player_first_name: string;

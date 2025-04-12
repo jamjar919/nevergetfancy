@@ -14,12 +14,14 @@ const fetchPlayersAndTeams = async (): Promise<void> => {
     const data = (await response.json()) as BootstrapApiResponse;
 
     data.elements.map((player) => {
-        players[player.id] = {
-            id: player.id,
+        const id = String(player.id) as PremierLeaguePlayerId;
+
+        players[id] = {
+            id,
             firstName: player.first_name,
             secondName: player.second_name,
             webName: player.web_name,
-            team: player.team,
+            team: String(player.team) as PremierLeagueTeamId,
             nowCost: player.now_cost,
             totalPoints: player.total_points,
             goalsScored: player.goals_scored,
@@ -31,8 +33,10 @@ const fetchPlayersAndTeams = async (): Promise<void> => {
     });
 
     data.teams.forEach((team) => {
-        teams[team.id] = {
-            id: team.id,
+        const id = String(team.id) as PremierLeagueTeamId;
+
+        teams[id] = {
+            id,
             name: team.name,
             played: team.played,
             position: team.position,

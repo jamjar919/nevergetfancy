@@ -1,12 +1,13 @@
-import { FantasyLeagueId } from '../../../../graphql/Reference';
+import { FantasyLeagueId, FantasyManagerId } from '../../../../graphql/Reference';
 import { fetchFromApi } from '../../../util/fetchFromApi';
 import { FantasyPremierLeagueApi } from '../apiConfig';
 import { FantasyTeamLeagueStandingDto } from '../type/FantasyTeamLeagueStandingDto';
+import { LeagueApiResponse, LeagueStandingResult } from './LeagueApiResponse';
 
-const convertStandings = (standings: any): FantasyTeamLeagueStandingDto[] => {
-    return standings.results.map((standing: any) => {
+const convertStandings = (standings: LeagueApiResponse['standings']): FantasyTeamLeagueStandingDto[] => {
+    return standings.results.map((standing: LeagueStandingResult) => {
         return {
-            teamId: standing.entry,
+            teamId: String(standing.entry) as FantasyManagerId,
             rank: standing.rank,
             lastRank: standing.last_rank,
             total: standing.total,
@@ -28,7 +29,7 @@ const getLeagueStandings = async (
         throw new Error(`Error fetching league: ${response.statusText}`);
     }
 
-    let data = await response.json();
+    let data: LeagueApiResponse = await response.json();
 
     const standings = convertStandings(data.standings);
 
