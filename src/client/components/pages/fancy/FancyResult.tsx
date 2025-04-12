@@ -4,6 +4,7 @@ import React from 'react';
 
 import { FantasyManagerId } from '../../../../graphql/Reference';
 import { FancyComparisonType, useFancyQuery } from '../../../../graphql/generated/Client';
+import { FullPageError } from '../../framework/loader/full-page/FullPageError';
 import { Header } from '../../framework/header/Header';
 import { FullPageLoader } from '../../framework/loader/full-page/FullPageLoader';
 import { useFancyContext } from './context/FancyContext';
@@ -33,7 +34,7 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
     }
 
     if (error) {
-        return 'error loading page';
+        return <FullPageError message="We couldn't load your fantasy data. Mo Salah is not impressed!" />;
     }
 
     const {
