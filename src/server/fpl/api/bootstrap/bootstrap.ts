@@ -1,17 +1,23 @@
-import { PremierLeaguePlayerId, PremierLeagueTeamId } from '../../../../graphql/Reference';
+import { EventId, PremierLeaguePlayerId, PremierLeagueTeamId } from '../../../../graphql/Reference';
 import { fetchFromApi } from '../../../util/fetchFromApi';
 import { FantasyPremierLeagueApi } from '../apiConfig';
 import { PremierLeaguePlayerDto } from '../type/PremierLeaguePlayerDto';
 import { convertToPlayerType } from '../type/PremierLeaguePlayerTypeDto';
 import { PremierLeagueTeamDto } from '../type/PremierLeagueTeamDto';
 import { BootstrapApiResponse } from './BootstrapApiResponse';
+import { getEventPerformance } from '../event/getEventPerformance';
+import { PlayerGamePerformanceDto } from '../type/PlayerGamePerformanceDto';
 
 let players: { [key: PremierLeaguePlayerId]: PremierLeaguePlayerDto } = {};
 let teams: { [key: PremierLeagueTeamId]: PremierLeagueTeamDto } = {};
 
+type PlayerPerformanceKey = `${PremierLeaguePlayerId}_event_${EventId}`;
+const getPlayerPerformanceKey = (playerId: PremierLeaguePlayerId, eventId: EventId): PlayerPerformanceKey => `${playerId}_event_${eventId}`;
+let playerPerformance: { [key: PlayerPerformanceKey]: PlayerGamePerformanceDto } = {}
+
 const fetchPlayersAndTeams = async (): Promise<void> => {
     const response = await fetchFromApi(FantasyPremierLeagueApi.Bootstrap());
-    const data = (await response.json()) as BootstrapApiResponse;
+    const data: BootstrapApiResponse = await response.json();
 
     data.elements.map((player) => {
         const id = String(player.id) as PremierLeaguePlayerId;
@@ -43,6 +49,24 @@ const fetchPlayersAndTeams = async (): Promise<void> => {
             shortName: team.short_name,
         };
     });
+
+    const currentGameweek = data.events.find((event) => event.is_current)?.id as EventId;
+    const gameweeksToCacheResultsFor = currentGameweek - 1;
+
+    await Promise.all(
+        Array.from({ length: gameweeksToCacheResultsFor })
+            .map(async (_, index) => {
+                const eventId = index + 1 as EventId;
+                const data = await getEventPerformance(eventId);
+
+                for (const performance of data) {
+                    const key = getPlayerPerformanceKey(performance.playerId, eventId);
+                    playerPerformance[key] = performance;
+                }
+            })
+    );
+
+    console.log(`🏃🏽 Player performance data cached up to gameweek ${gameweeksToCacheResultsFor}, results cached for ${Object.keys(playerPerformance).length} performances.`);
 };
 
 const getPlayerById = (id: PremierLeaguePlayerId): PremierLeaguePlayerDto => {
@@ -53,8 +77,13 @@ const getTeamById = (id: PremierLeagueTeamId): PremierLeagueTeamDto => {
     return teams[id];
 };
 
+const getPlayerPerformanceById = (id: PremierLeaguePlayerId, eventId: EventId): PlayerGamePerformanceDto | undefined => {
+    const key = getPlayerPerformanceKey(id, eventId);
+    return playerPerformance[key];
+}
+
 const getPlayers = () => players;
 
 const getTeams = () => teams;
 
-export { fetchPlayersAndTeams, getPlayerById, getTeamById, getPlayers, getTeams };
+export { fetchPlayersAndTeams, getPlayerById, getTeamById, getPlayerPerformanceById, getPlayers, getTeams };
