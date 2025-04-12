@@ -13,17 +13,22 @@ import { LeagueLinks } from './links/LeagueLinks';
 import { LeagueSearch } from './search/LeagueSearch';
 
 import styles from './Leagues.module.scss';
+import { FullPageError } from '../../framework/loader/full-page/FullPageError';
 
 type LeaguesProps = {
     teamId: FantasyManagerId;
 };
 
 const Leagues: React.FC<LeaguesProps> = ({ teamId }) => {
-    const { data } = useLeaguesForTeamQuery({
+    const { data, error, loading } = useLeaguesForTeamQuery({
         variables: {
             fantasyTeamId: teamId,
         },
     });
+
+    if (error) {
+        return (<FullPageError />)
+    }
 
     if (!data) {
         return <FullPageLoader />;

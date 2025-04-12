@@ -29,14 +29,14 @@ const FancyResult: React.FC<FancyResultProps> = ({ teamId }) => {
         },
     });
 
-    if (!data) {
-        return <FullPageLoader />;
-    }
-
     if (error) {
         return (
-            <FullPageError message="We couldn't load your fantasy data. Mo Salah is not impressed!" />
+            <FullPageError message="Something went wrong and we couldn't load your fantasy team." />
         );
+    }
+
+    if (!data) {
+        return <FullPageLoader />;
     }
 
     const {
