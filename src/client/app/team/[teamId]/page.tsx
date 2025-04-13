@@ -1,12 +1,13 @@
 import { Metadata, ResolvingMetadata } from 'next';
-
+import { FancyComparisonType } from '../../../../graphql/generated/Client';
 import { FantasyManagerId } from '../../../../graphql/Reference';
 import { getTeamNameForTitle } from '../../../components/framework/head/GetTeamNameForTitle';
 import { FancyResult } from '../../../components/pages/fancy/FancyResult';
-import { FancyContextProvider } from '../../../components/pages/fancy/context/FancyContext';
+import { FancyContextProvider, comparisonTypeMap } from '../../../components/pages/fancy/context/FancyContext';
 
 type Props = {
     params: Promise<{ teamId: string }>;
+    searchParams?: { comparison?: string };
 };
 
 export async function generateMetadata(
@@ -22,11 +23,24 @@ export async function generateMetadata(
     }
 }
 
-export default async function Page({ params }: { params: Promise<{ teamId: string }> }) {
+export default async function Page({ 
+    params,
+    searchParams 
+}: { 
+    params: Promise<{ teamId: string }>; 
+    searchParams?: { comparison?: string };
+}) {
     const { teamId } = await params;
+    const { comparison } = await searchParams;
+    
+    // Convert from nice URL parameter to enum value
+    // If the parameter doesn't match any known value, defaultComparisonType will be undefined,
+    // and FancyContextProvider will use its built-in default (Salah)
+    const defaultComparisonType = comparison ? 
+        comparisonTypeMap[comparison] : undefined;
 
     return (
-        <FancyContextProvider>
+        <FancyContextProvider defaultComparisonType={defaultComparisonType}>
             <FancyResult teamId={teamId as FantasyManagerId} />
         </FancyContextProvider>
     );
