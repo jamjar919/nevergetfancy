@@ -1,7 +1,6 @@
 import { Metadata, ResolvingMetadata } from 'next';
 
 import { FantasyManagerId } from '../../../../graphql/Reference';
-import { FancyComparisonType } from '../../../../graphql/generated/Client';
 import { getTeamNameForTitle } from '../../../components/framework/head/GetTeamNameForTitle';
 import { FancyResult } from '../../../components/pages/fancy/FancyResult';
 import {
@@ -11,7 +10,7 @@ import {
 
 type Props = {
     params: Promise<{ teamId: string }>;
-    searchParams?: { comparison?: string };
+    searchParams?: Promise<{ comparison?: string }>;
 };
 
 export async function generateMetadata(
@@ -32,7 +31,7 @@ export default async function Page({
     searchParams,
 }: {
     params: Promise<{ teamId: string }>;
-    searchParams?: { comparison?: string };
+    searchParams?: Promise<{ comparison?: string }>;
 }) {
     const { teamId } = await params;
     const { comparison } = await searchParams;
