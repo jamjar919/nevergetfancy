@@ -1,0 +1,40 @@
+.graphContainer {
+    margin: 20px 0;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.graphTitle {
+    margin: 0 0 15px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.graphWrapper {
+    margin: 0 -15px; /* Compensate for padding */
+}
+
+.graphExplanation {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #666;
+    text-align: center;
+}
+
+.positiveNote {
+    color: var(--positive);
+    font-weight: 600;
+}
+
+.negativeNote {
+    color: var(--negative);
+    font-weight: 600;
+}
+
+.neutralNote {
+    color: var(--neutral);
+    font-weight: 600;
+}
