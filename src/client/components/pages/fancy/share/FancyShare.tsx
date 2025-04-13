@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { FancyComparisonType } from '../../../../../graphql/generated/Client';
 import { Badge } from '../../../framework/badge/Badge';
 import { trackEvent, TrackingEvent } from '../../../framework/tracking/trackEvent';
+import { reverseComparisonTypeMap } from '../context/FancyContext';
 
 type FancyShareProps = {
     comparisonType: FancyComparisonType;
@@ -63,7 +64,16 @@ const FancyShare: React.FC<FancyShareProps> = (props) => {
 
         const message = getMessage(points, comparisonType);
 
-        navigator.clipboard.writeText(`${message} - View my team at ${window.location.href}`);
+        // Create the URL with proper query parameter
+        const url = new URL(window.location.href);
+        // Only include comparison param if not Salah (default)
+        if (comparisonType !== FancyComparisonType.Salah) {
+            url.searchParams.set('comparison', reverseComparisonTypeMap[comparisonType]);
+        } else {
+            url.searchParams.delete('comparison');
+        }
+
+        navigator.clipboard.writeText(`${message} - View my team at ${url.toString()}`);
         setIsCopied(true);
 
         setTimeout(() => {
@@ -75,7 +85,7 @@ const FancyShare: React.FC<FancyShareProps> = (props) => {
                 .share({
                     title: message,
                     text: 'View my team at',
-                    url: window.location.href,
+                    url: url.toString(),
                 })
                 .catch(console.error);
         }
