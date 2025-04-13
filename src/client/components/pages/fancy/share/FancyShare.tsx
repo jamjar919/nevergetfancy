@@ -63,7 +63,7 @@ const FancyShare: React.FC<FancyShareProps> = (props) => {
         trackEvent(TrackingEvent.shareTeam);
 
         const message = getMessage(points, comparisonType);
-        
+
         // Create the URL with proper query parameter
         const url = new URL(window.location.href);
         // Only include comparison param if not Salah (default)
