@@ -1,6 +1,6 @@
 import { EventId, PremierLeaguePlayerId } from '../../../../graphql/Reference';
 import { getPlayerPerformanceById } from '../bootstrap/bootstrap';
-import { PlayerGamePerformanceDto } from '../type/PlayerGamePerformanceDto';
+import { mergePlayerGamePerformance, PlayerGamePerformanceDto } from '../type/PlayerGamePerformanceDto';
 import { getPlayerPreviousGames } from './getPlayerSummary';
 
 const getPlayerPreviousGame = async (
@@ -15,7 +15,14 @@ const getPlayerPreviousGame = async (
 
     // If not available in cache, fetch the previous games
     const previousGames = await getPlayerPreviousGames(playerId);
-    return previousGames.find((game) => game.gameweek === gameweek);
+    const gamesInGameWeek = previousGames.filter((game) => game.gameweek === gameweek);
+
+    if (gamesInGameWeek.length === 0) {
+        return undefined;
+    }
+
+    // Merge the responses
+    return mergePlayerGamePerformance(gamesInGameWeek);
 };
 
 export { getPlayerPreviousGame };
