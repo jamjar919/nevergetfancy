@@ -1,6 +1,9 @@
 import { EventId, PremierLeaguePlayerId } from '../../../../graphql/Reference';
 import { getPlayerPerformanceById } from '../bootstrap/bootstrap';
-import { mergePlayerGamePerformance, PlayerGamePerformanceDto } from '../type/PlayerGamePerformanceDto';
+import {
+    mergePlayerGamePerformance,
+    PlayerGamePerformanceDto,
+} from '../type/PlayerGamePerformanceDto';
 import { getPlayerPreviousGames } from './getPlayerSummary';
 
 const getPlayerPreviousGame = async (

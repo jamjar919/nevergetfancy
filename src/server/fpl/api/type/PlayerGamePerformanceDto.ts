@@ -70,6 +70,6 @@ const mergePlayerGamePerformance = (
         saves: a.saves + b.saves,
         bonus: a.bonus + b.bonus,
     }));
-}
+};
 
 export { playerPerformanceDtoFromApi, mergePlayerGamePerformance, PlayerGamePerformanceDto };
