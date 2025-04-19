@@ -49,4 +49,27 @@ const playerPerformanceDtoFromApi = (
     };
 };
 
-export { playerPerformanceDtoFromApi, PlayerGamePerformanceDto };
+const mergePlayerGamePerformance = (
+    performances: PlayerGamePerformanceDto[]
+): PlayerGamePerformanceDto => {
+    return performances.reduce((a, b) => ({
+        ...a,
+        points: a.points + b.points,
+        homeTeamScore: a.homeTeamScore + b.homeTeamScore,
+        awayTeamScore: a.awayTeamScore + b.awayTeamScore,
+        minutes: a.minutes + b.minutes,
+        goals: a.goals + b.goals,
+        assists: a.assists + b.assists,
+        cleanSheets: a.cleanSheets + b.cleanSheets,
+        conceded: a.conceded + b.conceded,
+        ownGoals: a.ownGoals + b.ownGoals,
+        penaltiesSaved: a.penaltiesSaved + b.penaltiesSaved,
+        penaltiesMissed: a.penaltiesMissed + b.penaltiesMissed,
+        yellowCards: a.yellowCards + b.yellowCards,
+        redCards: a.redCards + b.redCards,
+        saves: a.saves + b.saves,
+        bonus: a.bonus + b.bonus,
+    }));
+};
+
+export { playerPerformanceDtoFromApi, mergePlayerGamePerformance, PlayerGamePerformanceDto };
