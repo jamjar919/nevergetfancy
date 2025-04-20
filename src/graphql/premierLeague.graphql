@@ -84,6 +84,7 @@ type PremierLeaguePlayer {
 
 type PremierLeagueTeamShirts {
     homeImageSrc: String!
+    goalkeeperImageSrc: String!
 }
 
 enum PremierLeaguePlayerPosition {

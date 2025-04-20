@@ -9,6 +9,7 @@ const convertPremierLeagueTeam = (dto: PremierLeagueTeamDto): PremierLeagueTeam 
         position: dto.position,
         shirts: {
             homeImageSrc: `/images/shirts/shirt_${dto.shortName}.png`,
+            goalkeeperImageSrc: `/images/shirts/shirt_${dto.shortName}_GKP.png`,
         },
     };
 };
