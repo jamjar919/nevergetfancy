@@ -9,6 +9,7 @@ fragment PlayerCard on PremierLeaguePlayer {
         position
         shirts {
             homeImageSrc
+            goalkeeperImageSrc
         }
     }
 }

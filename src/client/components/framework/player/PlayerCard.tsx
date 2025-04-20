@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PlayerCardFragment } from '../../../../graphql/generated/Client';
+import { PlayerCardFragment, PremierLeaguePlayerPosition } from '../../../../graphql/generated/Client';
 import { formatShortPlayerPosition } from '../../../util/FormatShortPlayerPosition';
 import CaptainIcon from '../icon/CaptainIcon';
 import ViceCaptainIcon from '../icon/ViceCaptainIcon';
@@ -23,7 +23,7 @@ const PlayerCard: React.FC<PlayerProps> = ({ player, captainStatus = CaptainStat
         displayName,
         team: {
             shortName: teamShortName,
-            shirts: { homeImageSrc },
+            shirts: { homeImageSrc, goalkeeperImageSrc },
         },
         position,
     } = player;
@@ -39,11 +39,18 @@ const PlayerCard: React.FC<PlayerProps> = ({ player, captainStatus = CaptainStat
         }
     };
 
+    const getPlayerImageSrc = () => {
+        if (position === PremierLeaguePlayerPosition.Goalkeeper) {
+            return goalkeeperImageSrc;
+        }
+        return homeImageSrc;
+    }
+
     return (
         <div className={styles.card}>
             <div className={styles.imageContainer}>
                 <img
-                    src={homeImageSrc}
+                    src={getPlayerImageSrc()}
                     alt={`Player shirt for ${displayName} who plays for ${teamShortName}`}
                 />
             </div>
