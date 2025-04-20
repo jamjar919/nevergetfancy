@@ -2,6 +2,8 @@ import { EventId, FantasyManagerId, PremierLeaguePlayerId } from '../../../../gr
 import { getEventPerformance } from '../event/getEventPerformance';
 import { PlayerGamePerformanceDto } from '../type/PlayerGamePerformanceDto';
 import { getGameweekHistory } from './getGameweekHistory';
+import { getPlayerById } from '../bootstrap/bootstrap';
+import { PremierLeaguePlayerTypeDto } from '../type/PremierLeaguePlayerTypeDto';
 
 const getBestCaptainPickInTeamForGameWeek = async (
     manager: FantasyManagerId,
@@ -11,9 +13,14 @@ const getBestCaptainPickInTeamForGameWeek = async (
     const players: Set<PremierLeaguePlayerId> = new Set(picks.map((pick) => pick.playerId));
     const allPlayerPerformances: PlayerGamePerformanceDto[] = await getEventPerformance(gameweek);
 
-    const performances = allPlayerPerformances.filter((performance) =>
-        players.has(performance.playerId)
-    );
+    const performances = allPlayerPerformances
+        .filter((performance) =>
+            players.has(performance.playerId)
+        )
+        .filter((performance) => {
+            const player = getPlayerById(performance.playerId);
+            return player.type !== PremierLeaguePlayerTypeDto.Manager;
+        });
 
     const bestPerformance = performances.reduce((best, current) => {
         if (!best || current.points > best.points) {
