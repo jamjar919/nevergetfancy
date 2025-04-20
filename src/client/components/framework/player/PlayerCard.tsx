@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { PlayerCardFragment, PremierLeaguePlayerPosition } from '../../../../graphql/generated/Client';
+import {
+    PlayerCardFragment,
+    PremierLeaguePlayerPosition,
+} from '../../../../graphql/generated/Client';
 import { formatShortPlayerPosition } from '../../../util/FormatShortPlayerPosition';
 import CaptainIcon from '../icon/CaptainIcon';
 import ViceCaptainIcon from '../icon/ViceCaptainIcon';
@@ -44,7 +47,7 @@ const PlayerCard: React.FC<PlayerProps> = ({ player, captainStatus = CaptainStat
             return goalkeeperImageSrc;
         }
         return homeImageSrc;
-    }
+    };
 
     return (
         <div className={styles.card}>
