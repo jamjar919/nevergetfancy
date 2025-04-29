@@ -1,9 +1,10 @@
 import React from 'react';
 
+import { GoogleAnalytics } from '@next/third-parties/google';
+
 import { HeaderFooterLayout } from '../components/framework/HeaderFooterLayout';
 import { DisplaySizeProvider } from '../components/framework/context/DisplaySizeContext';
 import { ApolloWrapper } from '../graphql/ApolloWrapper';
-import { GoogleAnalytics } from '@next/third-parties/google'
 
 import './_app.scss';
 
