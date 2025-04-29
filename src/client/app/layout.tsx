@@ -3,6 +3,7 @@ import React from 'react';
 import { HeaderFooterLayout } from '../components/framework/HeaderFooterLayout';
 import { DisplaySizeProvider } from '../components/framework/context/DisplaySizeContext';
 import { ApolloWrapper } from '../graphql/ApolloWrapper';
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 import './_app.scss';
 
@@ -18,11 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     rel="stylesheet"
                 />
                 <meta content="width=device-width,initial-scale=1" name="viewport" />
-                <script
-                    defer
-                    data-domain="nevergetfancy.com"
-                    src="https://plausible.io/js/script.tagged-events.js"
-                ></script>
+                <GoogleAnalytics gaId={'G-BLPKVHCGYW'} />
                 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
                 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
