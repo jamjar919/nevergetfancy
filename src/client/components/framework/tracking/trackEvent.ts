@@ -1,11 +1,5 @@
 import { useRef } from 'react';
 
-declare global {
-    interface Window {
-        plausible?: (event: TrackingEvent) => void;
-    }
-}
-
 enum TrackingEvent {
     shareTeam = 'share-team',
     searchByTeamName = 'search-by-team-name',
@@ -13,13 +7,13 @@ enum TrackingEvent {
 }
 
 /**
- * Track a custom event using Plausible
- * @param event The event to track, needs to be set up in plausible
+ * Track a custom event
+ * @param event The event to track
  */
 const trackEvent = (event: TrackingEvent) => {
     try {
         console.debug(`Tracking event ${event}`);
-        window.plausible?.(event);
+        // window.plausible?.(event);
     } catch (e) {
         console.error(`Failed to track event ${event}`, e);
     }
