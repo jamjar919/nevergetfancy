@@ -10,6 +10,7 @@ import { FancyTableCard } from './card/FancyTableCard';
 import { FancyTableLine, FancyTableLineProps } from './line/FancyTableLine';
 
 import styles from './FancyTable.module.scss';
+import { Ad } from '../../../framework/ad/Ad';
 
 type FancyTableProps = {
     captainScores: FancyPickLineAttributesFragment[];
@@ -48,9 +49,14 @@ const FancyTable: React.FC<FancyTableProps> = (props) => {
 
         return (
             <div className={styles.cardsContainer}>
-                {visibleLines.map((line) => (
-                    <FancyTableCard key={line.gameweek} teamId={teamId} {...line} />
-                ))}
+                {visibleLines.map((line, idx) => {
+                    return (
+                        <div key={line.gameweek}>
+                            <FancyTableCard teamId={teamId} {...line} />
+                            {(idx + 1) % 5 == 0 ? <Ad /> : null}
+                        </div>
+                    );
+                })}
                 {hasMoreToShow && (
                     <div className={styles.showMoreContainer}>
                         <button className={styles.showMoreButton} onClick={handleShowMore}>
