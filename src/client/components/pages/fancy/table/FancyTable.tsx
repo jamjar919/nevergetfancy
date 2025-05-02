@@ -6,11 +6,11 @@ import {
     FancyResultLineAttributesFragment,
 } from '../../../../../graphql/generated/Client';
 import { useDisplaySize } from '../../../../components/framework/context/DisplaySizeContext';
+import { Ad } from '../../../framework/ad/Ad';
 import { FancyTableCard } from './card/FancyTableCard';
 import { FancyTableLine, FancyTableLineProps } from './line/FancyTableLine';
 
 import styles from './FancyTable.module.scss';
-import { Ad } from '../../../framework/ad/Ad';
 
 type FancyTableProps = {
     captainScores: FancyPickLineAttributesFragment[];
