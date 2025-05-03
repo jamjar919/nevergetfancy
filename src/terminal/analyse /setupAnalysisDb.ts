@@ -19,6 +19,6 @@ const setupAnalysisDb = (db: DatabaseSync) => {
             bestCaptainPoints INTEGER
         )
     `);
-}
+};
 
-export { setupAnalysisDb }
+export { setupAnalysisDb };

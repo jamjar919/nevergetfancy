@@ -2,13 +2,13 @@ import 'dotenv/config';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
+import { EventId } from '../graphql/Reference';
 import { indexTeams } from '../server/fpl/index/core/indexTeams';
 import { IndexingDao } from '../server/fpl/index/dao/indexingDao';
+import { analyse } from './analyse /analyse';
 import { combineFplDatabases } from './combine/combineFplDatabases';
 import { detectMissing } from './detect-missing/detectMissing';
 import { exportTeamsDb } from './import/exportTeamsDb';
-import { analyse } from './analyse /analyse';
-import { EventId } from '../graphql/Reference';
 
 const dao = IndexingDao.getInstance();
 const defaultStart = dao.getMaxTeamId() + 1;

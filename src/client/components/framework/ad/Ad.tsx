@@ -12,7 +12,7 @@ const Ad: React.FC = () => {
                 console.error('Error loading ad:', e);
             }
         }
-    }, [])
+    }, []);
 
     return (
         <>
