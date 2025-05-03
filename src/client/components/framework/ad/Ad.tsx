@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const Ad: React.FC = () => {
+    const scriptLoaded = useRef(false);
+
+    useEffect(() => {
+        if (window?.adsbygoogle?.loaded && !scriptLoaded.current) {
+            scriptLoaded.current = true;
+            try {
+                window.adsbygoogle.push({});
+            } catch (e) {
+                console.error('Error loading ad:', e);
+            }
+        }
+    }, [])
+
     return (
         <>
             <ins

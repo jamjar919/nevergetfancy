@@ -19,10 +19,11 @@ const convertStandings = (
     });
 };
 
-const MAX_STANDINGS_TO_FETCH = 250;
+const DEFAULT_MAX_STANDINGS_TO_FETCH = 250;
 
 const getLeagueStandings = async (
-    leagueId: FantasyLeagueId
+    leagueId: FantasyLeagueId,
+    maxStandings = DEFAULT_MAX_STANDINGS_TO_FETCH
 ): Promise<FantasyTeamLeagueStandingDto[]> => {
     let currentPage = 1;
     const response = await fetchFromApi(FantasyPremierLeagueApi.League(leagueId, currentPage));
@@ -35,7 +36,7 @@ const getLeagueStandings = async (
 
     const standings = convertStandings(data.standings);
 
-    while (data.standings.has_next && standings.length < MAX_STANDINGS_TO_FETCH) {
+    while (data.standings.has_next && standings.length < maxStandings) {
         currentPage++;
 
         data = await fetchFromApi(FantasyPremierLeagueApi.League(leagueId, currentPage)).then(
