@@ -1,13 +1,13 @@
 import { Metadata, ResolvingMetadata } from 'next';
 
 import { FantasyManagerId } from '../../../../graphql/Reference';
+import { AdProvider } from '../../../components/framework/ad/AdProvider';
 import { getTeamNameForTitle } from '../../../components/framework/head/GetTeamNameForTitle';
 import { FancyResult } from '../../../components/pages/fancy/FancyResult';
 import {
     FancyContextProvider,
     comparisonTypeMap,
 } from '../../../components/pages/fancy/context/FancyContext';
-import { AdProvider } from '../../../components/framework/ad/AdProvider';
 
 type Props = {
     params: Promise<{ teamId: string }>;

@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Ad: React.FC = () => {
-
     return (
         <>
             <ins
