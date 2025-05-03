@@ -17,8 +17,8 @@
         "build:server:dev": "npx webpack -w --config webpack.server.config.js --mode=development",
         "start:server": "node ./dist/server.js",
         "graphql": "npx graphql-codegen --config ./src/graphql/graphql-codegen.yml",
-        "build:indexer": "npx webpack --config 'webpack.terminal.config.js'",
-        "run:indexer": "node './dist/indexer/indexer.js'",
+        "build:terminal": "npx webpack --config 'webpack.terminal.config.js'",
+        "run:terminal": "node './dist/indexer/indexer.js'",
         "format:write": "prettier --write .",
         "format:check": "prettier --check ."
     },
