@@ -7,6 +7,7 @@ import {
     FancyContextProvider,
     comparisonTypeMap,
 } from '../../../components/pages/fancy/context/FancyContext';
+import { AdProvider } from '../../../components/framework/ad/AdProvider';
 
 type Props = {
     params: Promise<{ teamId: string }>;
@@ -42,8 +43,10 @@ export default async function Page({
     const defaultComparisonType = comparison ? comparisonTypeMap[comparison] : undefined;
 
     return (
-        <FancyContextProvider defaultComparisonType={defaultComparisonType}>
-            <FancyResult teamId={teamId as FantasyManagerId} />
-        </FancyContextProvider>
+        <AdProvider>
+            <FancyContextProvider defaultComparisonType={defaultComparisonType}>
+                <FancyResult teamId={teamId as FantasyManagerId} />
+            </FancyContextProvider>
+        </AdProvider>
     );
 }
