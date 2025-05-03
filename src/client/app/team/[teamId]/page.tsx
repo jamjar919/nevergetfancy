@@ -1,6 +1,7 @@
 import { Metadata, ResolvingMetadata } from 'next';
 
 import { FantasyManagerId } from '../../../../graphql/Reference';
+import { AdProvider } from '../../../components/framework/ad/AdProvider';
 import { getTeamNameForTitle } from '../../../components/framework/head/GetTeamNameForTitle';
 import { FancyResult } from '../../../components/pages/fancy/FancyResult';
 import {
@@ -42,8 +43,10 @@ export default async function Page({
     const defaultComparisonType = comparison ? comparisonTypeMap[comparison] : undefined;
 
     return (
-        <FancyContextProvider defaultComparisonType={defaultComparisonType}>
-            <FancyResult teamId={teamId as FantasyManagerId} />
-        </FancyContextProvider>
+        <AdProvider>
+            <FancyContextProvider defaultComparisonType={defaultComparisonType}>
+                <FancyResult teamId={teamId as FantasyManagerId} />
+            </FancyContextProvider>
+        </AdProvider>
     );
 }
