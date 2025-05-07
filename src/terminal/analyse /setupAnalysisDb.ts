@@ -10,7 +10,6 @@ const setupAnalysisDb = (db: DatabaseSync) => {
     `);
     db.exec(`
         CREATE TABLE IF NOT EXISTS analysis (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
             teamId TEXT,
             gameweek INTEGER,
             captainedPlayer INTEGER,
@@ -18,6 +17,13 @@ const setupAnalysisDb = (db: DatabaseSync) => {
             bestCaptainInTeam INTEGER,
             bestCaptainPoints INTEGER,
             rank INTEGER
+            PRIMARY KEY (teamId, gameweek)
+        )
+    `);
+    db.exec(`
+        CREATE TABLE IF NOT EXISTS players (
+            playerId INTEGER PRIMARY KEY,
+            name TEXT
         )
     `);
 };

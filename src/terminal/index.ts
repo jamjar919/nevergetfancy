@@ -9,6 +9,7 @@ import { analyse } from './analyse /analyse';
 import { combineFplDatabases } from './combine/combineFplDatabases';
 import { detectMissing } from './detect-missing/detectMissing';
 import { exportTeamsDb } from './import/exportTeamsDb';
+import { analyseAddPlayerInfo } from './analyse /analyseAddPlayerInfo';
 
 const dao = IndexingDao.getInstance();
 const defaultStart = dao.getMaxTeamId() + 1;
@@ -113,6 +114,14 @@ await yargs(hideBin(process.argv))
             console.log(`Top: ${top}`);
             console.log(`Gameweek: ${gameweek}`);
             return analyse(top, gameweek as EventId);
+        }
+    )
+    .command(
+        'analyse:addplayerinfo',
+        'Adds the player info to the analysis DB',
+        () => {},
+        async () => {
+            return analyseAddPlayerInfo();
         }
     )
     .parse();
