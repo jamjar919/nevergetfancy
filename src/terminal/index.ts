@@ -6,10 +6,10 @@ import { EventId } from '../graphql/Reference';
 import { indexTeams } from '../server/fpl/index/core/indexTeams';
 import { IndexingDao } from '../server/fpl/index/dao/indexingDao';
 import { analyse } from './analyse /analyse';
+import { analyseAddPlayerInfo } from './analyse /analyseAddPlayerInfo';
 import { combineFplDatabases } from './combine/combineFplDatabases';
 import { detectMissing } from './detect-missing/detectMissing';
 import { exportTeamsDb } from './import/exportTeamsDb';
-import { analyseAddPlayerInfo } from './analyse /analyseAddPlayerInfo';
 
 const dao = IndexingDao.getInstance();
 const defaultStart = dao.getMaxTeamId() + 1;

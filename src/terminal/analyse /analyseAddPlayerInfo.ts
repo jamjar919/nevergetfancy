@@ -1,5 +1,6 @@
-import { getPlayers, prefetchPlayersAndTeams } from '../../server/fpl/api/bootstrap/bootstrap';
 import { DatabaseSync } from 'node:sqlite';
+
+import { getPlayers, prefetchPlayersAndTeams } from '../../server/fpl/api/bootstrap/bootstrap';
 import { setupAnalysisDb } from './setupAnalysisDb';
 
 const analyseAddPlayerInfo = async (): Promise<void> => {
@@ -14,10 +15,7 @@ const analyseAddPlayerInfo = async (): Promise<void> => {
     console.log(`Adding info for ${players.length} players...`);
 
     for (let i = 0; i < players.length; i++) {
-        const {
-            id,
-            webName
-        } = players[i];
+        const { id, webName } = players[i];
 
         const stmt = database.prepare(`
             INSERT OR IGNORE INTO players (playerId, name) 
@@ -27,6 +25,6 @@ const analyseAddPlayerInfo = async (): Promise<void> => {
     }
 
     return Promise.resolve();
-}
+};
 
-export { analyseAddPlayerInfo }
+export { analyseAddPlayerInfo };
