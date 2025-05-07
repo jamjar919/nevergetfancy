@@ -7,6 +7,7 @@ import { PremierLeaguePlayerDto } from '../type/PremierLeaguePlayerDto';
 import { convertToPlayerType } from '../type/PremierLeaguePlayerTypeDto';
 import { PremierLeagueTeamDto } from '../type/PremierLeagueTeamDto';
 import { BootstrapApiResponse } from './BootstrapApiResponse';
+import { getCurrentEvent } from '../event/getCurrentEvent';
 
 let players: { [key: PremierLeaguePlayerId]: PremierLeaguePlayerDto } = {};
 let teams: { [key: PremierLeagueTeamId]: PremierLeagueTeamDto } = {};
@@ -18,7 +19,17 @@ const getPlayerPerformanceKey = (
 ): PlayerPerformanceKey => `${playerId}_event_${eventId}`;
 let playerPerformance: { [key: PlayerPerformanceKey]: PlayerGamePerformanceDto } = {};
 
-const fetchPlayersAndTeams = async (): Promise<void> => {
+// Load the players and teams data from the Fantasy Premier League API
+// Fetch the player performance data for all previous gameweeks for speed
+const bootstrap = async (): Promise<void> => {
+    await prefetchPlayersAndTeams();
+
+    const currentGameweek = await getCurrentEvent();
+    const gameweeksToCacheResultsFor = currentGameweek - 1;
+    await prefetchPlayerPerformances(gameweeksToCacheResultsFor);
+};
+
+const prefetchPlayersAndTeams = async (): Promise<void> => {
     const response = await fetchFromApi(FantasyPremierLeagueApi.Bootstrap());
     const data: BootstrapApiResponse = await response.json();
 
@@ -52,10 +63,11 @@ const fetchPlayersAndTeams = async (): Promise<void> => {
             shortName: team.short_name,
         };
     });
+}
 
-    const currentGameweek = data.events.find((event) => event.is_current)?.id as EventId;
-    const gameweeksToCacheResultsFor = currentGameweek - 1;
-
+const prefetchPlayerPerformances = async (
+    gameweeksToCacheResultsFor: number
+): Promise<void> => {
     await Promise.all(
         Array.from({ length: gameweeksToCacheResultsFor }).map(async (_, index) => {
             const eventId = (index + 1) as EventId;
@@ -71,7 +83,7 @@ const fetchPlayersAndTeams = async (): Promise<void> => {
     console.log(
         `🏃🏽 Player performance data cached up to gameweek ${gameweeksToCacheResultsFor}, results cached for ${Object.keys(playerPerformance).length} performances.`
     );
-};
+}
 
 const getPlayerById = (id: PremierLeaguePlayerId): PremierLeaguePlayerDto => {
     return players[id];
@@ -94,7 +106,9 @@ const getPlayers = () => players;
 const getTeams = () => teams;
 
 export {
-    fetchPlayersAndTeams,
+    bootstrap,
+    prefetchPlayersAndTeams,
+    prefetchPlayerPerformances,
     getPlayerById,
     getTeamById,
     getPlayerPerformanceById,

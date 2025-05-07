@@ -16,7 +16,8 @@ const setupAnalysisDb = (db: DatabaseSync) => {
             captainedPlayer INTEGER,
             captainPoints INTEGER,
             bestCaptainInTeam INTEGER,
-            bestCaptainPoints INTEGER
+            bestCaptainPoints INTEGER,
+            rank INTEGER
         )
     `);
 };

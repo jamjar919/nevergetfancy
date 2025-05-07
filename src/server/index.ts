@@ -12,7 +12,7 @@ import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHt
 import { Context } from '../graphql/Context';
 import { Endpoints } from './constant/endpoints';
 import { SearchDao } from './db/searchDao';
-import { fetchPlayersAndTeams, getPlayers, getTeams } from './fpl/api/bootstrap/bootstrap';
+import { bootstrap, getPlayers, getTeams } from './fpl/api/bootstrap/bootstrap';
 import { resolvers } from './resolver/resolvers';
 import { randomIntegerInRange } from './util/randomIntegerInRange';
 import { setupLogs } from './util/setupLogs';
@@ -69,7 +69,7 @@ await SearchDao.getInstance()
 await new Promise<void>(async (resolve) => {
     console.log('Fetching players and teams...');
 
-    await fetchPlayersAndTeams();
+    await bootstrap();
 
     const players = getPlayers();
     const numPlayers = Object.keys(players).length;
