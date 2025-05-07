@@ -1,13 +1,13 @@
 import { EventId, PremierLeaguePlayerId, PremierLeagueTeamId } from '../../../../graphql/Reference';
 import { fetchFromApi } from '../../../util/fetchFromApi';
 import { FantasyPremierLeagueApi } from '../apiConfig';
+import { getCurrentEvent } from '../event/getCurrentEvent';
 import { getEventPerformance } from '../event/getEventPerformance';
 import { PlayerGamePerformanceDto } from '../type/PlayerGamePerformanceDto';
 import { PremierLeaguePlayerDto } from '../type/PremierLeaguePlayerDto';
 import { convertToPlayerType } from '../type/PremierLeaguePlayerTypeDto';
 import { PremierLeagueTeamDto } from '../type/PremierLeagueTeamDto';
 import { BootstrapApiResponse } from './BootstrapApiResponse';
-import { getCurrentEvent } from '../event/getCurrentEvent';
 
 let players: { [key: PremierLeaguePlayerId]: PremierLeaguePlayerDto } = {};
 let teams: { [key: PremierLeagueTeamId]: PremierLeagueTeamDto } = {};
@@ -63,11 +63,9 @@ const prefetchPlayersAndTeams = async (): Promise<void> => {
             shortName: team.short_name,
         };
     });
-}
+};
 
-const prefetchPlayerPerformances = async (
-    gameweeksToCacheResultsFor: number
-): Promise<void> => {
+const prefetchPlayerPerformances = async (gameweeksToCacheResultsFor: number): Promise<void> => {
     await Promise.all(
         Array.from({ length: gameweeksToCacheResultsFor }).map(async (_, index) => {
             const eventId = (index + 1) as EventId;
@@ -83,7 +81,7 @@ const prefetchPlayerPerformances = async (
     console.log(
         `🏃🏽 Player performance data cached up to gameweek ${gameweeksToCacheResultsFor}, results cached for ${Object.keys(playerPerformance).length} performances.`
     );
-}
+};
 
 const getPlayerById = (id: PremierLeaguePlayerId): PremierLeaguePlayerDto => {
     return players[id];
