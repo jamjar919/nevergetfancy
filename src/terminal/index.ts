@@ -2,8 +2,10 @@ import 'dotenv/config';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
+import { EventId } from '../graphql/Reference';
 import { indexTeams } from '../server/fpl/index/core/indexTeams';
 import { IndexingDao } from '../server/fpl/index/dao/indexingDao';
+import { analyse } from './analyse /analyse';
 import { combineFplDatabases } from './combine/combineFplDatabases';
 import { detectMissing } from './detect-missing/detectMissing';
 import { exportTeamsDb } from './import/exportTeamsDb';
@@ -80,6 +82,37 @@ await yargs(hideBin(process.argv))
         () => {},
         () => {
             exportTeamsDb();
+        }
+    )
+    .command(
+        'analyse [top] [gameweek] [database]',
+        'Collect stats on the top n players for a gameweek and save to a database',
+        (yargs) => {
+            return yargs
+                .positional('top', {
+                    describe: 'Top n players to analyse',
+                    default: 1000,
+                })
+                .positional('gameweek', {
+                    describe: 'The gameweek to analyse',
+                    default: 1,
+                });
+        },
+        async (argv) => {
+            const { top, gameweek } = argv;
+
+            // Validate arguments make sense
+            if (top <= 0) {
+                throw new Error('Top must be greater than 0');
+            }
+            if (gameweek <= 0) {
+                throw new Error('Gameweek must be greater than 0');
+            }
+
+            console.log('Calling main analyse:');
+            console.log(`Top: ${top}`);
+            console.log(`Gameweek: ${gameweek}`);
+            return analyse(top, gameweek as EventId);
         }
     )
     .parse();
