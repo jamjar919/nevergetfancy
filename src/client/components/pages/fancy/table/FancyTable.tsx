@@ -52,7 +52,6 @@ const FancyTable: React.FC<FancyTableProps> = (props) => {
         return (
             <div className={styles.cardsContainer}>
                 {visibleLines.map((line, idx) => {
-
                     const showAd =
                         idx === 4 ||
                         idx === visibleLines.length - 1 ||
