@@ -3,6 +3,24 @@ import React, { useEffect, useRef, useState } from 'react';
 const Ad: React.FC = () => {
     const scriptLoaded = useRef(false);
 
+    // Ad placeholder
+    if (process?.env?.NODE_ENV === 'development') {
+        return (
+            <div
+                style={{
+                    display: 'block',
+                    marginBottom: '16px',
+                    height: '250px',
+                    backgroundColor: '#f0f0f0',
+                    textAlign: 'center',
+                    lineHeight: '250px',
+                }}
+            >
+                Ad
+            </div>
+        );
+    }
+
     useEffect(() => {
         if (window?.adsbygoogle?.loaded && !scriptLoaded.current) {
             scriptLoaded.current = true;

@@ -18,9 +18,11 @@ type FancyTableProps = {
     teamId?: string;
 };
 
+const INITIAL_VISIBLE_GAMEWEEKS = 15;
+
 const FancyTable: React.FC<FancyTableProps> = (props) => {
     const { isMobile } = useDisplaySize();
-    const [visibleGameweeks, setVisibleGameweeks] = useState<number>(15);
+    const [visibleGameweeks, setVisibleGameweeks] = useState<number>(INITIAL_VISIBLE_GAMEWEEKS);
     const { captainScores, comparisonScores, teamId } = props;
 
     const lines: FancyTableLineProps[] = Array.from({ length: captainScores.length }, (_, i) => {
@@ -50,10 +52,15 @@ const FancyTable: React.FC<FancyTableProps> = (props) => {
         return (
             <div className={styles.cardsContainer}>
                 {visibleLines.map((line, idx) => {
+                    const showAd =
+                        idx === 4 ||
+                        idx === visibleLines.length - 1 ||
+                        (idx > 4 && (idx - 4) % 10 === 0 && idx < visibleLines.length - 1);
+
                     return (
                         <div key={line.gameweek}>
                             <FancyTableCard teamId={teamId} {...line} />
-                            {(idx + 1) % 5 == 0 ? <Ad /> : null}
+                            {showAd ? <Ad /> : null}
                         </div>
                     );
                 })}
