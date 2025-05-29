@@ -141,3 +141,4 @@ fplTeams.db
 .DS_Store
 .idea
 .vs_code
+*.db
