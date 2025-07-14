@@ -17,7 +17,7 @@ enum OpenSearchModes {
 
 const Search: React.FC = () => {
     const [openSearchMode, setOpenSearchMode] = useState<OpenSearchModes>(
-        OpenSearchModes.SEARCH_BY_NAME
+        OpenSearchModes.SEARCH_BY_ID
     );
 
     const SearchComponent = () => {
@@ -45,17 +45,7 @@ const Search: React.FC = () => {
                     </>
                 );
             case OpenSearchModes.SEARCH_BY_ID:
-                return (
-                    <>
-                        You can also{' '}
-                        <button
-                            className={styles.switchSearch}
-                            onClick={() => setOpenSearchMode(OpenSearchModes.SEARCH_BY_NAME)}
-                        >
-                            search by name.
-                        </button>
-                    </>
-                );
+                return null;
         }
     };
 

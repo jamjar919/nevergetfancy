@@ -51,16 +51,10 @@ const FancyTable: React.FC<FancyTableProps> = (props) => {
 
         return (
             <div className={styles.cardsContainer}>
-                {visibleLines.map((line, idx) => {
-                    const showAd =
-                        idx === 4 ||
-                        idx === visibleLines.length - 1 ||
-                        (idx > 4 && (idx - 4) % 10 === 0 && idx < visibleLines.length - 1);
-
+                {visibleLines.map((line) => {
                     return (
                         <div key={line.gameweek}>
                             <FancyTableCard teamId={teamId} {...line} />
-                            {showAd ? <Ad /> : null}
                         </div>
                     );
                 })}
