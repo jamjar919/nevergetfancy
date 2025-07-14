@@ -43,10 +43,8 @@ export default async function Page({
     const defaultComparisonType = comparison ? comparisonTypeMap[comparison] : undefined;
 
     return (
-        <AdProvider>
-            <FancyContextProvider defaultComparisonType={defaultComparisonType}>
-                <FancyResult teamId={teamId as FantasyManagerId} />
-            </FancyContextProvider>
-        </AdProvider>
+        <FancyContextProvider defaultComparisonType={defaultComparisonType}>
+            <FancyResult teamId={teamId as FantasyManagerId} />
+        </FancyContextProvider>
     );
 }
