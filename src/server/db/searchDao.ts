@@ -6,10 +6,15 @@ import { TeamSearchResultDto } from './type/TeamSearchResultDto';
 
 class SearchDao {
     private static instance: SearchDao;
-    private connectionPool: Pool;
+    private connectionPool: Pool | null;
 
     private constructor() {
-        this.connectionPool = createConnectionPool();
+        try {
+            this.connectionPool = createConnectionPool();
+        } catch (e) {
+            console.error('Failed to create connection pool', e);
+            this.connectionPool = null;
+        }
     }
 
     public static getInstance() {
@@ -20,6 +25,11 @@ class SearchDao {
     }
 
     public ping = async () => {
+        if (!this.connectionPool) {
+            console.error('Connection pool not present');
+            return false;
+        }
+
         try {
             await this.connectionPool.query('SELECT NOW()');
             return true;
@@ -30,6 +40,11 @@ class SearchDao {
     };
 
     public search = async (teamOrManagerName: string): Promise<TeamSearchResultDto[]> => {
+        if (!this.connectionPool) {
+            console.error('Connection pool not initialised');
+            throw new Error('Database connection not available');
+        }
+
         const tsQuery = teamOrManagerName.replace(/'/g, "''").split(' ').join(' & '); // Escape single quotes and format for tsquery
         const data = await this.connectionPool.query(
             `
