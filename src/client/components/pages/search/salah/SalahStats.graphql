@@ -1,5 +1,5 @@
 query SalahStats {
-    premierLeaguePlayer(id: 328) {
+    premierLeaguePlayer(id: 381) {
         totalPoints
         goals
         assists
